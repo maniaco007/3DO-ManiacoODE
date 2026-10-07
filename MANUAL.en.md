@@ -2,27 +2,29 @@
 
 **[Português](MANUAL.md)** · **[Back to start](README.en.md)**
 
-The menu is in Portuguese; the on-screen names are shown in quotes with their meaning.
+The menu and the PC program can be used in English: on the console, **Options → "Idioma / Language"**; in the program, the **Idioma / Language** menu.
 
 ## Contents
 
 1. [What you need](#1-what-you-need)
 2. [First firmware install](#2-first-firmware-install)
 3. [Preparing the USB drive](#3-preparing-the-usb-drive)
-4. [Using the menu](#4-using-the-menu)
-5. [Options](#5-options)
-6. [Save manager](#6-save-manager)
-7. [FZ-EM256 Memory Unit](#7-fz-em256-memory-unit)
-8. [Updating the firmware from the USB drive](#8-updating-the-firmware-from-the-usb-drive)
-9. [Troubleshooting](#9-troubleshooting)
+4. [PC program — USB drive manager](#4-pc-program--usb-drive-manager)
+5. [Using the menu](#5-using-the-menu)
+6. [Options](#6-options)
+7. [Save manager](#7-save-manager)
+8. [FZ-EM256 Memory Unit](#8-fz-em256-memory-unit)
+9. [Updating the firmware](#9-updating-the-firmware)
+10. [Troubleshooting](#10-troubleshooting)
 
 ## 1. What you need
 
 - A 3DO with the **SataTo3DO ODE** (RP2040 board) installed. Tested on a **Panasonic FZ-10**.
 - A USB drive formatted as **FAT32** or **exFAT**.
-- The two files from the **[Releases](../../releases)** page:
+- The files from the **[Releases](../../releases)** page:
   - **`SataTo3DO.uf2`** — the ODE firmware;
-  - **`boot.iso`** — the menu.
+  - **`boot.iso`** — the menu;
+  - **`3DO-ManiacoODE-Gerenciador.exe`** — the PC program that prepares the USB drive (optional, for **Windows 10 or 11**).
 
 ## 2. First firmware install
 
@@ -32,11 +34,13 @@ Only the first time, flash the firmware from a PC:
 2. The PC shows a drive named **RPI-RP2**.
 3. Copy **`SataTo3DO.uf2`** to that drive. The board writes it and restarts on its own.
 
-After that, updates go through the USB drive ([section 8](#8-updating-the-firmware-from-the-usb-drive)).
+After that, updates go through the USB drive ([section 9](#9-updating-the-firmware)).
 
 ## 3. Preparing the USB drive
 
-Lay out the USB drive like this:
+The easiest way is the **PC program** ([section 4](#4-pc-program--usb-drive-manager)): it installs the menu, organizes the games, makes the box art and creates the saves folder in a few clicks.
+
+If you prefer to do it by hand, lay out the USB drive like this:
 
 ```
 boot.iso                 ← the menu
@@ -53,35 +57,160 @@ Policenauts/
 - **`boot.iso`** goes in the root. If you had another menu, rename the old one (e.g. `boot_old.iso`) so you can go back.
 - **Each game in its own folder.** A folder with a single game is shown with the **folder name**; with several files, each file name is shown.
 - Supported formats: **`.iso`** (2048 or 2352 bytes per sector) and **`.cue` + `.bin`**.
-- **Multi-disc** games: keep "Disc 1", "Disc 2"… in the file name and the menu shows "(Disco 1)", "(Disco 2)".
+- **Multi-disc** games: keep "Disc 1", "Disc 2"… in the file name and the menu shows "(Disc 1)", "(Disc 2)".
 - The **`saves`** and **`covers`** folders are not shown in the game list.
+- The **box art** and the game info (genre, studio and year) are made by the PC program.
 
-## 4. Using the menu
+## 4. PC program — USB drive manager
 
-When the console is turned on, the **video intro** plays (A, B, C, X or Start skips it) and the menu opens with **every game in alphabetical order**.
+**3DO ManiacoODE — USB drive manager** gets the USB drive ready for the 3DO: it installs the menu, copies the firmware, organizes the games the way the ODE reads them, makes the box art and creates the saves folder.
+
+**Installation:** there is none. Download `3DO-ManiacoODE-Gerenciador.exe` from the [Releases](../../releases) page and open it.
+
+> The first time, Windows may show "Windows protected your PC" (SmartScreen), because the program is new and has no paid signature. Click **More info → Run anyway**.
+
+**Internet:** box art and game info are downloaded when needed and kept on the PC (`%LOCALAPPDATA%\3DO-ManiacoODE`). From then on, what was already downloaded works offline.
+
+**Your USB drive is safe:** the program **deletes nothing**. The old `boot.iso` is kept, repeated games go to the `_duplicados` folder, replaced images go to `covers/originais/_antigas`, and the game organization can be undone.
+
+### 4.1 The window
+
+![Prepare USB drive](imagens/app-preparar-en.png)
+
+- **USB drive** (top): pick the drive letter. The program suggests the drives that already have `boot.iso` first. Next to it you see the file system, the free space and whether the menu is installed. Use **Browse…** if the drive is not listed.
+- **Tabs:** Prepare USB drive, Organize games and Box art.
+- **Footer:** shows the current step, the percentage, the time left and the **Cancel** button.
+- **File menu:** opens the USB drive in Explorer.
+- **Theme menu:** changes the window colors (Night, ManiacoODE menu (blue and gold) and Light). The choice is saved.
+- **Idioma / Language menu:** shows the window in Portuguese or English. The first time, the program follows the Windows language.
+- **Help menu:** Maniaco Game Room blog and About.
+
+### 4.2 Prepare USB drive
+
+Tick what you want to do and click **Prepare USB drive**. Each step can be done on its own.
+
+1. **Install the menu (`boot.iso`):** point to the downloaded `boot.iso`. The one already on the drive becomes `boot_anterior.iso`.
+2. **Update the firmware (`SataTo3DO.uf2`):** the program checks that the file really is RP2040 firmware and copies it to the root of the drive. Then, on the 3DO, open **Options → Update firmware** ([section 9](#9-updating-the-firmware)).
+3. **Copy the games from the PC folder:** point to the folder with your games (`.iso`, `.cue` + `.bin`). They go to the drive already organized, following **How to organize the games** ([section 4.3](#43-organize-games)). The program checks that everything fits before copying and skips what is already there.
+4. **Make the box art and game info:** uses the options of the Box art tab ([section 4.4](#44-box-art)).
+5. **Create the `saves` folder:** needed for save backups on the USB drive.
+
+The program only goes on if the drive is **FAT32** or **exFAT**. At the end, the text box shows a **report** of everything that was done, including the games left out and why.
+
+### 4.3 Organize games
+
+![Organize games](imagens/app-organizar-en.png)
+
+Tidies up the games that are **already on the USB drive**, with the same rules the firmware uses to build the list.
+
+1. Pick the options:
+   - **Clean names:** removes the region and tags from the name (`Need For Speed, The (USA) [!]` → `The Need For Speed`);
+   - **Folders:** one folder per game, by letter (A, B, C…) or keep the current folders;
+   - **Move repeated versions to `_duplicados`:** keeps a single copy of each game. Between an `.iso` and a `.cue` + `.bin`, the `.cue` + `.bin` stays, because it has the CD audio.
+2. Click **1) Scan the USB drive**. The list shows what will happen to each game:
+   - **Already fine** — nothing changes;
+   - **Move / rename** — goes to another folder and/or gets the clean name;
+   - **Move to `_duplicados`** — repeated copy;
+   - **Fix the `.cue`** — the `.cue` points to a file that does not exist, or has a track name too long for the firmware;
+   - **Create the `.cue`** — `.bin` without a `.cue`;
+   - **Not listed** — not a 3DO disc, or the `.cue` cannot be fixed.
+3. Check it and click **2) Apply**.
+4. Changed your mind? **Undo the last organization** puts everything back.
+
+Files the ODE cannot read (`.zip`, `.7z`, `.chd`…) are listed in a warning below the list: extract them or convert them to `.iso` or `.cue` + `.bin`. The images and box art modes you chose follow the game when it is renamed. After applying, the program offers to make the box art again, because the names changed.
+
+### 4.4 Box art
+
+![Box art](imagens/app-capas-en.png)
+
+The box art is shown next to the list in the menu, in a 106×116 pixel frame, with the game's genre, studio and year.
+
+1. Click **1) Check the box art**. The list shows each game, where its box art comes from and whether it is already on the drive. Games **without box art** come first, in red; box art from **Wikipedia** and **title screens** show in yellow, so you can check them.
+2. Click a game to see the **TV preview**, already inside the menu frame.
+3. Click **2) Write box art to the USB drive** to write everything to the `covers` folder.
+
+**How the box art fits (default for every game):**
+
+- **Fill the frame** (recommended): stretches the whole box art until it fills the frame, without cropping anything.
+- **Keep the aspect ratio:** the box art is not stretched, with bars around it.
+
+**This box art:** in the preview panel, pick the mode for the selected game only — **Default** (follows the option above), **Fill** or **Aspect ratio**. This way some box arts fill the frame and others keep their aspect ratio. Games with their own mode show "· fills the frame" or "· keeps the aspect ratio" in the list.
+
+**Where to look for box art:** the program uses the first one it finds, in this order:
+
+1. **Your images** — chosen in the Box art tab or in **your image folder** (optional; the file name is the game name, as PNG, JPG, WEBP, BMP or GIF);
+2. **libretro-thumbnails** — a box art collection, with the American, European and Japanese versions;
+3. **ScreenScraper** and **TheGamesDB** — only with an account ([section 4.5](#45-screenscraper-and-thegamesdb-accounts));
+4. **Wikipedia** — the image of the game's article. **Check it:** sometimes it is the box of another platform;
+5. The game's **title screen** — last resort, always keeping its aspect ratio.
+
+The **Use Wikipedia…** and **Use the title screen…** boxes turn those sources on or off for the automatic choice. With **Download what is missing** off, only what was downloaded before is used.
+
+**Changing a game's box art** (preview panel buttons):
+
+![Choose among the box arts](imagens/app-escolher-en.png)
+
+- **Choose among the box arts…** — opens every box art found for the game (every region, Wikipedia, title screen…), as they look on the TV. Click the one you want.
+- **Choose image…** — an image from your PC.
+- **Paste image (Ctrl+V)** — a copied image, for example from the browser ("Copy image").
+- **Search the internet** — opens an image search in the browser.
+- **Back to the automatic box art** — undoes the change. The image you had chosen goes to `covers/originais/_antigas`.
+
+The chosen box art is kept on the USB drive and used from then on. After changing it, click **2) Write box art to the USB drive**.
+
+### 4.5 ScreenScraper and TheGamesDB accounts
+
+Optional. With these accounts, the program also looks for box art on **ScreenScraper** and **TheGamesDB** when libretro has none. Open them with the **Accounts (ScreenScraper, TheGamesDB)…** button in the Box art tab.
+
+- **ScreenScraper:** needs a **developer credential** (requested from the site team) and, preferably, **your account** on the site (user name and password), which gives more requests per day.
+- **TheGamesDB:** needs an **API key**, requested on the site's forum.
+- **Test** checks the accounts without closing the window; **Save** keeps them.
+- The passwords and the key stay **on this computer only**, protected by Windows.
+
+If an account is refused or the daily quota runs out, the program stops using that source until it is opened again and goes on with the others.
+
+### 4.6 What the program writes to the USB drive
+
+| On the USB drive | What it is |
+|---|---|
+| `boot.iso` | the menu |
+| `boot_anterior.iso` | the previous menu |
+| `SataTo3DO.uf2` | the new firmware, until it is applied (becomes `.ok` or `.erro`) |
+| `saves/` | save backups made by the menu |
+| `covers/` | box art (`.cap`), game info (`dados.cap`) and the box art list (`indice.cap`) |
+| `covers/originais/` | the images you chose and the mode of each box art (`<game>.modo`) |
+| `covers/originais/_antigas/` | images you replaced |
+| `_duplicados/` | repeated versions taken out of the list |
+| `.maniacoode/` | the log for **Undo the last organization** |
+
+## 5. Using the menu
+
+When the console is turned on, the **video intro** plays (A, B, C, X or Start skips it) and the menu opens with **every game in alphabetical order**, with the box art and info of the selected game.
 
 | Button | In the game list |
 |---|---|
 | **▲ ▼** | move up and down the list |
 | **L / R** (or **◄ ►**) | skip a full screen of games |
-| **A** (or **Start**) | start the game ("Jogar") |
-| **X** | open the **Options** ("Opções") |
+| **A** (or **Start**) | start the game |
+| **X** | open the **Options** |
 
 When you pick a game, the 3DO restarts and loads the disc. To go back to the menu, turn the console off and on.
 
-## 5. Options
+## 6. Options
 
 ![Options](imagens/opcoes.png)
 
 | Item | What it does |
 |---|---|
-| **"Tamanho da tela"** (screen size) | Shrinks the menu from 100 % down to 80 %, in 5 % steps, for TVs that crop the edges. Adjust with **◄ ►**; it is saved in the 3DO memory (NVRAM) when you leave with **B**. |
-| **"Gerenciar saves"** (manage saves) | Opens the save manager (**A**). |
-| **"Informações"** (information) | Menu version and number of games on the USB drive. |
+| **Screen size** | Shrinks the menu from 100 % down to 80 %, in 5 % steps, for TVs that crop the edges. Adjust with **◄ ►**. |
+| **Idioma / Language** | Menu texts in Portuguese or English. Switch with **◄ ►**. |
+| **Manage saves** | Opens the save manager (**A**). |
+| **Update firmware** | Writes the `SataTo3DO.uf2` from the USB drive ([section 9](#9-updating-the-firmware)). |
+| **Information** | Menu version, ODE firmware version, number of games, of box arts and of games with genre/studio/year. |
 
-**▲ ▼** pick the item; **B** goes back to the list.
+**▲ ▼** pick the item; **B** goes back to the list. Screen size and language are saved in the 3DO memory (NVRAM) when you go back.
 
-## 6. Save manager
+## 7. Save manager
 
 ![Manage saves](imagens/opcoes-saves.png)
 
@@ -91,7 +220,7 @@ The save manager has three tabs, switched with **L / R**:
 |---|---|
 | **Console** | the saves in the 3DO internal memory (NVRAM) and the free space |
 | **Memory Unit** | the saves on the FZ-EM256 Memory Unit, if it is plugged in |
-| **Pendrive** (USB drive) | the save backup in the `saves` folder of the USB drive |
+| **USB drive** | the save backup in the `saves` folder of the USB drive |
 
 Pick a save and press **A** to see the actions:
 
@@ -102,35 +231,55 @@ Pick a save and press **A** to see the actions:
 
 Delete, overwrite and restore all ask for confirmation. **B** goes back.
 
-> The **Pendrive** tab only works if there is a **`saves`** folder in the root of the USB drive. If it is missing, the menu tells you.
+> The **USB drive** tab only works if there is a **`saves`** folder in the root of the USB drive. If it is missing, the menu tells you.
 
-## 7. FZ-EM256 Memory Unit
+## 8. FZ-EM256 Memory Unit
 
 - **Plug and unplug the Memory Unit only with the console off.** With the console on, the 3DO locks up.
 - With the unit plugged in, the console boots normally into the menu and games work.
-- The **Memory Unit** tab looks for the unit when it is opened. If it is not plugged in, the menu shows "Memory Unit não encontrado" (not found).
+- The **Memory Unit** tab looks for the unit when it is opened. If it is not plugged in, the menu shows "Memory Unit (FZ-EM256) not found".
 - The menu **does not format** the Memory Unit: it only mounts it to read and write saves.
 
-## 8. Updating the firmware from the USB drive
+## 9. Updating the firmware
 
-After the first install you never need to open the console again:
+After the first install you never need to open the console again.
 
-1. Copy the new **`SataTo3DO.uf2`** to the **root** of the USB drive.
-2. Put the USB drive in the ODE and turn on the console.
-3. The Pico LED (on the ODE board) stays on for a few seconds while the firmware is checked and written, and the ODE restarts on its own.
-4. The file is renamed:
-   - **`SataTo3DO.uf2.ok`** — updated (or it was already the same version);
-   - **`SataTo3DO.uf2.erro`** — file rejected (the LED blinks slowly 5 times); the current firmware keeps working.
+### From the menu (firmware v1.1 and later)
 
-> **Do not turn off the console during the update.** If power fails right during the final write (about 2 seconds), flash again from a PC in BOOTSEL mode ([section 2](#2-first-firmware-install)).
+1. Copy the new **`SataTo3DO.uf2`** to the **root** of the USB drive (or use step 2 of the PC program).
+2. Turn on the console and open **Options → Update firmware**. The ODE checks the file ("Checking the file...").
+3. **"Update to vX.Y.Z?"** appears. Press **A** to write it or **B** to cancel.
+4. When **"Firmware written. Turn the console off and on again."** appears, turn the console off and on. The new version shows in **Options → Information**.
 
-## 9. Troubleshooting
+The file is renamed to **`SataTo3DO.uf2.ok`** once written. Other answers:
+
+- **"No update on the USB drive"** — `SataTo3DO.uf2` is not in the root;
+- **"The firmware is already this version."** — nothing is written (the file becomes `.ok`);
+- **"Invalid file (renamed to .erro)."** — the file is corrupted or is not the ODE firmware; the current firmware keeps working.
+
+> **Do not turn off the console while it is writing.**
+
+### Coming from v1.0
+
+Firmware v1.0 cannot update from the menu (Options shows "ODE firmware: original"). To move to v1.1, copy `SataTo3DO.uf2` to the root of the USB drive and **turn on the console**: v1.0 writes the file by itself at power-on (the Pico LED stays on for a few seconds) and the ODE restarts. From then on, use the menu.
+
+### Rescue: if the menu does not start
+
+Copy the firmware to the root of the USB drive named **`SataTo3DO_forcar.uf2`** and turn on the console: this file is written at power-on, without the menu. The Pico LED stays on while it writes; **5 slow blinks** = file rejected. The file becomes `.ok` or `.erro`, as from the menu.
+
+> If power fails right during the final write (about 2 seconds), flash again from a PC in BOOTSEL mode ([section 2](#2-first-firmware-install)).
+
+## 10. Troubleshooting
 
 | Problem | Fix |
 |---|---|
-| **The menu edges are cropped on the TV** | Options → **"Tamanho da tela"** → lower it to 95 % or 90 %. |
-| **A game is missing from the list** | Check the extension (`.iso`, `.cue`). If the game has a `.cue`, open it in a text editor and check that the file name in `FILE "…"` matches the file in the folder. If the folder already has the `.iso`, the `.cue` can be deleted. |
-| **The Pendrive tab asks you to create the folder** | Create a **`saves`** folder in the root of the USB drive. |
-| **"Memory Unit não encontrado"** | Turn off the console, plug in the Memory Unit and turn it on again. |
+| **The menu edges are cropped on the TV** | Options → **Screen size** → lower it to 95 % or 90 %. |
+| **A game is missing from the list** | Use **Organize games** in the PC program: it shows the reason and fixes broken or missing `.cue` files. By hand: check the extension (`.iso`, `.cue`) and that the name in the `.cue`'s `FILE "…"` matches the file in the folder. |
+| **A game has no box art** | In the PC program, Box art tab: **Choose among the box arts…**, **Choose image…** or **Paste image**, then **Write box art to the USB drive**. |
+| **The box art is from another platform** | It happens with Wikipedia. Use **Choose among the box arts…** or an image of your own. |
+| **The box art looks too stretched** | In **This box art**, pick **Aspect ratio** for that game and write the box art again. |
+| **"Windows protected your PC"** | **More info → Run anyway** (the program has no paid signature). |
+| **The USB drive tab asks you to create the folder** | Create a **`saves`** folder in the root of the USB drive (or use step 5 of the PC program). |
+| **"Memory Unit (FZ-EM256) not found"** | Turn off the console, plug in the Memory Unit and turn it on again. |
 | **The file became `SataTo3DO.uf2.erro`** | The file is corrupted or is not the ODE firmware. Download it again from the Releases page. |
-| **I want the previous menu back** | Delete `boot.iso` and rename the old one back to `boot.iso`. |
+| **I want the previous menu back** | Delete `boot.iso` and rename `boot_anterior.iso` (or the old one) back to `boot.iso`. |

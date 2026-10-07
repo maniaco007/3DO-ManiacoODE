@@ -2,7 +2,7 @@
 
 **[Português](README.md)**
 
-**New firmware and a new menu for the 3DO SataTo3DO ODE: a Portuguese-language menu with a video intro, every game on the USB drive in alphabetical order, a save manager (console, Memory Unit and USB drive), FZ-EM256 Memory Unit support and firmware updates straight from the USB drive.**
+**New firmware and a new menu for the 3DO SataTo3DO ODE: a Portuguese or English menu with a video intro, box art and info for every game, every game on the USB drive in alphabetical order, a save manager (console, Memory Unit and USB drive), FZ-EM256 Memory Unit support and firmware updates from the menu itself — plus a PC program that gets the USB drive ready in a few clicks.**
 
 A **[Maniaco Game Room](https://www.maniacogameroom.com.br/)** blog project.
 
@@ -16,27 +16,48 @@ A **[Maniaco Game Room](https://www.maniacogameroom.com.br/)** blog project.
 
 ### Menu (`boot.iso`)
 
-- **Menu in Portuguese**, with accents (á, ã, ç, é…).
+- **Menu in Portuguese**, with accents (á, ã, ç, é…), or **in English** (Options → Idioma / Language).
 - **Video intro** when the console is turned on. A, B, C, X or Start skips it.
 - **Every game on the USB drive in one alphabetical list**, no folder browsing. **L/R** skips a full screen of games.
-- **Multi-disc** games are labeled: "Title (Disco 1)", "Title (Disco 2)".
+- **Box art for every game** next to the list, with **genre, studio and year**.
+- **Multi-disc** games are labeled: "Title (Disc 1)", "Title (Disc 2)".
 - **Screen size** from 80 % to 100 %, for TVs that crop the edges. Saved in the 3DO memory.
-- **Save manager** with three tabs — **Console**, **Memory Unit** and **USB drive** ("Pendrive"): copy, restore, delete and copy all at once. Back up your console saves to the USB drive.
+- **Save manager** with three tabs — **Console**, **Memory Unit** and **USB drive**: copy, restore, delete and copy all at once. Back up your console saves to the USB drive.
+- **Update firmware** from the Options, with the ODE firmware version shown in Information.
 
 ### Firmware (`SataTo3DO.uf2`)
 
 - **Alphabetical list** of every game, in any folder of the USB drive.
-- **Updates from the USB drive:** after the first flash, you never need to open the console or connect the ODE to a PC again. Copy `SataTo3DO.uf2` to the USB drive and turn on the 3DO.
+- **Updates from the USB drive:** after the first flash, you never need to open the console or connect the ODE to a PC again. Copy `SataTo3DO.uf2` to the USB drive and use **Options → Update firmware**.
 - **FZ-EM256 Memory Unit:** the console boots with the unit plugged in, and the menu and games work normally.
 - **Saves on the USB drive:** file read and write from the menu.
 
+## The PC program: USB drive manager
+
+![PC program](imagens/app-preparar-en.png)
+
+With the USB drive in the PC, a few clicks:
+
+1. installs the **menu** (`boot.iso`) and copies the **firmware** (`SataTo3DO.uf2`);
+2. copies your **games** already organized the way the ODE reads them, with **clean names** and one folder per game;
+3. **fixes broken `.cue` files** and creates the missing ones;
+4. makes the **box art** and game info (genre, studio and year);
+5. creates the **`saves`** folder.
+
+Box art comes from **libretro-thumbnails**, **Wikipedia** and, with an account, **ScreenScraper** and **TheGamesDB**. You see a **preview of how it looks on the TV**, choose among every box art found or use your own image, and decide **box art by box art** whether it fills the frame or keeps its aspect ratio.
+
+The program works in **Portuguese or English** (Idioma / Language menu) and also organizes a USB drive that is already set up. **Nothing is deleted:** whatever is replaced is kept, and the organization can be undone.
+
+| | |
+|---|---|
+| ![Organize games](imagens/app-organizar-en.png) | ![Box art](imagens/app-capas-en.png) |
+
 ## How to use
 
-1. Download **`SataTo3DO.uf2`** and **`boot.iso`** from the **[Releases](../../releases)** page.
-2. **First time:** flash `SataTo3DO.uf2` to the ODE's RP2040 from a PC (BOOTSEL mode). After that, updates go through the USB drive.
-3. Copy **`boot.iso`** to the root of the USB drive (keep the previous one under another name if you want to go back).
-4. Create a **`saves`** folder in the root of the USB drive, for save backups.
-5. Put each game in its own folder, turn on the console and pick a game.
+1. Download **`SataTo3DO.uf2`**, **`boot.iso`** and **`3DO-ManiacoODE-Gerenciador.exe`** from the **[Releases](../../releases)** page.
+2. **First time:** flash `SataTo3DO.uf2` to the ODE's RP2040 from a PC (BOOTSEL mode). After that, updates go through the menu.
+3. Open the program, pick the USB drive and click **Prepare USB drive**. (Prefer doing it by hand? See the [Manual](MANUAL.en.md#3-preparing-the-usb-drive).)
+4. Put the USB drive in the ODE, turn on the console and pick a game.
 
 Full step-by-step guide with every option: **[Manual](MANUAL.en.md)**.
 
@@ -45,6 +66,7 @@ Full step-by-step guide with every option: **[Manual](MANUAL.en.md)**.
 - A 3DO with the **SataTo3DO ODE** (RP2040 board). Tested on a **Panasonic FZ-10**.
 - USB drive formatted as **FAT32** or **exFAT**.
 - Games as **`.iso`** or **`.cue` + `.bin`**.
+- PC program: **Windows 10 or 11**, with internet the first time (box art and game info are downloaded and kept on the PC).
 
 ## Warning
 
