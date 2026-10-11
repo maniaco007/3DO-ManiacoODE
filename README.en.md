@@ -39,14 +39,15 @@ A **[Maniaco Game Room](https://www.maniacogameroom.com.br/)** blog project.
 With the USB drive in the PC, a few clicks:
 
 1. installs the **menu** (`boot.iso`) and copies the **firmware** (`SataTo3DO.uf2`);
-2. copies your **games** already organized the way the ODE reads them, with **clean names** and one folder per game;
-3. **fixes broken `.cue` files** and creates the missing ones;
-4. makes the **box art** and game info (genre, studio and year);
-5. creates the **`saves`** folder.
+2. shows the **games in your folder** and which ones are **already on the drive**, and copies only the ones you tick, already organized the way the ODE reads them, with **clean names** and one folder per game;
+3. **converts `.chd` games** to `.cue` + `.bin` while copying;
+4. **fixes broken `.cue` files**, creates the missing ones and removes leftover old ones;
+5. makes the **box art** and game info (genre, studio and year), which you can also **fill in by hand**;
+6. creates the **`saves`** folder.
 
 Box art comes from **libretro-thumbnails**, **Wikipedia** and, with an account, **ScreenScraper** and **TheGamesDB**. You see a **preview of how it looks on the TV**, choose among every box art found or use your own image, and decide **box art by box art** whether it fills the frame or keeps its aspect ratio.
 
-The program works in **Portuguese or English** (Idioma / Language menu) and also organizes a USB drive that is already set up. **Nothing is deleted:** whatever is replaced is kept, and the organization can be undone.
+The program works in **Portuguese or English** (Idioma / Language menu) and also organizes a USB drive that is already set up — with the option to **not change** a game that already has the right name — and **renames games** taking along their box art and info. **Nothing is deleted:** whatever is replaced is kept, and the organization can be undone.
 
 | | |
 |---|---|

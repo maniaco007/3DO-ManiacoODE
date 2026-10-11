@@ -39,14 +39,15 @@ Um projeto do blog **[Maniaco Game Room](https://www.maniacogameroom.com.br/)**.
 Com o pendrive no PC, poucos cliques:
 
 1. instala o **menu** (`boot.iso`) e copia a **firmware** (`SataTo3DO.uf2`);
-2. copia seus **jogos** já organizados do jeito que a ODE lê, com **nomes limpos** e uma pasta para cada jogo;
-3. **corrige `.cue`** quebrado e cria o `.cue` que falta;
-4. gera as **capas** e os dados dos jogos (gênero, estúdio e ano);
-5. cria a pasta **`saves`**.
+2. mostra os **jogos da sua pasta** e quais **já estão no pendrive**, e copia só os que você marcar, já organizados do jeito que a ODE lê, com **nomes limpos** e uma pasta para cada jogo;
+3. **converte jogos `.chd`** para `.cue` + `.bin` na hora de copiar;
+4. **corrige `.cue`** quebrado, cria o `.cue` que falta e tira `.cue` antigo que sobrou;
+5. gera as **capas** e os dados dos jogos (gênero, estúdio e ano), que você também pode **preencher à mão**;
+6. cria a pasta **`saves`**.
 
 As capas vêm do **libretro-thumbnails**, da **Wikipedia** e, com conta, do **ScreenScraper** e do **TheGamesDB**. Você vê a **prévia de como fica na TV**, escolhe entre todas as capas encontradas ou usa uma imagem sua, e decide **capa por capa** se ela preenche a moldura ou mantém a proporção.
 
-O programa funciona em **português ou inglês** (menu Idioma / Language) e também organiza um pendrive que já está pronto. **Nada é apagado:** o que é substituído é guardado, e a organização pode ser desfeita.
+O programa funciona em **português ou inglês** (menu Idioma / Language) e também organiza um pendrive que já está pronto — com a opção de **não alterar** um jogo que já tem o nome certo — e **renomeia jogos** levando junto a capa e as informações. **Nada é apagado:** o que é substituído é guardado, e a organização pode ser desfeita.
 
 | | |
 |---|---|

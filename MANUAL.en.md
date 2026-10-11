@@ -56,10 +56,12 @@ Policenauts/
 
 - **`boot.iso`** goes in the root. If you had another menu, rename the old one (e.g. `boot_old.iso`) so you can go back.
 - **Each game in its own folder.** A folder with a single game is shown with the **folder name**; with several files, each file name is shown.
-- Supported formats: **`.iso`** (2048 or 2352 bytes per sector) and **`.cue` + `.bin`**.
+- Supported formats: **`.iso`** (2048 or 2352 bytes per sector) and **`.cue` + `.bin`** (a single `.bin` per `.cue`). **`.chd`** games are converted to `.cue` + `.bin` by the PC program while copying ([section 4.2](#42-prepare-usb-drive)).
 - **Multi-disc** games: keep "Disc 1", "Disc 2"… in the file name and the menu shows "(Disc 1)", "(Disc 2)".
 - The **`saves`** and **`covers`** folders are not shown in the game list.
 - The **box art** and the game info (genre, studio and year) are made by the PC program.
+- **To change a game's name**, use **Rename game…** in the PC program ([section 4.4](#44-box-art)). If you rename the folder in Windows, the game still works (and saves are not lost), but the box art, the info and your chosen image keep the old name until you write the box art again.
+- **Avoid renaming or moving many folders at once in the root of the USB drive.** On FAT32 every changed name leaves a deleted entry in the directory, and the ODE builds the game list by walking that directory before telling the 3DO there is a disc. With a directory full of deleted entries, the 3DO may give up and show its own screen instead of the menu ([section 10](#10-troubleshooting)).
 
 ## 4. PC program — USB drive manager
 
@@ -91,9 +93,19 @@ Tick what you want to do and click **Prepare USB drive**. Each step can be done 
 
 1. **Install the menu (`boot.iso`):** point to the downloaded `boot.iso`. The one already on the drive becomes `boot_anterior.iso`.
 2. **Update the firmware (`SataTo3DO.uf2`):** the program checks that the file really is RP2040 firmware and copies it to the root of the drive. Then, on the 3DO, open **Options → Update firmware** ([section 9](#9-updating-the-firmware)).
-3. **Copy the games from the PC folder:** point to the folder with your games (`.iso`, `.cue` + `.bin`). They go to the drive already organized, following **How to organize the games** ([section 4.3](#43-organize-games)). The program checks that everything fits before copying and skips what is already there.
+3. **Copy the games from the PC folder:** point to the folder with your games (`.iso`, `.cue` + `.bin`, `.chd`). They go to the drive already organized, following **How to organize the games** ([section 4.3](#43-organize-games)). The program checks that everything fits before copying and skips what is already there.
 4. **Make the box art and game info:** uses the options of the Box art tab ([section 4.4](#44-box-art)).
 5. **Create the `saves` folder:** needed for save backups on the USB drive.
+
+**Games in the PC folder:** as soon as you pick the folder, the program lists its games and checks the USB drive. Each game shows its **name on the menu**, the file, the size and the **On the drive** column:
+
+- **Already there** — the game is already on the drive, with the same size;
+- **Already there (other name)** — the same game (and disc) is on the drive under another name or folder;
+- **No** — not on the drive yet.
+
+In the **Send** column, click to tick (☑) or untick (☐). Only the missing ones come ticked; the **Only the missing ones**, **All** and **None** buttons help, and the summary shows how many games and GB will go. **Prepare USB drive** sends only the ticked games.
+
+**`.chd` games:** they are converted to `.cue` + **a single `.bin`** (the format the ODE reads) straight onto the drive, with MAME's **chdman**, which comes with the program. The footer shows "Game N of M · name · %". The converted game is checked before it goes into its folder; a broken `.chd`, or one that is not a 3DO disc, shows up in the report and leaves no files on the drive. At the end, the program asks whether the original `.chd` files on the PC go to the **Recycle Bin** (they can be restored).
 
 The program only goes on if the drive is **FAT32** or **exFAT**. At the end, the text box shows a **report** of everything that was done, including the games left out and why.
 
@@ -110,14 +122,16 @@ Tidies up the games that are **already on the USB drive**, with the same rules t
 2. Click **1) Scan the USB drive**. The list shows what will happen to each game:
    - **Already fine** — nothing changes;
    - **Move / rename** — goes to another folder and/or gets the clean name;
-   - **Move to `_duplicados`** — repeated copy;
+   - **Move to `_duplicados`** — repeated copy (among equal copies, the one already with the right name and folder stays);
+   - **Remove old .cue** — a `.cue` pointing to an `.iso` with an old name, with a single data track, whose game is on the drive: the `.iso` alone is the whole disc, so the `.cue` goes to `_duplicados`;
    - **Fix the `.cue`** — the `.cue` points to a file that does not exist, or has a track name too long for the firmware;
    - **Create the `.cue`** — `.bin` without a `.cue`;
    - **Not listed** — not a 3DO disc, or the `.cue` cannot be fixed.
-3. Check it and click **2) Apply**.
-4. Changed your mind? **Undo the last organization** puts everything back.
+3. **A game already has the right name** (a homebrew, for example)? Pick it and click **Don't change / organize again** (or double-click it): it stays where it is, with its current name, in the next analyses too. Click again to organize it again.
+4. Check it and click **2) Apply**.
+5. Changed your mind? **Undo the last organization** puts everything back.
 
-Files the ODE cannot read (`.zip`, `.7z`, `.chd`…) are listed in a warning below the list: extract them or convert them to `.iso` or `.cue` + `.bin`. The images and box art modes you chose follow the game when it is renamed. After applying, the program offers to make the box art again, because the names changed.
+Files the ODE cannot read (`.zip`, `.7z`…) are listed in a warning below the list: extract them or convert them to `.iso` or `.cue` + `.bin`. `.chd` games already on the drive are listed there too: copy them with the **Prepare USB drive** tab, which converts them. The images and box art modes you chose follow the game when it is renamed. After applying, the program offers to make the box art again, because the names changed.
 
 ### 4.4 Box art
 
@@ -158,6 +172,15 @@ The **Use Wikipedia…** and **Use the title screen…** boxes turn those source
 
 The chosen box art is kept on the USB drive and used from then on. After changing it, click **2) Write box art to the USB drive**.
 
+**Game info (genre, studio and release):** the **Info** column of the list shows where it comes from — **internet**, **you** or **missing**. To fill it in or fix it, pick the game and click **Game info…** (or double-click it):
+
+- fields **Genre**, **Genre in English** (used with the menu in English), **Studio** and **Released**;
+- below, the lines **as the menu will show them**, with the same font as the 3DO: it warns when the text will be cut with "…" and when there are characters the menu does not have (shown as "?");
+- **Save to the drive** writes it right away, without making the box art again. What you fill in wins over the internet; an empty field uses the internet one;
+- **Use the internet info** goes back to the automatic info (yours go to `covers/originais/_antigas`).
+
+**Rename game…:** changes the name the menu shows. The program renames the game folder (or the file, if the name comes from the file) and takes along the box art, the chosen image, the box art mode and the info. The renamed game is marked **Don't change** in Organize, so the chosen name is not changed later.
+
 ### 4.5 ScreenScraper and TheGamesDB accounts
 
 Optional. With these accounts, the program also looks for box art on **ScreenScraper** and **TheGamesDB** when libretro has none. Open them with the **Accounts (ScreenScraper, TheGamesDB)…** button in the Box art tab.
@@ -178,10 +201,10 @@ If an account is refused or the daily quota runs out, the program stops using th
 | `SataTo3DO.uf2` | the new firmware, until it is applied (becomes `.ok` or `.erro`) |
 | `saves/` | save backups made by the menu |
 | `covers/` | box art (`.cap`), game info (`dados.cap`) and the box art list (`indice.cap`) |
-| `covers/originais/` | the images you chose and the mode of each box art (`<game>.modo`) |
+| `covers/originais/` | the images you chose, the mode of each box art (`<game>.modo`) and the info you filled in (`<game>.info`) |
 | `covers/originais/_antigas/` | images you replaced |
 | `_duplicados/` | repeated versions taken out of the list |
-| `.maniacoode/` | the log for **Undo the last organization** |
+| `.maniacoode/` | the log for **Undo the last organization** and the games marked **Don't change** (`nao_alterar.json`) |
 
 ## 5. Using the menu
 
@@ -282,4 +305,6 @@ Copy the firmware to the root of the USB drive named **`SataTo3DO_forcar.uf2`** 
 | **The USB drive tab asks you to create the folder** | Create a **`saves`** folder in the root of the USB drive (or use step 5 of the PC program). |
 | **"Memory Unit (FZ-EM256) not found"** | Turn off the console, plug in the Memory Unit and turn it on again. |
 | **The file became `SataTo3DO.uf2.erro`** | The file is corrupted or is not the ODE firmware. Download it again from the Releases page. |
+| **After organizing or renaming many folders, the 3DO shows its own screen instead of the menu** | The drive's directory is full of deleted entries and the list takes too long to be ready. Rebuild the drive: copy everything to a folder on the PC, format the drive as **FAT32** and copy it back. |
+| **I renamed a game folder and the box art is gone** | The box art and the info kept the old name. Use **Rename game…** in the PC program; if you already renamed it in Windows, also rename the files in `covers/originais` and click **Write box art to the USB drive**. |
 | **I want the previous menu back** | Delete `boot.iso` and rename `boot_anterior.iso` (or the old one) back to `boot.iso`. |

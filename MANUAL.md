@@ -54,10 +54,12 @@ Policenauts/
 
 - **`boot.iso`** fica na raiz. Se já tinha outro menu, renomeie o antigo (ex.: `boot_antigo.iso`) para poder voltar.
 - **Cada jogo na sua pasta.** Se a pasta tem um único jogo, o menu mostra o **nome da pasta**; se tem vários arquivos, mostra o nome de cada arquivo.
-- Formatos aceitos: **`.iso`** (2048 ou 2352 bytes por setor) e **`.cue` + `.bin`**.
+- Formatos aceitos: **`.iso`** (2048 ou 2352 bytes por setor) e **`.cue` + `.bin`** (um `.bin` só por `.cue`). Jogos em **`.chd`** são convertidos para `.cue` + `.bin` pelo programa do PC ao copiar ([seção 4.2](#42-preparar-pendrive)).
 - Jogos com **vários discos**: deixe "Disc 1", "Disc 2"… no nome do arquivo e o menu mostra "(Disco 1)", "(Disco 2)".
 - As pastas **`saves`** e **`covers`** não aparecem na lista de jogos.
 - As **capas** e os dados dos jogos (gênero, estúdio e ano) são gerados pelo programa do PC.
+- **Para mudar o nome de um jogo**, use **Renomear jogo…** no programa do PC ([seção 4.4](#44-capas)). Renomeando a pasta pelo Windows, o jogo continua funcionando (e os saves não se perdem), mas a capa, as informações e a imagem escolhida ficam com o nome antigo até você gerar as capas de novo.
+- **Evite renomear ou mover muitas pastas de uma vez na raiz do pendrive.** Na FAT32, cada nome trocado deixa uma entrada apagada no diretório, e a ODE monta a lista de jogos percorrendo esse diretório antes de avisar o 3DO que há disco. Com o diretório cheio de entradas apagadas, o 3DO pode desistir e mostrar a tela dele em vez do menu ([seção 10](#10-problemas-comuns)).
 
 ## 4. Programa do PC — Gerenciador do pendrive
 
@@ -89,9 +91,19 @@ Marque o que quer fazer e clique em **Preparar pendrive**. Cada passo pode ser f
 
 1. **Instalar o menu (`boot.iso`):** aponte o `boot.iso` baixado. O que já estava no pendrive vira `boot_anterior.iso`.
 2. **Atualizar a firmware (`SataTo3DO.uf2`):** o programa confere se o arquivo é mesmo uma firmware do RP2040 e copia para a raiz do pendrive. Depois, no 3DO, abra **Opções → Atualizar firmware** ([seção 9](#9-atualizar-a-firmware)).
-3. **Copiar os jogos da pasta do PC:** aponte a pasta com os seus jogos (`.iso`, `.cue` + `.bin`). Eles vão para o pendrive já organizados, conforme **Como organizar os jogos** ([seção 4.3](#43-organizar-jogos)). O programa confere se cabe antes de copiar e pula o que já está lá.
+3. **Copiar os jogos da pasta do PC:** aponte a pasta com os seus jogos (`.iso`, `.cue` + `.bin`, `.chd`). Eles vão para o pendrive já organizados, conforme **Como organizar os jogos** ([seção 4.3](#43-organizar-jogos)). O programa confere se cabe antes de copiar e pula o que já está lá.
 4. **Gerar as capas e os dados dos jogos:** usa as opções da aba Capas ([seção 4.4](#44-capas)).
 5. **Criar a pasta `saves`:** necessária para o backup de saves no pendrive.
+
+**Jogos da pasta do PC:** assim que você escolhe a pasta, o programa lista os jogos dela e confere o pendrive. Para cada jogo aparecem o **nome no menu**, o arquivo, o tamanho e a coluna **No pendrive**:
+
+- **Já está** — o jogo já está no pendrive, com o mesmo tamanho;
+- **Já está (com outro nome)** — o mesmo jogo (e disco) está no pendrive com outro nome ou em outra pasta;
+- **Não** — ainda não está no pendrive.
+
+Na coluna **Enviar**, clique para marcar (☑) ou desmarcar (☐). Já vêm marcados só os que faltam; os botões **Só os que faltam**, **Todos** e **Nenhum** ajudam, e o resumo mostra quantos jogos e quantos GB vão. **Preparar pendrive** envia só os marcados.
+
+**Jogos em `.chd`:** são convertidos para `.cue` + **um `.bin` só** (o formato que a ODE lê) direto no pendrive, com o **chdman** do MAME, que vem junto com o programa. O rodapé mostra "Jogo N de M · nome · %". O jogo convertido é conferido antes de ir para a pasta; um `.chd` estragado ou que não é de 3DO aparece no relatório e não deixa arquivo no pendrive. No fim, o programa pergunta se os `.chd` originais do PC vão para a **Lixeira** (dá para recuperar).
 
 O programa só continua se o pendrive estiver em **FAT32** ou **exFAT**. Ao final, a caixa de texto mostra o **relatório** de tudo o que foi feito, inclusive os jogos que ficaram de fora e o motivo.
 
@@ -108,14 +120,16 @@ Arruma os jogos que **já estão no pendrive**, com as mesmas regras que a firmw
 2. Clique em **1) Analisar o pendrive**. A lista mostra o que vai acontecer com cada jogo:
    - **Já está certo** — nada muda;
    - **Mover / renomear** — vai para outra pasta e/ou ganha o nome limpo;
-   - **Mover p/ `_duplicados`** — cópia repetida;
+   - **Mover p/ `_duplicados`** — cópia repetida (entre cópias iguais, fica a que já está com o nome e a pasta certos);
+   - **Tirar .cue antigo** — `.cue` que aponta para um `.iso` de nome antigo, com uma trilha só de dados, cujo jogo está no pendrive: o `.iso` sozinho já é o disco inteiro, então o `.cue` vai para `_duplicados`;
    - **Corrigir o `.cue`** — o `.cue` aponta para um arquivo que não existe ou tem nome de trilha longo demais para a firmware;
    - **Criar o `.cue`** — `.bin` sem `.cue`;
    - **Não entra na lista** — não é um disco de 3DO, ou o `.cue` não tem como ser corrigido.
-3. Confira e clique em **2) Aplicar**.
-4. Mudou de ideia? **Desfazer a última organização** devolve tudo como estava.
+3. **Algum jogo já está com o nome certo** (um homebrew, por exemplo)? Escolha-o e clique em **Não alterar / voltar a organizar** (ou dê dois cliques nele): ele fica onde está, com o nome atual, também nas próximas análises. Clique de novo para voltar a organizar.
+4. Confira e clique em **2) Aplicar**.
+5. Mudou de ideia? **Desfazer a última organização** devolve tudo como estava.
 
-Arquivos que a ODE não lê (`.zip`, `.7z`, `.chd`…) aparecem num aviso embaixo da lista: extraia ou converta para `.iso` ou `.cue` + `.bin`. As imagens e os modos de capa que você escolheu acompanham o jogo quando ele é renomeado. Depois de aplicar, o programa oferece gerar as capas de novo, porque os nomes mudaram.
+Arquivos que a ODE não lê (`.zip`, `.7z`…) aparecem num aviso embaixo da lista: extraia ou converta para `.iso` ou `.cue` + `.bin`. Jogos em `.chd` no pendrive também aparecem nesse aviso: copie-os pela aba **Preparar pendrive**, que converte. As imagens e os modos de capa que você escolheu acompanham o jogo quando ele é renomeado. Depois de aplicar, o programa oferece gerar as capas de novo, porque os nomes mudaram.
 
 ### 4.4 Capas
 
@@ -156,6 +170,15 @@ As caixas **Usar a Wikipedia…** e **Usar a tela de título…** ligam ou desli
 
 A capa escolhida fica guardada no pendrive e é usada nas próximas vezes. Depois de trocar, clique em **2) Gerar capas no pendrive**.
 
+**Informações do jogo (gênero, estúdio e lançamento):** a coluna **Informações** da lista mostra de onde elas vêm — **internet**, **você** ou **falta**. Para preencher ou corrigir, escolha o jogo e clique em **Informações do jogo…** (ou dê dois cliques nele):
+
+- campos **Gênero**, **Gênero em inglês** (usado com o menu em inglês), **Estúdio** e **Lançamento**;
+- embaixo, as linhas **como o menu vai mostrar**, com a mesma fonte do 3DO: avisa quando o texto vai ser cortado com "…" e quando há caracteres que o menu não tem (aparecem como "?");
+- **Salvar no pendrive** grava na hora, sem precisar gerar as capas de novo. O que você preenche vale mais que a internet; campo deixado vazio usa o da internet;
+- **Usar o da internet** volta às informações automáticas (as suas vão para `covers/originais/_antigas`).
+
+**Renomear jogo…:** muda o nome que o menu mostra. O programa renomeia a pasta do jogo (ou o arquivo, se o nome vem do arquivo) e leva junto a capa, a imagem escolhida, o modo da capa e as informações. O jogo renomeado fica marcado como **Não alterar** no Organizar, para o nome escolhido não ser trocado depois.
+
 ### 4.5 Contas do ScreenScraper e do TheGamesDB
 
 Opcional. Com estas contas, o programa também procura capas no **ScreenScraper** e no **TheGamesDB** quando o libretro não tiver. Abra pelo botão **Contas (ScreenScraper, TheGamesDB)…** da aba Capas.
@@ -176,10 +199,10 @@ Se a conta for recusada ou a cota do dia acabar, o programa para de usar aquela 
 | `SataTo3DO.uf2` | a firmware nova, até ser aplicada (vira `.ok` ou `.erro`) |
 | `saves/` | backup de saves feito pelo menu |
 | `covers/` | capas (`.cap`), dados dos jogos (`dados.cap`) e a lista das capas (`indice.cap`) |
-| `covers/originais/` | as imagens que você escolheu e o modo de cada capa (`<jogo>.modo`) |
+| `covers/originais/` | as imagens que você escolheu, o modo de cada capa (`<jogo>.modo`) e as informações preenchidas à mão (`<jogo>.info`) |
 | `covers/originais/_antigas/` | imagens que você trocou |
 | `_duplicados/` | versões repetidas tiradas da lista |
-| `.maniacoode/` | o registro para **Desfazer a última organização** |
+| `.maniacoode/` | o registro para **Desfazer a última organização** e os jogos marcados **Não alterar** (`nao_alterar.json`) |
 
 ## 5. Usando o menu
 
@@ -280,4 +303,6 @@ Copie a firmware para a raiz do pendrive com o nome **`SataTo3DO_forcar.uf2`** e
 | **A aba Pendrive avisa para criar a pasta** | Crie a pasta **`saves`** na raiz do pendrive (ou use o passo 5 do programa do PC). |
 | **"Memory Unit não encontrado"** | Desligue o console, conecte a Memory Unit e ligue de novo. |
 | **O arquivo virou `SataTo3DO.uf2.erro`** | O arquivo está corrompido ou não é a firmware da ODE. Baixe de novo na página de Releases. |
+| **Depois de organizar ou renomear muitas pastas, o 3DO mostra a tela dele em vez do menu** | O diretório do pendrive ficou cheio de entradas apagadas e a lista demora demais para ficar pronta. Refaça o pendrive: copie tudo para uma pasta do PC, formate o pendrive em **FAT32** e copie de volta. |
+| **Renomeei a pasta de um jogo e a capa sumiu** | A capa e as informações ficaram com o nome antigo. Use **Renomear jogo…** no programa do PC; se já renomeou pelo Windows, renomeie também os arquivos de `covers/originais` e clique em **Gerar capas no pendrive**. |
 | **Quero voltar ao menu anterior** | Apague o `boot.iso` e renomeie o `boot_anterior.iso` (ou o antigo) de volta para `boot.iso`. |
