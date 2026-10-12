@@ -181,6 +181,8 @@ A capa escolhida fica guardada no pendrive e é usada nas próximas vezes. Depoi
 
 ### 4.5 Vídeos
 
+![Vídeos](imagens/app-videos.png)
+
 Parado num jogo, o menu toca um clipe curto e sem som no lugar da capa. **Precisa do menu v1.2 ou mais novo** (o menu v1.1 ignora os vídeos); no 3DO, dá para desligar em **Opções → Prévia em vídeo**.
 
 1. Clique em **1) Ver vídeos do pendrive**. A lista mostra cada jogo, se ele já tem vídeo no menu (e o tamanho) e o que foi achado no **ScreenScraper**: o mesmo nome, um nome **parecido** (você escolhe) ou nada.
@@ -225,7 +227,7 @@ Se a conta for recusada ou a cota do dia acabar, o programa para de usar aquela 
 
 ## 5. Usando o menu
 
-Ao ligar o console, toca a **abertura em vídeo** (A, B, C, X ou Start pula) e o menu abre com **todos os jogos em ordem alfabética**, com a capa e os dados do jogo escolhido.
+Ao ligar o console, toca a **abertura em vídeo** escolhida em **Opções → Abertura** (A, B, C, X ou Start pula) e o menu abre com **todos os jogos em ordem alfabética**, com a capa e os dados do jogo escolhido.
 
 | Botão | Na lista de jogos |
 |---|---|
@@ -233,6 +235,8 @@ Ao ligar o console, toca a **abertura em vídeo** (A, B, C, X ou Start pula) e o
 | **L / R** (ou **◄ ►**) | pula uma tela inteira de jogos |
 | **A** (ou **Start**) | inicia o jogo |
 | **X** | abre as **Opções** |
+
+Parado num jogo que tem **vídeo de prévia** no pendrive ([seção 4.5](#45-vídeos)), depois de alguns segundos o vídeo toca no lugar da capa; mexer na lista volta para a capa.
 
 Quando você escolhe um jogo, o 3DO reinicia e carrega o disco. Para voltar ao menu, desligue e ligue o console.
 
@@ -244,11 +248,13 @@ Quando você escolhe um jogo, o 3DO reinicia e carrega o disco. Para voltar ao m
 |---|---|
 | **Tamanho da tela** | Diminui o menu de 100 % até 80 %, em passos de 5 %, para TVs que cortam as bordas. Ajuste com **◄ ►**. |
 | **Idioma / Language** | Textos do menu em português ou em inglês. Troque com **◄ ►**. |
+| **Prévia em vídeo** | Liga ou desliga o vídeo de prévia no lugar da capa ([seção 4.5](#45-vídeos)). Troque com **◄ ►**. |
+| **Abertura** | Vídeo que toca ao ligar o console: um dos quatro (ManiacoOS1, ManiacoOS2, ManiacoOS3, 3DO), **Aleatória** ou **Desligada**. Troque com **◄ ►**; vale a partir da próxima vez que ligar. |
 | **Gerenciar saves** | Abre o gerenciador de saves (**A**). |
 | **Atualizar firmware** | Grava a `SataTo3DO.uf2` do pendrive ([seção 9](#9-atualizar-a-firmware)). |
-| **Informações** | Versão do menu, versão da firmware da ODE, quantidade de jogos, de capas e de jogos com gênero/estúdio/ano. |
+| **Informações** | Abre (**A**) a tela com a versão do menu, a versão da firmware da ODE e quantos jogos, capas, vídeos de prévia e jogos com gênero/estúdio/ano há no pendrive. |
 
-**▲ ▼** escolhem o item; **B** volta para a lista. O tamanho da tela e o idioma ficam salvos na memória do 3DO (NVRAM) ao voltar.
+Embaixo das Opções aparecem a versão do menu e a da firmware da ODE. **▲ ▼** escolhem o item; **B** volta para a lista. O tamanho da tela, o idioma, a prévia em vídeo e a abertura ficam salvos na memória do 3DO (NVRAM) ao voltar.
 
 ## 7. Gerenciador de saves
 

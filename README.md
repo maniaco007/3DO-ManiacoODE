@@ -17,7 +17,8 @@ Um projeto do blog **[Maniaco Game Room](https://www.maniacogameroom.com.br/)**.
 ### Menu (`boot.iso`)
 
 - **Menu inteiro em português**, com acentos (á, ã, ç, é…), ou **em inglês** (Opções → Idioma / Language).
-- **Abertura em vídeo** ao ligar o console. A, B, C, X ou Start pula.
+- **Abertura em vídeo** ao ligar o console, escolhida nas Opções: quatro aberturas, aleatória ou desligada. A, B, C, X ou Start pula.
+- **Prévia em vídeo:** parado num jogo, um clipe do jogo toca no lugar da capa (vídeos gravados pelo programa do PC).
 - **Todos os jogos do pendrive numa lista só, em ordem alfabética**, sem precisar entrar em pastas. **L/R** pula uma tela inteira de jogos.
 - **Capa de cada jogo** ao lado da lista, com **gênero, estúdio e ano**.
 - Jogos com **vários discos** aparecem identificados: "Título (Disco 1)", "Título (Disco 2)".
@@ -43,7 +44,8 @@ Com o pendrive no PC, poucos cliques:
 3. **converte jogos `.chd`** para `.cue` + `.bin` na hora de copiar;
 4. **corrige `.cue`** quebrado, cria o `.cue` que falta e tira `.cue` antigo que sobrou;
 5. gera as **capas** e os dados dos jogos (gênero, estúdio e ano), que você também pode **preencher à mão**;
-6. cria a pasta **`saves`**.
+6. grava os **vídeos de prévia** dos jogos (do ScreenScraper, sem conta, ou um vídeo seu);
+7. cria a pasta **`saves`**.
 
 As capas vêm do **libretro-thumbnails**, da **Wikipedia** e, com conta, do **ScreenScraper** e do **TheGamesDB**. Você vê a **prévia de como fica na TV**, escolhe entre todas as capas encontradas ou usa uma imagem sua, e decide **capa por capa** se ela preenche a moldura ou mantém a proporção.
 

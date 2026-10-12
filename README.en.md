@@ -17,7 +17,8 @@ A **[Maniaco Game Room](https://www.maniacogameroom.com.br/)** blog project.
 ### Menu (`boot.iso`)
 
 - **Menu in Portuguese**, with accents (á, ã, ç, é…), or **in English** (Options → Idioma / Language).
-- **Video intro** when the console is turned on. A, B, C, X or Start skips it.
+- **Video intro** when the console is turned on, chosen in the Options: four intros, random or off. A, B, C, X or Start skips it.
+- **Video preview:** resting on a game, a clip of the game plays in place of the box art (videos written by the PC program).
 - **Every game on the USB drive in one alphabetical list**, no folder browsing. **L/R** skips a full screen of games.
 - **Box art for every game** next to the list, with **genre, studio and year**.
 - **Multi-disc** games are labeled: "Title (Disc 1)", "Title (Disc 2)".
@@ -43,7 +44,8 @@ With the USB drive in the PC, a few clicks:
 3. **converts `.chd` games** to `.cue` + `.bin` while copying;
 4. **fixes broken `.cue` files**, creates the missing ones and removes leftover old ones;
 5. makes the **box art** and game info (genre, studio and year), which you can also **fill in by hand**;
-6. creates the **`saves`** folder.
+6. writes the games' **video previews** (from ScreenScraper, no account needed, or your own video);
+7. creates the **`saves`** folder.
 
 Box art comes from **libretro-thumbnails**, **Wikipedia** and, with an account, **ScreenScraper** and **TheGamesDB**. You see a **preview of how it looks on the TV**, choose among every box art found or use your own image, and decide **box art by box art** whether it fills the frame or keeps its aspect ratio.
 

@@ -183,6 +183,10 @@ The chosen box art is kept on the USB drive and used from then on. After changin
 
 ### 4.5 Videos
 
+![Videos](imagens/app-videos.png)
+
+(The picture shows the program in Portuguese.)
+
 When you rest on a game, the menu plays a short silent clip in place of the box art. **It needs menu v1.2 or newer** (menu v1.1 ignores the videos); on the 3DO you can turn it off in **Options → Video preview**.
 
 1. Click **1) See the videos on the drive**. The list shows each game, whether it already has a video in the menu (and its size) and what was found on **ScreenScraper**: the same name, a **similar** name (you choose) or nothing.
@@ -227,7 +231,7 @@ If an account is refused or the daily quota runs out, the program stops using th
 
 ## 5. Using the menu
 
-When the console is turned on, the **video intro** plays (A, B, C, X or Start skips it) and the menu opens with **every game in alphabetical order**, with the box art and info of the selected game.
+When the console is turned on, the **video intro** chosen in **Options → Intro video** plays (A, B, C, X or Start skips it) and the menu opens with **every game in alphabetical order**, with the box art and info of the selected game.
 
 | Button | In the game list |
 |---|---|
@@ -235,6 +239,8 @@ When the console is turned on, the **video intro** plays (A, B, C, X or Start sk
 | **L / R** (or **◄ ►**) | skip a full screen of games |
 | **A** (or **Start**) | start the game |
 | **X** | open the **Options** |
+
+When you rest on a game that has a **video preview** on the USB drive ([section 4.5](#45-videos)), after a few seconds the video plays in place of the box art; moving in the list brings the box art back.
 
 When you pick a game, the 3DO restarts and loads the disc. To go back to the menu, turn the console off and on.
 
@@ -246,11 +252,13 @@ When you pick a game, the 3DO restarts and loads the disc. To go back to the men
 |---|---|
 | **Screen size** | Shrinks the menu from 100 % down to 80 %, in 5 % steps, for TVs that crop the edges. Adjust with **◄ ►**. |
 | **Idioma / Language** | Menu texts in Portuguese or English. Switch with **◄ ►**. |
+| **Video preview** | Turns the video preview in place of the box art on or off ([section 4.5](#45-videos)). Switch with **◄ ►**. |
+| **Intro video** | Video played when the console is turned on: one of the four (ManiacoOS1, ManiacoOS2, ManiacoOS3, 3DO), **Random** or **Off**. Switch with **◄ ►**; takes effect the next time it is turned on. |
 | **Manage saves** | Opens the save manager (**A**). |
 | **Update firmware** | Writes the `SataTo3DO.uf2` from the USB drive ([section 9](#9-updating-the-firmware)). |
-| **Information** | Menu version, ODE firmware version, number of games, of box arts and of games with genre/studio/year. |
+| **Information** | Opens (**A**) the screen with the menu version, the ODE firmware version and how many games, box arts, video previews and games with genre/studio/year are on the USB drive. |
 
-**▲ ▼** pick the item; **B** goes back to the list. Screen size and language are saved in the 3DO memory (NVRAM) when you go back.
+Below the Options you see the menu version and the ODE firmware version. **▲ ▼** pick the item; **B** goes back to the list. Screen size, language, video preview and intro video are saved in the 3DO memory (NVRAM) when you go back.
 
 ## 7. Save manager
 
