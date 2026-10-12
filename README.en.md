@@ -12,7 +12,7 @@ A **[Maniaco Game Room](https://www.maniacogameroom.com.br/)** blog project.
 
 | | |
 |---|---|
-| ![Options](imagens/opcoes.png) | ![Manage saves](imagens/opcoes-saves.png) |
+| ![Options](imagens/opcoes-en.png) | ![Manage saves](imagens/opcoes-saves.png) |
 
 ### Menu (`boot.iso`)
 

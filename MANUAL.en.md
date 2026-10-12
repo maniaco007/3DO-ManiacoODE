@@ -246,7 +246,9 @@ When you pick a game, the 3DO restarts and loads the disc. To go back to the men
 
 ## 6. Options
 
-![Options](imagens/opcoes.png)
+| | |
+|---|---|
+| ![Options](imagens/opcoes-en.png) | ![Information](imagens/opcoes-info-en.png) |
 
 | Item | What it does |
 |---|---|

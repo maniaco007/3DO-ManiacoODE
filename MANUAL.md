@@ -242,7 +242,9 @@ Quando você escolhe um jogo, o 3DO reinicia e carrega o disco. Para voltar ao m
 
 ## 6. Opções
 
-![Opções](imagens/opcoes.png)
+| | |
+|---|---|
+| ![Opções](imagens/opcoes.png) | ![Informações](imagens/opcoes-info.png) |
 
 | Item | O que faz |
 |---|---|
