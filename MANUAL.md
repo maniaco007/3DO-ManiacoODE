@@ -63,13 +63,13 @@ Policenauts/
 
 ## 4. Programa do PC — Gerenciador do pendrive
 
-O **3DO ManiacoODE — Gerenciador do pendrive** deixa o pendrive pronto para o 3DO: instala o menu, copia a firmware, organiza os jogos do jeito que a ODE lê, gera as capas e cria a pasta de saves.
+O **3DO ManiacoODE — Gerenciador do pendrive** deixa o pendrive pronto para o 3DO: instala o menu, copia a firmware, organiza os jogos do jeito que a ODE lê, gera as capas, grava os vídeos de prévia e cria a pasta de saves.
 
 **Instalação:** não há instalação. Baixe o `3DO-ManiacoODE-Gerenciador.exe` na página de [Releases](../../releases) e abra.
 
 > Na primeira vez, o Windows pode mostrar "O Windows protegeu o computador" (SmartScreen), porque o programa é novo e não tem assinatura paga. Clique em **Mais informações → Executar assim mesmo**.
 
-**Internet:** as capas e os dados dos jogos são baixados na hora de usar e ficam guardados no PC (`%LOCALAPPDATA%\3DO-ManiacoODE`). Da segunda vez em diante, o que já foi baixado funciona sem internet.
+**Internet:** as capas, os dados e os vídeos dos jogos são baixados na hora de usar e ficam guardados no PC (`%LOCALAPPDATA%\3DO-ManiacoODE`). Da segunda vez em diante, o que já foi baixado funciona sem internet.
 
 **Seu pendrive está seguro:** o programa **não apaga nada**. O `boot.iso` antigo é guardado, jogos repetidos vão para a pasta `_duplicados`, imagens trocadas vão para `covers/originais/_antigas`, e a organização dos jogos pode ser desfeita.
 
@@ -78,7 +78,7 @@ O **3DO ManiacoODE — Gerenciador do pendrive** deixa o pendrive pronto para o 
 ![Preparar pendrive](imagens/app-preparar.png)
 
 - **Pendrive** (topo): escolha a letra do pendrive. O programa sugere primeiro os que já têm o `boot.iso`. Ao lado aparecem o sistema de arquivos, o espaço livre e se o menu está instalado. Use **Procurar…** se o pendrive não aparecer.
-- **Abas:** Preparar pendrive, Organizar jogos e Capas.
+- **Abas:** Preparar pendrive, Organizar jogos, Capas e Vídeos.
 - **Rodapé:** mostra a etapa atual, a porcentagem, o tempo que falta e o botão **Cancelar**.
 - **Menu Arquivo:** abre o pendrive no Explorer.
 - **Menu Tema:** muda as cores da janela (Noite, Menu ManiacoODE (azul e ouro) e Claro). A escolha fica salva.
@@ -152,7 +152,7 @@ A capa aparece ao lado da lista no menu, numa moldura de 106×116 pixels, com o 
 
 1. **Suas imagens** — escolhidas na aba Capas ou na **sua pasta de imagens** (opcional; o nome do arquivo é o nome do jogo, em PNG, JPG, WEBP, BMP ou GIF);
 2. **libretro-thumbnails** — acervo de capas, com as versões americana, europeia e japonesa;
-3. **ScreenScraper** e **TheGamesDB** — só com conta ([seção 4.5](#45-contas-do-screenscraper-e-do-thegamesdb));
+3. **ScreenScraper** e **TheGamesDB** — só com conta ([seção 4.6](#46-contas-do-screenscraper-e-do-thegamesdb));
 4. **Wikipedia** — a imagem do artigo do jogo. **Confira:** às vezes é a caixa de outra plataforma;
 5. **Tela de título** do jogo — último recurso, sempre com a proporção mantida.
 
@@ -179,7 +179,26 @@ A capa escolhida fica guardada no pendrive e é usada nas próximas vezes. Depoi
 
 **Renomear jogo…:** muda o nome que o menu mostra. O programa renomeia a pasta do jogo (ou o arquivo, se o nome vem do arquivo) e leva junto a capa, a imagem escolhida, o modo da capa e as informações. O jogo renomeado fica marcado como **Não alterar** no Organizar, para o nome escolhido não ser trocado depois.
 
-### 4.5 Contas do ScreenScraper e do TheGamesDB
+### 4.5 Vídeos
+
+Parado num jogo, o menu toca um clipe curto e sem som no lugar da capa. **Precisa do menu v1.2 ou mais novo** (o menu v1.1 ignora os vídeos); no 3DO, dá para desligar em **Opções → Prévia em vídeo**.
+
+1. Clique em **1) Ver vídeos do pendrive**. A lista mostra cada jogo, se ele já tem vídeo no menu (e o tamanho) e o que foi achado no **ScreenScraper**: o mesmo nome, um nome **parecido** (você escolhe) ou nada.
+2. Clique em **2) Baixar do ScreenScraper os que faltam**: o programa consulta a lista de jogos do site (não precisa de conta), mostra quantos vídeos vai baixar e grava no pendrive os dos jogos sem vídeo que têm o mesmo nome no site. Os **parecidos** ficam para você escolher.
+3. Clique num jogo para ver a **prévia animada**, do jeito que o menu mostra, dentro da moldura.
+
+**Um jogo de cada vez** (botões do painel da prévia):
+
+- **Procurar no ScreenScraper…** — mostra os jogos do site parecidos com o nome; dá para procurar com outro nome. Escolha um e clique em **Usar este**.
+- **Usar vídeo do computador…** — qualquer vídeo do PC (`.mp4`, `.mkv`, `.avi`, `.webm`, `.mov`…), por exemplo uma gravação do seu console.
+- **Começar o clipe em (s)** e **Ver prévia** — escolha em que segundo do vídeo o clipe começa e veja como fica antes de gravar; **Aplicar com este início** grava. Os vídeos do ScreenScraper começam em 3 s, para pular a entrada.
+- **Tirar o vídeo do menu** — o vídeo sai do menu; o original vai para `covers/originais/_antigas` (não é apagado).
+
+Todo vídeo é convertido para o limite seguro do menu: 104 pixels de largura, 15 quadros por segundo, até 8 segundos e cerca de 200 KB. O vídeo original fica guardado em `covers/originais` (de 1 a 10 MB cada), para dar para mudar o início depois.
+
+> Os vídeos do ScreenScraper têm licença Creative Commons BY-NC-SA: só para uso pessoal, sem fins comerciais.
+
+### 4.6 Contas do ScreenScraper e do TheGamesDB
 
 Opcional. Com estas contas, o programa também procura capas no **ScreenScraper** e no **TheGamesDB** quando o libretro não tiver. Abra pelo botão **Contas (ScreenScraper, TheGamesDB)…** da aba Capas.
 
@@ -190,7 +209,7 @@ Opcional. Com estas contas, o programa também procura capas no **ScreenScraper*
 
 Se a conta for recusada ou a cota do dia acabar, o programa para de usar aquela fonte até ser aberto de novo e segue com as outras.
 
-### 4.6 O que o programa grava no pendrive
+### 4.7 O que o programa grava no pendrive
 
 | No pendrive | O que é |
 |---|---|
@@ -198,9 +217,9 @@ Se a conta for recusada ou a cota do dia acabar, o programa para de usar aquela 
 | `boot_anterior.iso` | o menu que estava antes |
 | `SataTo3DO.uf2` | a firmware nova, até ser aplicada (vira `.ok` ou `.erro`) |
 | `saves/` | backup de saves feito pelo menu |
-| `covers/` | capas (`.cap`), dados dos jogos (`dados.cap`) e a lista das capas (`indice.cap`) |
-| `covers/originais/` | as imagens que você escolheu, o modo de cada capa (`<jogo>.modo`) e as informações preenchidas à mão (`<jogo>.info`) |
-| `covers/originais/_antigas/` | imagens que você trocou |
+| `covers/` | capas (`.cap`), vídeos de prévia (`.vid`), dados dos jogos (`dados.cap`) e a lista das capas e dos vídeos (`indice.cap`) |
+| `covers/originais/` | as imagens que você escolheu, o modo de cada capa (`<jogo>.modo`), as informações preenchidas à mão (`<jogo>.info`), os vídeos originais e o início de cada clipe (`<jogo>.inicio`) |
+| `covers/originais/_antigas/` | imagens e vídeos que você trocou ou tirou |
 | `_duplicados/` | versões repetidas tiradas da lista |
 | `.maniacoode/` | o registro para **Desfazer a última organização** e os jogos marcados **Não alterar** (`nao_alterar.json`) |
 

@@ -65,13 +65,13 @@ Policenauts/
 
 ## 4. PC program — USB drive manager
 
-**3DO ManiacoODE — USB drive manager** gets the USB drive ready for the 3DO: it installs the menu, copies the firmware, organizes the games the way the ODE reads them, makes the box art and creates the saves folder.
+**3DO ManiacoODE — USB drive manager** gets the USB drive ready for the 3DO: it installs the menu, copies the firmware, organizes the games the way the ODE reads them, makes the box art, writes the video previews and creates the saves folder.
 
 **Installation:** there is none. Download `3DO-ManiacoODE-Gerenciador.exe` from the [Releases](../../releases) page and open it.
 
 > The first time, Windows may show "Windows protected your PC" (SmartScreen), because the program is new and has no paid signature. Click **More info → Run anyway**.
 
-**Internet:** box art and game info are downloaded when needed and kept on the PC (`%LOCALAPPDATA%\3DO-ManiacoODE`). From then on, what was already downloaded works offline.
+**Internet:** box art, game info and videos are downloaded when needed and kept on the PC (`%LOCALAPPDATA%\3DO-ManiacoODE`). From then on, what was already downloaded works offline.
 
 **Your USB drive is safe:** the program **deletes nothing**. The old `boot.iso` is kept, repeated games go to the `_duplicados` folder, replaced images go to `covers/originais/_antigas`, and the game organization can be undone.
 
@@ -80,7 +80,7 @@ Policenauts/
 ![Prepare USB drive](imagens/app-preparar-en.png)
 
 - **USB drive** (top): pick the drive letter. The program suggests the drives that already have `boot.iso` first. Next to it you see the file system, the free space and whether the menu is installed. Use **Browse…** if the drive is not listed.
-- **Tabs:** Prepare USB drive, Organize games and Box art.
+- **Tabs:** Prepare USB drive, Organize games, Box art and Videos.
 - **Footer:** shows the current step, the percentage, the time left and the **Cancel** button.
 - **File menu:** opens the USB drive in Explorer.
 - **Theme menu:** changes the window colors (Night, ManiacoODE menu (blue and gold) and Light). The choice is saved.
@@ -154,7 +154,7 @@ The box art is shown next to the list in the menu, in a 106×116 pixel frame, wi
 
 1. **Your images** — chosen in the Box art tab or in **your image folder** (optional; the file name is the game name, as PNG, JPG, WEBP, BMP or GIF);
 2. **libretro-thumbnails** — a box art collection, with the American, European and Japanese versions;
-3. **ScreenScraper** and **TheGamesDB** — only with an account ([section 4.5](#45-screenscraper-and-thegamesdb-accounts));
+3. **ScreenScraper** and **TheGamesDB** — only with an account ([section 4.6](#46-screenscraper-and-thegamesdb-accounts));
 4. **Wikipedia** — the image of the game's article. **Check it:** sometimes it is the box of another platform;
 5. The game's **title screen** — last resort, always keeping its aspect ratio.
 
@@ -181,7 +181,26 @@ The chosen box art is kept on the USB drive and used from then on. After changin
 
 **Rename game…:** changes the name the menu shows. The program renames the game folder (or the file, if the name comes from the file) and takes along the box art, the chosen image, the box art mode and the info. The renamed game is marked **Don't change** in Organize, so the chosen name is not changed later.
 
-### 4.5 ScreenScraper and TheGamesDB accounts
+### 4.5 Videos
+
+When you rest on a game, the menu plays a short silent clip in place of the box art. **It needs menu v1.2 or newer** (menu v1.1 ignores the videos); on the 3DO you can turn it off in **Options → Video preview**.
+
+1. Click **1) See the videos on the drive**. The list shows each game, whether it already has a video in the menu (and its size) and what was found on **ScreenScraper**: the same name, a **similar** name (you choose) or nothing.
+2. Click **2) Download the missing ones from ScreenScraper**: the program checks the site's game list (no account needed), tells you how many videos it will download and writes to the drive the videos of the games with no video that have the same name on the site. The **similar** ones are left for you to choose.
+3. Click a game to see the **animated preview**, the way the menu shows it, inside the frame.
+
+**One game at a time** (buttons of the preview panel):
+
+- **Search ScreenScraper…** — shows the site's games similar to the name; you can search with another name. Pick one and click **Use this one**.
+- **Use a video from the PC…** — any video on the PC (`.mp4`, `.mkv`, `.avi`, `.webm`, `.mov`…), for example a recording of your console.
+- **Start the clip at (s)** and **Preview** — choose at which second of the video the clip starts and see how it looks before writing it; **Apply with this start** writes it. ScreenScraper videos start at 3 s, to skip the intro.
+- **Remove the video from the menu** — the video leaves the menu; the original goes to `covers/originais/_antigas` (it is not deleted).
+
+Every video is converted to the menu's safe limit: 104 pixels wide, 15 frames per second, up to 8 seconds and about 200 KB. The original video is kept in `covers/originais` (1 to 10 MB each), so the start can be changed later.
+
+> ScreenScraper videos are licensed Creative Commons BY-NC-SA: personal use only, non-commercial.
+
+### 4.6 ScreenScraper and TheGamesDB accounts
 
 Optional. With these accounts, the program also looks for box art on **ScreenScraper** and **TheGamesDB** when libretro has none. Open them with the **Accounts (ScreenScraper, TheGamesDB)…** button in the Box art tab.
 
@@ -192,7 +211,7 @@ Optional. With these accounts, the program also looks for box art on **ScreenScr
 
 If an account is refused or the daily quota runs out, the program stops using that source until it is opened again and goes on with the others.
 
-### 4.6 What the program writes to the USB drive
+### 4.7 What the program writes to the USB drive
 
 | On the USB drive | What it is |
 |---|---|
@@ -200,9 +219,9 @@ If an account is refused or the daily quota runs out, the program stops using th
 | `boot_anterior.iso` | the previous menu |
 | `SataTo3DO.uf2` | the new firmware, until it is applied (becomes `.ok` or `.erro`) |
 | `saves/` | save backups made by the menu |
-| `covers/` | box art (`.cap`), game info (`dados.cap`) and the box art list (`indice.cap`) |
-| `covers/originais/` | the images you chose, the mode of each box art (`<game>.modo`) and the info you filled in (`<game>.info`) |
-| `covers/originais/_antigas/` | images you replaced |
+| `covers/` | box art (`.cap`), video previews (`.vid`), game info (`dados.cap`) and the box art and video list (`indice.cap`) |
+| `covers/originais/` | the images you chose, the mode of each box art (`<game>.modo`), the info you filled in (`<game>.info`), the original videos and the start of each clip (`<game>.inicio`) |
+| `covers/originais/_antigas/` | images and videos you replaced or removed |
 | `_duplicados/` | repeated versions taken out of the list |
 | `.maniacoode/` | the log for **Undo the last organization** and the games marked **Don't change** (`nao_alterar.json`) |
 
