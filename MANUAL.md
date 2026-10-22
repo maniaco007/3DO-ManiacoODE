@@ -77,17 +77,20 @@ O **3DO ManiacoODE — Gerenciador do pendrive** deixa o pendrive pronto para o 
 
 ![Preparar pendrive](imagens/app-preparar.png)
 
-- **Pendrive** (topo): escolha a letra do pendrive. O programa sugere primeiro os que já têm o `boot.iso`. Ao lado aparecem o sistema de arquivos, o espaço livre e se o menu está instalado. Use **Procurar…** se o pendrive não aparecer.
-- **Abas:** Preparar pendrive, Organizar jogos, Capas e Vídeos.
+- **Barra lateral** (esquerda): as quatro telas — **Preparar pendrive**, **Organizar jogos**, **Capas** e **Vídeos**; a que está aberta fica em destaque. Embaixo aparece a situação do pendrive: sistema de arquivos, espaço livre e se o menu está instalado.
+- **Pendrive** (topo): escolha a letra do pendrive. O programa sugere primeiro os que já têm o `boot.iso`. Use **Procurar…** se o pendrive não aparecer.
+- **Cada tela** tem o título e a **ação principal** (em verde) no canto superior direito. As opções avançadas ficam **recolhidas** atrás de um botão com **▸**: clique para abrir.
 - **Rodapé:** mostra a etapa atual, a porcentagem, o tempo que falta e o botão **Cancelar**.
 - **Menu Arquivo:** abre o pendrive no Explorer.
 - **Menu Tema:** muda as cores da janela (Noite, Menu ManiacoODE (azul e ouro) e Claro). A escolha fica salva.
 - **Menu Idioma / Language:** mostra a janela em português ou em inglês. Na primeira vez, o programa usa o idioma do Windows.
-- **Menu Ajuda:** blog Maniaco Game Room e Sobre.
+- **Menu Ajuda:** **Verificar atualizações…**, **Verificar ao abrir o programa**, blog Maniaco Game Room e Sobre.
+
+**Atualizações do programa:** em **Ajuda → Verificar atualizações…** o programa consulta a última release no GitHub e mostra as novidades. Havendo versão nova, **Baixar e atualizar** baixa o programa, confere o **SHA-256** e, com o seu aval, fecha e troca o arquivo; o antigo fica ao lado como `3DO-ManiacoODE-Gerenciador.exe.anterior`, para você voltar se precisar. **Verificar ao abrir o programa** (desligado por padrão) avisa na barra de status quando sai versão nova. Precisa de internet. Só o programa do PC se atualiza sozinho: o `boot.iso` e a firmware você copia (a firmware também pelas Opções do menu).
 
 ### 4.2 Preparar pendrive
 
-Marque o que quer fazer e clique em **Preparar pendrive**. Cada passo pode ser feito sozinho.
+Marque o que quer fazer e clique em **Preparar pendrive** (botão verde, no canto superior direito). Cada passo pode ser feito sozinho. As opções de organização dos jogos ficam em **Como organizar os jogos ▸**.
 
 1. **Instalar o menu (`boot.iso`):** aponte o `boot.iso` baixado. O que já estava no pendrive vira `boot_anterior.iso`.
 2. **Atualizar a firmware (`SataTo3DO.uf2`):** o programa confere se o arquivo é mesmo uma firmware do RP2040 e copia para a raiz do pendrive. Depois, no 3DO, abra **Opções → Atualizar firmware** ([seção 9](#9-atualizar-a-firmware)).
@@ -113,7 +116,7 @@ O programa só continua se o pendrive estiver em **FAT32** ou **exFAT**. Ao fina
 
 Arruma os jogos que **já estão no pendrive**, com as mesmas regras que a firmware usa para montar a lista.
 
-1. Escolha as opções:
+1. Clique em **Opções ▸** e escolha:
    - **Nomes limpos:** tira região e marcas do nome (`Need For Speed, The (USA) [!]` → `The Need For Speed`);
    - **Pastas:** uma pasta para cada jogo, por letra (A, B, C…) ou manter as pastas atuais;
    - **Mover versões repetidas para `_duplicados`:** deixa só uma cópia de cada jogo. Entre um `.iso` e um `.cue` + `.bin`, fica o `.cue` + `.bin`, que tem o áudio do CD.
@@ -137,16 +140,19 @@ Arquivos que a ODE não lê (`.zip`, `.7z`…) aparecem num aviso embaixo da lis
 
 A capa aparece ao lado da lista no menu, numa moldura de 106×116 pixels, com o gênero, o estúdio e o ano do jogo.
 
-1. Clique em **1) Ver capas do pendrive**. A lista mostra cada jogo, de onde vem a capa e se ela já está no pendrive. Jogos **sem capa** aparecem primeiro, em vermelho; capas da **Wikipedia** e **telas de título** aparecem em amarelo, para você conferir.
-2. Clique num jogo para ver a **prévia na TV**, já dentro da moldura do menu.
-3. Clique em **2) Gerar capas no pendrive** para gravar tudo na pasta `covers`.
+1. Clique em **1) Ver capas do pendrive**. Cada jogo vira um **cartão** com a miniatura da capa, o nome e a situação: **capa ok**, **a conferir** (amarelo: capa da Wikipedia, tela de título ou captura de tela, para você conferir) ou **sem capa** (vermelho; esses aparecem primeiro). O cartão também diz se a capa já está no pendrive e de onde vêm as informações (**internet**, **você** ou **falta**). As miniaturas aparecem aos poucos.
+2. **Buscar:** digite parte do nome. Os botões **Todos os jogos**, **Sem capa**, **Capa a conferir** e **Falta gerar no pendrive** filtram a grade, e o contador mostra "N de M jogos". As **setas do teclado** andam pela grade.
+3. Clique num cartão para ver, à direita, a **prévia na TV** (já dentro da moldura do menu), o **gênero, o estúdio e o lançamento** do jogo e as ações.
+4. Clique em **2) Gerar capas no pendrive** para gravar tudo na pasta `covers`.
+
+As opções desta tela ficam recolhidas em **Opções das capas ▸**: como encaixar a capa, a sua pasta de imagens e onde procurar.
 
 **Como encaixar a capa (padrão para todos os jogos):**
 
 - **Preencher a moldura** (recomendado): estica a capa inteira até encher a moldura, sem cortar nada.
 - **Manter a proporção:** a capa fica sem esticar, com faixas em volta.
 
-**Esta capa:** no painel da prévia, escolha o modo só do jogo selecionado — **Padrão** (segue a opção acima), **Preencher** ou **Proporção**. Assim umas capas preenchem a moldura e outras mantêm a proporção. A lista mostra "· preenche a moldura" ou "· mantém a proporção" nos jogos com modo próprio.
+**Esta capa:** no painel da prévia, escolha o modo só do jogo selecionado — **Padrão** (segue a opção acima), **Preencher** ou **Proporção**. Assim umas capas preenchem a moldura e outras mantêm a proporção. O modo escolhido fica guardado no pendrive (`<jogo>.modo`).
 
 **Onde procurar as capas:** o programa usa a primeira que encontrar, nesta ordem:
 
@@ -154,9 +160,10 @@ A capa aparece ao lado da lista no menu, numa moldura de 106×116 pixels, com o 
 2. **libretro-thumbnails** — acervo de capas, com as versões americana, europeia e japonesa;
 3. **ScreenScraper** e **TheGamesDB** — só com conta ([seção 4.6](#46-contas-do-screenscraper-e-do-thegamesdb));
 4. **Wikipedia** — a imagem do artigo do jogo. **Confira:** às vezes é a caixa de outra plataforma;
-5. **Tela de título** do jogo — último recurso, sempre com a proporção mantida.
+5. **Tela de título** do jogo — sempre com a proporção mantida;
+6. **Captura de tela do jogo** (libretro) — último recurso, também com a proporção mantida.
 
-As caixas **Usar a Wikipedia…** e **Usar a tela de título…** ligam ou desligam essas fontes na escolha automática. **Baixar da internet o que faltar** desligada usa só o que já foi baixado antes.
+As caixas **Usar a Wikipedia…** e **Usar a tela de título ou uma captura do jogo…** ligam ou desligam essas fontes na escolha automática. **Baixar da internet o que faltar** desligada usa só o que já foi baixado antes.
 
 **Trocar a capa de um jogo** (botões do painel da prévia):
 
@@ -170,7 +177,9 @@ As caixas **Usar a Wikipedia…** e **Usar a tela de título…** ligam ou desli
 
 A capa escolhida fica guardada no pendrive e é usada nas próximas vezes. Depois de trocar, clique em **2) Gerar capas no pendrive**.
 
-**Informações do jogo (gênero, estúdio e lançamento):** a coluna **Informações** da lista mostra de onde elas vêm — **internet**, **você** ou **falta**. Para preencher ou corrigir, escolha o jogo e clique em **Informações do jogo…** (ou dê dois cliques nele):
+**Importar capas de uma pasta:** o botão **Importar capas…** pega as imagens de uma pasta do PC (por exemplo, uma pasta do EmuMovies, com subpastas) e casa cada uma com um jogo do pendrive pelo **nome**: nome igual, mesmo título sem a região ou nome parecido; entre várias regiões ganha a do jogo, e o "Disco 2" não pega a imagem do "Disco 1". O programa mostra quantos arquivos achou, quantos jogos **já têm capa sua** (ficam como estão) e quantos ficaram sem arquivo, e **só importa se você confirmar**. As imagens vão para `covers/originais`; depois clique em **2) Gerar capas no pendrive**.
+
+**Informações do jogo (gênero, estúdio e lançamento):** o cartão e o painel mostram de onde elas vêm — **internet**, **você** ou **falta**. Para preencher ou corrigir, escolha o jogo e clique em **Informações do jogo…** (ou dê dois cliques no cartão):
 
 - campos **Gênero**, **Gênero em inglês** (usado com o menu em inglês), **Estúdio** e **Lançamento**;
 - embaixo, as linhas **como o menu vai mostrar**, com a mesma fonte do 3DO: avisa quando o texto vai ser cortado com "…" e quando há caracteres que o menu não tem (aparecem como "?");
@@ -185,9 +194,9 @@ A capa escolhida fica guardada no pendrive e é usada nas próximas vezes. Depoi
 
 Parado num jogo, o menu toca um clipe curto e sem som no lugar da capa. **Precisa do menu v1.2 ou mais novo** (o menu v1.1 ignora os vídeos); no 3DO, dá para desligar em **Opções → Prévia em vídeo**.
 
-1. Clique em **1) Ver vídeos do pendrive**. A lista mostra cada jogo, se ele já tem vídeo no menu (e o tamanho) e o que foi achado no **ScreenScraper**: o mesmo nome, um nome **parecido** (você escolhe) ou nada.
+1. Clique em **1) Ver vídeos do pendrive**. Cada jogo vira um **cartão** com um quadro do vídeo que já está no menu e a situação: **vídeo ok**, **para baixar** (o mesmo nome existe no **ScreenScraper**), **sem resultado** ou **sem vídeo** (ainda não consultado). Os botões **Todos os jogos**, **Com vídeo**, **Para baixar** e **Sem vídeo** e o campo **Buscar** filtram a grade. **Sobre os vídeos ▸** mostra os limites e a licença.
 2. Clique em **2) Baixar do ScreenScraper os que faltam**: o programa consulta a lista de jogos do site (não precisa de conta), mostra quantos vídeos vai baixar e grava no pendrive os dos jogos sem vídeo que têm o mesmo nome no site. Os **parecidos** ficam para você escolher.
-3. Clique num jogo para ver a **prévia animada**, do jeito que o menu mostra, dentro da moldura.
+3. Clique num cartão para ver, à direita, a **prévia animada**, do jeito que o menu mostra, dentro da moldura, e o que o ScreenScraper achou para o jogo.
 
 **Um jogo de cada vez** (botões do painel da prévia):
 
@@ -197,6 +206,10 @@ Parado num jogo, o menu toca um clipe curto e sem som no lugar da capa. **Precis
 - **Tirar o vídeo do menu** — o vídeo sai do menu; o original vai para `covers/originais/_antigas` (não é apagado).
 
 Todo vídeo é convertido para o limite seguro do menu: 104 pixels de largura, 15 quadros por segundo, até 8 segundos e cerca de 200 KB. O vídeo original fica guardado em `covers/originais` (de 1 a 10 MB cada), para dar para mudar o início depois.
+
+**Importar vídeos de uma pasta:** **Importar vídeos…** faz o mesmo que as capas: pega os vídeos de uma pasta do PC (por exemplo, clipes do EmuMovies), casa pelo nome com os jogos do pendrive, mostra o resumo e, com o seu aval, converte cada um para o menu (alguns segundos por jogo). Quem já tem vídeo fica como está.
+
+**Som (em teste):** o menu v1.2 toca a prévia **sem som**. O programa já sabe gravar o som do clipe junto do vídeo (mono, 11025 Hz, cerca de 88 KB a mais), para um menu futuro que toque som, mas isso vem **desligado**: a caixa **Gravar o som do vídeo** do painel liga. **Adicionar som…** refaz com som os vídeos que já estão no pendrive (do original guardado ou baixando de novo do ScreenScraper). Com o menu v1.2 não há vantagem em ligar: os bytes a mais só deixam o vídeo um pouco mais lento para carregar.
 
 > Os vídeos do ScreenScraper têm licença Creative Commons BY-NC-SA: só para uso pessoal, sem fins comerciais.
 
@@ -219,7 +232,7 @@ Se a conta for recusada ou a cota do dia acabar, o programa para de usar aquela 
 | `boot_anterior.iso` | o menu que estava antes |
 | `SataTo3DO.uf2` | a firmware nova, até ser aplicada (vira `.ok` ou `.erro`) |
 | `saves/` | backup de saves feito pelo menu |
-| `covers/` | capas (`.cap`), vídeos de prévia (`.vid`), dados dos jogos (`dados.cap`) e a lista das capas e dos vídeos (`indice.cap`) |
+| `covers/` | capas (`.cap`), vídeos de prévia (`.vid`, com o som se você gravou), dados dos jogos (`dados.cap`) e a lista das capas e dos vídeos (`indice.cap`) |
 | `covers/originais/` | as imagens que você escolheu, o modo de cada capa (`<jogo>.modo`), as informações preenchidas à mão (`<jogo>.info`), os vídeos originais e o início de cada clipe (`<jogo>.inicio`) |
 | `covers/originais/_antigas/` | imagens e vídeos que você trocou ou tirou |
 | `_duplicados/` | versões repetidas tiradas da lista |

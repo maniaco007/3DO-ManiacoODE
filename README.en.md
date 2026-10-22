@@ -45,7 +45,10 @@ With the USB drive in the PC, a few clicks:
 4. **fixes broken `.cue` files**, creates the missing ones and removes leftover old ones;
 5. makes the **box art** and game info (genre, studio and year), which you can also **fill in by hand**;
 6. writes the games' **video previews** (from ScreenScraper, no account needed, or your own video);
-7. creates the **`saves`** folder.
+7. **imports box art and videos from a folder** on the PC (for example from EmuMovies), matching them by game name;
+8. creates the **`saves`** folder.
+
+New look: a **sidebar**, a **box art grid** with search and filters, a game panel and collapsed options. The program **updates itself from GitHub** (Help → Check for updates…).
 
 Box art comes from **libretro-thumbnails**, **Wikipedia** and, with an account, **ScreenScraper** and **TheGamesDB**. You see a **preview of how it looks on the TV**, choose among every box art found or use your own image, and decide **box art by box art** whether it fills the frame or keeps its aspect ratio.
 

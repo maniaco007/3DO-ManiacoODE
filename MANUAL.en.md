@@ -79,17 +79,20 @@ Policenauts/
 
 ![Prepare USB drive](imagens/app-preparar-en.png)
 
-- **USB drive** (top): pick the drive letter. The program suggests the drives that already have `boot.iso` first. Next to it you see the file system, the free space and whether the menu is installed. Use **Browse…** if the drive is not listed.
-- **Tabs:** Prepare USB drive, Organize games, Box art and Videos.
+- **Sidebar** (left): the four screens — **Prepare USB drive**, **Organize games**, **Box art** and **Videos**; the open one is highlighted. At the bottom you see the state of the drive: file system, free space and whether the menu is installed.
+- **USB drive** (top): pick the drive letter. The program suggests the drives that already have `boot.iso` first. Use **Browse…** if the drive is not listed.
+- **Each screen** has its title and the **main action** (in green) at the top right. The advanced options are **collapsed** behind a button with **▸**: click it to open them.
 - **Footer:** shows the current step, the percentage, the time left and the **Cancel** button.
 - **File menu:** opens the USB drive in Explorer.
 - **Theme menu:** changes the window colors (Night, ManiacoODE menu (blue and gold) and Light). The choice is saved.
 - **Idioma / Language menu:** shows the window in Portuguese or English. The first time, the program follows the Windows language.
-- **Help menu:** Maniaco Game Room blog and About.
+- **Help menu:** **Check for updates…**, **Check when the program starts**, Maniaco Game Room blog and About.
+
+**Program updates:** under **Help → Check for updates…** the program looks up the latest release on GitHub and shows what is new. If there is a newer version, **Download and update** downloads the program, checks its **SHA-256** and, with your OK, closes and swaps the file; the old one stays next to it as `3DO-ManiacoODE-Gerenciador.exe.anterior`, so you can go back. **Check when the program starts** (off by default) shows a note in the status bar when a new version is out. It needs internet. Only the PC program updates itself: you copy `boot.iso` and the firmware (the firmware can also be updated from the menu Options).
 
 ### 4.2 Prepare USB drive
 
-Tick what you want to do and click **Prepare USB drive**. Each step can be done on its own.
+Tick what you want to do and click **Prepare USB drive** (green button, top right). Each step can be done on its own. The game organization options are under **How to organize the games ▸**.
 
 1. **Install the menu (`boot.iso`):** point to the downloaded `boot.iso`. The one already on the drive becomes `boot_anterior.iso`.
 2. **Update the firmware (`SataTo3DO.uf2`):** the program checks that the file really is RP2040 firmware and copies it to the root of the drive. Then, on the 3DO, open **Options → Update firmware** ([section 9](#9-updating-the-firmware)).
@@ -115,7 +118,7 @@ The program only goes on if the drive is **FAT32** or **exFAT**. At the end, the
 
 Tidies up the games that are **already on the USB drive**, with the same rules the firmware uses to build the list.
 
-1. Pick the options:
+1. Click **Options ▸** and pick:
    - **Clean names:** removes the region and tags from the name (`Need For Speed, The (USA) [!]` → `The Need For Speed`);
    - **Folders:** one folder per game, by letter (A, B, C…) or keep the current folders;
    - **Move repeated versions to `_duplicados`:** keeps a single copy of each game. Between an `.iso` and a `.cue` + `.bin`, the `.cue` + `.bin` stays, because it has the CD audio.
@@ -139,16 +142,19 @@ Files the ODE cannot read (`.zip`, `.7z`…) are listed in a warning below the l
 
 The box art is shown next to the list in the menu, in a 106×116 pixel frame, with the game's genre, studio and year.
 
-1. Click **1) Check the box art**. The list shows each game, where its box art comes from and whether it is already on the drive. Games **without box art** come first, in red; box art from **Wikipedia** and **title screens** show in yellow, so you can check them.
-2. Click a game to see the **TV preview**, already inside the menu frame.
-3. Click **2) Write box art to the USB drive** to write everything to the `covers` folder.
+1. Click **1) Check the box art**. Each game becomes a **card** with the box art thumbnail, its name and its state: **box art ok**, **check it** (yellow: box art from Wikipedia, a title screen or a screenshot, for you to check) or **no box art** (red; those come first). The card also says whether the box art is already on the drive and where the info comes from (**internet**, **you** or **missing**). The thumbnails show up little by little.
+2. **Search:** type part of the name. The **All games**, **No box art**, **Box art to check** and **Not written to the drive yet** buttons filter the grid, and the counter shows "N of M games". The **arrow keys** move through the grid.
+3. Click a card to see, on the right, the **TV preview** (already inside the menu frame), the game's **genre, studio and release** and the actions.
+4. Click **2) Write box art to the USB drive** to write everything to the `covers` folder.
+
+The options of this screen are collapsed under **Box art options ▸**: how the box art fits, your image folder and where to look.
 
 **How the box art fits (default for every game):**
 
 - **Fill the frame** (recommended): stretches the whole box art until it fills the frame, without cropping anything.
 - **Keep the aspect ratio:** the box art is not stretched, with bars around it.
 
-**This box art:** in the preview panel, pick the mode for the selected game only — **Default** (follows the option above), **Fill** or **Aspect ratio**. This way some box arts fill the frame and others keep their aspect ratio. Games with their own mode show "· fills the frame" or "· keeps the aspect ratio" in the list.
+**This box art:** in the preview panel, pick the mode for the selected game only — **Default** (follows the option above), **Fill** or **Aspect ratio**. This way some box arts fill the frame and others keep their aspect ratio. The chosen mode is kept on the drive (`<game>.modo`).
 
 **Where to look for box art:** the program uses the first one it finds, in this order:
 
@@ -156,9 +162,10 @@ The box art is shown next to the list in the menu, in a 106×116 pixel frame, wi
 2. **libretro-thumbnails** — a box art collection, with the American, European and Japanese versions;
 3. **ScreenScraper** and **TheGamesDB** — only with an account ([section 4.6](#46-screenscraper-and-thegamesdb-accounts));
 4. **Wikipedia** — the image of the game's article. **Check it:** sometimes it is the box of another platform;
-5. The game's **title screen** — last resort, always keeping its aspect ratio.
+5. The game's **title screen** — always keeping its aspect ratio;
+6. A **game screenshot** (libretro) — last resort, also keeping its aspect ratio.
 
-The **Use Wikipedia…** and **Use the title screen…** boxes turn those sources on or off for the automatic choice. With **Download what is missing** off, only what was downloaded before is used.
+The **Use Wikipedia…** and **Use the title screen or a game screenshot…** boxes turn those sources on or off for the automatic choice. With **Download what is missing** off, only what was downloaded before is used.
 
 **Changing a game's box art** (preview panel buttons):
 
@@ -172,7 +179,9 @@ The **Use Wikipedia…** and **Use the title screen…** boxes turn those source
 
 The chosen box art is kept on the USB drive and used from then on. After changing it, click **2) Write box art to the USB drive**.
 
-**Game info (genre, studio and release):** the **Info** column of the list shows where it comes from — **internet**, **you** or **missing**. To fill it in or fix it, pick the game and click **Game info…** (or double-click it):
+**Import box art from a folder:** the **Import box art…** button takes the images of a PC folder (for example an EmuMovies folder, with subfolders) and matches each one with a game on the drive by **name**: same name, same title without the region, or a similar name; among several regions the game's own wins, and "Disc 2" does not take the "Disc 1" image. The program shows how many files it found, how many games **already have your own image** (kept as they are) and how many have no file, and **only imports if you confirm**. The images go to `covers/originais`; then click **2) Write box art to the USB drive**.
+
+**Game info (genre, studio and release):** the card and the panel show where it comes from — **internet**, **you** or **missing**. To fill it in or fix it, pick the game and click **Game info…** (or double-click the card):
 
 - fields **Genre**, **Genre in English** (used with the menu in English), **Studio** and **Released**;
 - below, the lines **as the menu will show them**, with the same font as the 3DO: it warns when the text will be cut with "…" and when there are characters the menu does not have (shown as "?");
@@ -183,15 +192,13 @@ The chosen box art is kept on the USB drive and used from then on. After changin
 
 ### 4.5 Videos
 
-![Videos](imagens/app-videos.png)
-
-(The picture shows the program in Portuguese.)
+![Videos](imagens/app-videos-en.png)
 
 When you rest on a game, the menu plays a short silent clip in place of the box art. **It needs menu v1.2 or newer** (menu v1.1 ignores the videos); on the 3DO you can turn it off in **Options → Video preview**.
 
-1. Click **1) See the videos on the drive**. The list shows each game, whether it already has a video in the menu (and its size) and what was found on **ScreenScraper**: the same name, a **similar** name (you choose) or nothing.
+1. Click **1) See the videos on the drive**. Each game becomes a **card** with a frame of the video already in the menu and its state: **video ok**, **to download** (the same name exists on **ScreenScraper**), **no result** or **no video** (not checked yet). The **All games**, **With video**, **To download** and **No video** buttons and the **Search** box filter the grid. **About the videos ▸** shows the limits and the license.
 2. Click **2) Download the missing ones from ScreenScraper**: the program checks the site's game list (no account needed), tells you how many videos it will download and writes to the drive the videos of the games with no video that have the same name on the site. The **similar** ones are left for you to choose.
-3. Click a game to see the **animated preview**, the way the menu shows it, inside the frame.
+3. Click a card to see, on the right, the **animated preview**, the way the menu shows it, inside the frame, and what ScreenScraper found for the game.
 
 **One game at a time** (buttons of the preview panel):
 
@@ -201,6 +208,10 @@ When you rest on a game, the menu plays a short silent clip in place of the box 
 - **Remove the video from the menu** — the video leaves the menu; the original goes to `covers/originais/_antigas` (it is not deleted).
 
 Every video is converted to the menu's safe limit: 104 pixels wide, 15 frames per second, up to 8 seconds and about 200 KB. The original video is kept in `covers/originais` (1 to 10 MB each), so the start can be changed later.
+
+**Import videos from a folder:** **Import videos…** does the same as for box art: it takes the videos of a PC folder (for example EmuMovies clips), matches them by name with the games on the drive, shows the summary and, with your OK, converts each one for the menu (a few seconds per game). Games that already have a video stay as they are.
+
+**Sound (testing):** menu v1.2 plays the preview **without sound**. The program can already write the clip's sound next to the video (mono, 11025 Hz, about 88 KB more) for a future menu that plays sound, but this comes **off**: the **Write the video sound** box in the panel turns it on. **Add sound…** redoes the videos already on the drive with sound (from the kept original, or downloading again from ScreenScraper). With menu v1.2 there is no point in turning it on: the extra bytes only make the video a little slower to load.
 
 > ScreenScraper videos are licensed Creative Commons BY-NC-SA: personal use only, non-commercial.
 
@@ -223,7 +234,7 @@ If an account is refused or the daily quota runs out, the program stops using th
 | `boot_anterior.iso` | the previous menu |
 | `SataTo3DO.uf2` | the new firmware, until it is applied (becomes `.ok` or `.erro`) |
 | `saves/` | save backups made by the menu |
-| `covers/` | box art (`.cap`), video previews (`.vid`), game info (`dados.cap`) and the box art and video list (`indice.cap`) |
+| `covers/` | box art (`.cap`), video previews (`.vid`, with sound if you wrote it), game info (`dados.cap`) and the box art and video list (`indice.cap`) |
 | `covers/originais/` | the images you chose, the mode of each box art (`<game>.modo`), the info you filled in (`<game>.info`), the original videos and the start of each clip (`<game>.inicio`) |
 | `covers/originais/_antigas/` | images and videos you replaced or removed |
 | `_duplicados/` | repeated versions taken out of the list |

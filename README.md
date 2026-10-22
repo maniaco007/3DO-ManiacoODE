@@ -45,7 +45,10 @@ Com o pendrive no PC, poucos cliques:
 4. **corrige `.cue`** quebrado, cria o `.cue` que falta e tira `.cue` antigo que sobrou;
 5. gera as **capas** e os dados dos jogos (gênero, estúdio e ano), que você também pode **preencher à mão**;
 6. grava os **vídeos de prévia** dos jogos (do ScreenScraper, sem conta, ou um vídeo seu);
-7. cria a pasta **`saves`**.
+7. **importa capas e vídeos de uma pasta** do PC (por exemplo, do EmuMovies), casando pelo nome do jogo;
+8. cria a pasta **`saves`**.
+
+Visual novo: **barra lateral**, **grade de capas** com busca e filtros, painel do jogo e opções recolhidas. O programa **se atualiza pelo GitHub** (Ajuda → Verificar atualizações…).
 
 As capas vêm do **libretro-thumbnails**, da **Wikipedia** e, com conta, do **ScreenScraper** e do **TheGamesDB**. Você vê a **prévia de como fica na TV**, escolhe entre todas as capas encontradas ou usa uma imagem sua, e decide **capa por capa** se ela preenche a moldura ou mantém a proporção.
 
