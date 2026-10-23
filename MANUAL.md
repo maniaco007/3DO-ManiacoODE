@@ -26,13 +26,17 @@
 
 ## 2. Primeira instalação da firmware
 
-Só na primeira vez é preciso gravar a firmware pelo PC:
+> ⚠️ **Antes de gravar a nossa firmware, salve a firmware original da sua ODE.** Se a ManiacoODE não funcionar na sua placa, é o backup que deixa você **voltar à firmware original**. Sem ele, não há como voltar. O programa do PC faz o backup em um clique ([seção 4.8](#48-firmware-da-ode-backup-e-volta-à-original)); guarde uma cópia do arquivo também fora do PC (nuvem ou pendrive).
 
-1. Com o console desligado, ligue o RP2040 da ODE ao PC pelo USB em **modo BOOTSEL** (segure o botão BOOTSEL da placa enquanto conecta).
-2. O PC mostra uma unidade chamada **RPI-RP2**.
-3. Copie o **`SataTo3DO.uf2`** para essa unidade. A placa grava e reinicia sozinha.
+Só na primeira vez é preciso gravar a firmware pelo PC. O jeito mais fácil é a tela **Firmware** do programa do PC ([seção 4.8](#48-firmware-da-ode-backup-e-volta-à-original)), que faz os três passos abaixo com avisos. À mão:
+
+1. **Modo BOOTSEL.** Com o console **desligado**, ligue o RP2040 da ODE ao PC pelo USB segurando o botão BOOTSEL da placa enquanto conecta. O PC mostra uma unidade chamada **RPI-RP2**.
+2. **Backup da original (não pule).** Com a ODE ainda em BOOTSEL, salve a flash inteira com o `picotool` da Raspberry Pi: `picotool save -a firmware-original.uf2`. Confira o arquivo (o `.uf2` tem o dobro da flash: 4 MB numa ODE com 2 MB de flash) e guarde-o em dois lugares. Na tela Firmware do programa, o mesmo passo é o botão **Salvar o backup**.
+3. **Gravar a ManiacoODE.** Copie o **`SataTo3DO.uf2`** para a unidade **RPI-RP2**. A placa grava e reinicia sozinha.
 
 Depois disso, as atualizações são feitas pelo pendrive ([seção 9](#9-atualizar-a-firmware)).
+
+**Se a nossa não funcionar na sua placa:** coloque a ODE em modo BOOTSEL de novo e copie o seu `firmware-original-….uf2` (o backup do passo 2) para a unidade **RPI-RP2**. A placa grava e reinicia com a firmware original. Na tela Firmware do programa: **Voltar à original**.
 
 ## 3. Preparar o pendrive
 
@@ -77,7 +81,7 @@ O **3DO ManiacoODE — Gerenciador do pendrive** deixa o pendrive pronto para o 
 
 ![Preparar pendrive](imagens/app-preparar.png)
 
-- **Barra lateral** (esquerda): as quatro telas — **Preparar pendrive**, **Organizar jogos**, **Capas** e **Vídeos**; a que está aberta fica em destaque. Embaixo aparece a situação do pendrive: sistema de arquivos, espaço livre e se o menu está instalado.
+- **Barra lateral** (esquerda): as cinco telas — **Preparar pendrive**, **Organizar jogos**, **Capas**, **Vídeos** e **Firmware** (backup da firmware original, [seção 4.8](#48-firmware-da-ode-backup-e-volta-à-original)); a que está aberta fica em destaque. Embaixo aparece a situação do pendrive: sistema de arquivos, espaço livre e se o menu está instalado.
 - **Pendrive** (topo): escolha a letra do pendrive. O programa sugere primeiro os que já têm o `boot.iso`. Use **Procurar…** se o pendrive não aparecer.
 - **Cada tela** tem o título e a **ação principal** (em verde) no canto superior direito. As opções avançadas ficam **recolhidas** atrás de um botão com **▸**: clique para abrir.
 - **Rodapé:** mostra a etapa atual, a porcentagem, o tempo que falta e o botão **Cancelar**.
@@ -238,6 +242,24 @@ Se a conta for recusada ou a cota do dia acabar, o programa para de usar aquela 
 | `_duplicados/` | versões repetidas tiradas da lista |
 | `.maniacoode/` | o registro para **Desfazer a última organização** e os jogos marcados **Não alterar** (`nao_alterar.json`) |
 
+### 4.8 Firmware da ODE: backup e volta à original
+
+![Tela Firmware](imagens/app-firmware.png)
+
+> ⚠️ **Salve a firmware original antes de gravar a nossa.** É o backup que deixa você voltar à firmware da ODE se a ManiacoODE não funcionar na sua placa. O programa avisa se você tentar gravar sem ele.
+
+A tela **Firmware** (última da barra lateral) trabalha com a ODE ligada ao PC em **modo BOOTSEL** (a unidade **RPI-RP2** aparece). O aviso no alto da tela mostra se o programa a enxergou (**● ODE em modo BOOTSEL**) e se já há um backup (**✔ Backup da original**).
+
+1. **Salvar a firmware original (backup).** **Salvar o backup** lê a flash inteira da ODE (só lê: nada é gravado nela) e salva `firmware-original-AAAAMMDD-HHMMSS.uf2`, mais um `.txt` com os dados da placa e o **SHA-256**, na pasta que você escolher (padrão: **Documentos\3DO-ManiacoODE\Backup da firmware**). O programa confere a leitura, marca os arquivos como somente leitura e nunca sobrescreve um backup anterior. **Guarde uma cópia fora do PC.** Se a ODE já estiver com a firmware ManiacoODE, o programa avisa: o arquivo salvo **não** é a original e não conta como backup.
+2. **Gravar a firmware ManiacoODE.** Escolha o `SataTo3DO.uf2` e clique em **Gravar na ODE**. Se ainda não houver backup, o programa pergunta antes (resposta padrão: não). A ODE reinicia sozinha ao terminar; depois, desconecte o USB do PC. Nas próximas vezes, atualize pelo menu do 3DO ([seção 9](#9-atualizar-a-firmware)).
+3. **Voltar à firmware original.** Se a nossa não funcionar, coloque a ODE em BOOTSEL de novo, escolha o backup (o programa já sugere o último) e clique em **Voltar à original**. O programa só aceita um backup de flash inteira que não seja a firmware ManiacoODE.
+
+Os botões **Como colocar a ODE em modo BOOTSEL…** e **Preciso do driver?** mostram o passo a passo.
+
+**Driver (só para o backup):** para salvar o backup, o programa fala direto com a placa pelo USB (usa o `picotool` da Raspberry Pi, que vai junto no `.exe`), e o Windows pode precisar do driver **WinUSB** para essa porta. Se a unidade RPI-RP2 aparece mas o backup diz que falta o driver: baixe o **Zadig**, com a ODE em BOOTSEL abra **Options → List All Devices**, escolha **RP2 Boot (Interface 1)**, o driver **WinUSB**, e clique em **Install Driver**. É uma vez só. **Gravar** e **Voltar à original** não precisam do driver: só copiam o arquivo para a unidade RPI-RP2.
+
+> **Não desligue a ODE nem tire o USB durante a gravação** (poucos segundos). Se algo der errado, a placa continua podendo entrar em BOOTSEL: basta repetir. Nunca conecte o USB do PC com o console ligado.
+
 ## 5. Usando o menu
 
 Ao ligar o console, toca a **abertura em vídeo** escolhida em **Opções → Abertura** (A, B, C, X ou Start pula) e o menu abre com **todos os jogos em ordem alfabética**, com a capa e os dados do jogo escolhido.
@@ -320,6 +342,10 @@ O arquivo é renomeado para **`SataTo3DO.uf2.ok`** depois de gravado. Outras res
 
 > **Não desligue o console durante a gravação.**
 
+### Voltar à firmware original
+
+Voltar à firmware original só é possível pelo PC, em modo BOOTSEL, com o backup que você salvou antes da primeira gravação ([seção 2](#2-primeira-instalação-da-firmware) e [seção 4.8](#48-firmware-da-ode-backup-e-volta-à-original)).
+
 ### Vindo da v1.0
 
 A firmware v1.0 não atualiza pelo menu (as Opções mostram "Firmware da ODE: original"). Para passar para a v1.1, copie o `SataTo3DO.uf2` para a raiz do pendrive e **ligue o console**: a v1.0 grava o arquivo sozinha ao ligar (o LED do Pico fica aceso alguns segundos) e a ODE reinicia. Daí em diante, use o menu.
@@ -345,4 +371,7 @@ Copie a firmware para a raiz do pendrive com o nome **`SataTo3DO_forcar.uf2`** e
 | **O arquivo virou `SataTo3DO.uf2.erro`** | O arquivo está corrompido ou não é a firmware da ODE. Baixe de novo na página de Releases. |
 | **Depois de organizar ou renomear muitas pastas, o 3DO mostra a tela dele em vez do menu** | O diretório do pendrive ficou cheio de entradas apagadas e a lista demora demais para ficar pronta. Refaça o pendrive: copie tudo para uma pasta do PC, formate o pendrive em **FAT32** e copie de volta. |
 | **Renomeei a pasta de um jogo e a capa sumiu** | A capa e as informações ficaram com o nome antigo. Use **Renomear jogo…** no programa do PC; se já renomeou pelo Windows, renomeie também os arquivos de `covers/originais` e clique em **Gerar capas no pendrive**. |
+| **A firmware ManiacoODE não funcionou na minha placa** | Volte à original: ODE em modo BOOTSEL e **Voltar à original** na tela Firmware do programa (ou copie o seu `firmware-original-….uf2` para a unidade RPI-RP2). [Seção 4.8](#48-firmware-da-ode-backup-e-volta-à-original). |
+| **Não salvei o backup antes de gravar** | Sem o backup não há como voltar ao arquivo exato da sua placa. Peça a firmware original ao vendedor ou fabricante da sua ODE (ou ao projeto SataTo3DO) e grave-a em modo BOOTSEL. Daqui em diante, salve o backup antes de qualquer gravação pelo PC. |
+| **O backup diz que falta o driver, ou "não achei a ODE"** | Confira se a unidade **RPI-RP2** aparece (modo BOOTSEL, console desligado). Se aparece e o backup ainda falha, instale o driver WinUSB com o Zadig (**Preciso do driver?** na tela Firmware). |
 | **Quero voltar ao menu anterior** | Apague o `boot.iso` e renomeie o `boot_anterior.iso` (ou o antigo) de volta para `boot.iso`. |

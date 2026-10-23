@@ -46,7 +46,8 @@ With the USB drive in the PC, a few clicks:
 5. makes the **box art** and game info (genre, studio and year), which you can also **fill in by hand**;
 6. writes the games' **video previews** (from ScreenScraper, no account needed, or your own video);
 7. **imports box art and videos from a folder** on the PC (for example from EmuMovies), matching them by game name;
-8. creates the **`saves`** folder.
+8. creates the **`saves`** folder;
+9. **saves your ODE's original firmware (backup)** before you flash ours and **goes back to it** if ManiacoODE does not work on your board (**Firmware** screen).
 
 New look: a **sidebar**, a **box art grid** with search and filters, a game panel and collapsed options. The program **updates itself from GitHub** (Help → Check for updates…).
 
@@ -61,7 +62,7 @@ The program works in **Portuguese or English** (Idioma / Language menu) and also
 ## How to use
 
 1. Download **`SataTo3DO.uf2`**, **`boot.iso`** and **`3DO-ManiacoODE-Gerenciador.exe`** from the **[Releases](../../releases)** page.
-2. **First time:** flash `SataTo3DO.uf2` to the ODE's RP2040 from a PC (BOOTSEL mode). After that, updates go through the menu.
+2. **First time — save the original firmware before flashing ours:** open the program, go to the **Firmware** screen, put the ODE in BOOTSEL mode and click **Save the backup**. Only then click **Flash to the ODE** with `SataTo3DO.uf2`. If ours does not work on your board, **Go back to the original**. After that, updates go through the 3DO menu.
 3. Open the program, pick the USB drive and click **Prepare USB drive**. (Prefer doing it by hand? See the [Manual](MANUAL.en.md#3-preparing-the-usb-drive).)
 4. Put the USB drive in the ODE, turn on the console and pick a game.
 
@@ -75,6 +76,8 @@ Full step-by-step guide with every option: **[Manual](MANUAL.en.md)**.
 - PC program: **Windows 10 or 11**, with internet the first time (box art and game info are downloaded and kept on the PC).
 
 ## Warning
+
+**Before flashing our firmware, save your ODE's original one** (the program's **Firmware** screen, [Manual](MANUAL.en.md#2-first-firmware-install)): the backup is what lets you go back to it if ManiacoODE does not work on your board. Keep a copy of the file outside the PC too.
 
 **Never plug or unplug the Memory Unit while the console is on** — the 3DO bus does not support it and the console locks up. Plug it in with the console off. Games and BIOS files are not provided.
 

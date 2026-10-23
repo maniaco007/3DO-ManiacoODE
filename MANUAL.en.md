@@ -28,13 +28,17 @@ The menu and the PC program can be used in English: on the console, **Options �
 
 ## 2. First firmware install
 
-Only the first time, flash the firmware from a PC:
+> ⚠️ **Before flashing our firmware, save your ODE's original firmware.** If ManiacoODE does not work on your board, the backup is what lets you **go back to the original firmware**. Without it there is no way back. The PC program makes the backup in one click ([section 4.8](#48-ode-firmware-backup-and-way-back-to-the-original)); keep a copy of the file outside the PC too (cloud or USB drive).
 
-1. With the console off, connect the ODE's RP2040 to the PC over USB in **BOOTSEL mode** (hold the board's BOOTSEL button while plugging it in).
-2. The PC shows a drive named **RPI-RP2**.
-3. Copy **`SataTo3DO.uf2`** to that drive. The board writes it and restarts on its own.
+Only the first time, flash the firmware from a PC. The easiest way is the PC program's **Firmware** screen ([section 4.8](#48-ode-firmware-backup-and-way-back-to-the-original)), which does the three steps below with warnings. By hand:
+
+1. **BOOTSEL mode.** With the console **off**, connect the ODE's RP2040 to the PC over USB while holding the board's BOOTSEL button. The PC shows a drive named **RPI-RP2**.
+2. **Back up the original (do not skip).** With the ODE still in BOOTSEL, save the whole flash with Raspberry Pi's `picotool`: `picotool save -a firmware-original.uf2`. Check the file (the `.uf2` is twice the flash size: 4 MB for an ODE with 2 MB of flash) and keep it in two places. In the program's Firmware screen the same step is the **Save the backup** button.
+3. **Flash ManiacoODE.** Copy **`SataTo3DO.uf2`** to the **RPI-RP2** drive. The board writes it and restarts on its own.
 
 After that, updates go through the USB drive ([section 9](#9-updating-the-firmware)).
+
+**If ours does not work on your board:** put the ODE in BOOTSEL mode again and copy your `firmware-original-….uf2` (the backup from step 2) to the **RPI-RP2** drive. The board writes it and restarts with the original firmware. In the program's Firmware screen: **Go back to the original**.
 
 ## 3. Preparing the USB drive
 
@@ -79,7 +83,7 @@ Policenauts/
 
 ![Prepare USB drive](imagens/app-preparar-en.png)
 
-- **Sidebar** (left): the four screens — **Prepare USB drive**, **Organize games**, **Box art** and **Videos**; the open one is highlighted. At the bottom you see the state of the drive: file system, free space and whether the menu is installed.
+- **Sidebar** (left): the five screens — **Prepare USB drive**, **Organize games**, **Box art**, **Videos** and **Firmware** (backup of the original firmware, [section 4.8](#48-ode-firmware-backup-and-way-back-to-the-original)); the open one is highlighted. At the bottom you see the state of the drive: file system, free space and whether the menu is installed.
 - **USB drive** (top): pick the drive letter. The program suggests the drives that already have `boot.iso` first. Use **Browse…** if the drive is not listed.
 - **Each screen** has its title and the **main action** (in green) at the top right. The advanced options are **collapsed** behind a button with **▸**: click it to open them.
 - **Footer:** shows the current step, the percentage, the time left and the **Cancel** button.
@@ -240,6 +244,24 @@ If an account is refused or the daily quota runs out, the program stops using th
 | `_duplicados/` | repeated versions taken out of the list |
 | `.maniacoode/` | the log for **Undo the last organization** and the games marked **Don't change** (`nao_alterar.json`) |
 
+### 4.8 ODE firmware: backup and way back to the original
+
+![Firmware screen](imagens/app-firmware-en.png)
+
+> ⚠️ **Save the original firmware before flashing ours.** The backup is what lets you go back to the ODE's firmware if ManiacoODE does not work on your board. The program warns you if you try to flash without it.
+
+The **Firmware** screen (last in the sidebar) works with the ODE plugged into the PC in **BOOTSEL mode** (the **RPI-RP2** drive shows up). The notice at the top shows whether the program sees it (**● ODE in BOOTSEL mode**) and whether a backup already exists (**✔ Original backup**).
+
+1. **Save the original firmware (backup).** **Save the backup** reads the ODE's whole flash (read only: nothing is written to it) and saves `firmware-original-YYYYMMDD-HHMMSS.uf2`, plus a `.txt` with the board data and the **SHA-256**, in the folder you choose (default: **Documents\3DO-ManiacoODE\Backup da firmware**). The program checks the read, marks the files read-only and never overwrites an earlier backup. **Keep a copy outside the PC.** If the ODE already has the ManiacoODE firmware, the program warns you: the saved file is **not** the original and does not count as a backup.
+2. **Flash the ManiacoODE firmware.** Choose `SataTo3DO.uf2` and click **Flash to the ODE**. If there is no backup yet, the program asks first (default answer: no). The ODE restarts on its own when done; then unplug the USB from the PC. Next time, update from the 3DO menu ([section 9](#9-updating-the-firmware)).
+3. **Go back to the original firmware.** If ours does not work, put the ODE in BOOTSEL again, choose the backup (the program already suggests the latest) and click **Go back to the original**. The program only accepts a whole-flash backup that is not the ManiacoODE firmware.
+
+The **How to put the ODE in BOOTSEL mode…** and **Do I need the driver?** buttons show the step by step.
+
+**Driver (backup only):** to save the backup the program talks to the board directly over USB (it uses Raspberry Pi's `picotool`, shipped inside the `.exe`), and Windows may need the **WinUSB** driver for that port. If the RPI-RP2 drive shows up but the backup says the driver is missing: download **Zadig**, with the ODE in BOOTSEL open **Options → List All Devices**, choose **RP2 Boot (Interface 1)**, the **WinUSB** driver, and click **Install Driver**. It is a one-time step. **Flash** and **Go back to the original** do not need the driver: they only copy the file to the RPI-RP2 drive.
+
+> **Do not turn the ODE off or unplug the USB while flashing** (a few seconds). If something goes wrong, the board can still enter BOOTSEL: just repeat. Never plug the PC USB cable in with the console on.
+
 ## 5. Using the menu
 
 When the console is turned on, the **video intro** chosen in **Options → Intro video** plays (A, B, C, X or Start skips it) and the menu opens with **every game in alphabetical order**, with the box art and info of the selected game.
@@ -322,6 +344,10 @@ The file is renamed to **`SataTo3DO.uf2.ok`** once written. Other answers:
 
 > **Do not turn off the console while it is writing.**
 
+### Going back to the original firmware
+
+Going back to the original firmware is only possible from the PC, in BOOTSEL mode, with the backup you saved before the first flashing ([section 2](#2-first-firmware-install) and [section 4.8](#48-ode-firmware-backup-and-way-back-to-the-original)).
+
 ### Coming from v1.0
 
 Firmware v1.0 cannot update from the menu (Options shows "ODE firmware: original"). To move to v1.1, copy `SataTo3DO.uf2` to the root of the USB drive and **turn on the console**: v1.0 writes the file by itself at power-on (the Pico LED stays on for a few seconds) and the ODE restarts. From then on, use the menu.
@@ -347,4 +373,7 @@ Copy the firmware to the root of the USB drive named **`SataTo3DO_forcar.uf2`** 
 | **The file became `SataTo3DO.uf2.erro`** | The file is corrupted or is not the ODE firmware. Download it again from the Releases page. |
 | **After organizing or renaming many folders, the 3DO shows its own screen instead of the menu** | The drive's directory is full of deleted entries and the list takes too long to be ready. Rebuild the drive: copy everything to a folder on the PC, format the drive as **FAT32** and copy it back. |
 | **I renamed a game folder and the box art is gone** | The box art and the info kept the old name. Use **Rename game…** in the PC program; if you already renamed it in Windows, also rename the files in `covers/originais` and click **Write box art to the USB drive**. |
+| **The ManiacoODE firmware did not work on my board** | Go back to the original: ODE in BOOTSEL mode and **Go back to the original** in the program's Firmware screen (or copy your `firmware-original-….uf2` to the RPI-RP2 drive). [Section 4.8](#48-ode-firmware-backup-and-way-back-to-the-original). |
+| **I did not save the backup before flashing** | Without the backup there is no way back to your board's exact file. Ask your ODE's seller or maker (or the SataTo3DO project) for the original firmware and flash it in BOOTSEL mode. From now on, save the backup before any flashing from the PC. |
+| **The backup says the driver is missing, or "I could not find the ODE"** | Check that the **RPI-RP2** drive shows up (BOOTSEL mode, console off). If it does and the backup still fails, install the WinUSB driver with Zadig (**Do I need the driver?** in the Firmware screen). |
 | **I want the previous menu back** | Delete `boot.iso` and rename `boot_anterior.iso` (or the old one) back to `boot.iso`. |

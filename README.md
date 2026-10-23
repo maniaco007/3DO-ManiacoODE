@@ -46,7 +46,8 @@ Com o pendrive no PC, poucos cliques:
 5. gera as **capas** e os dados dos jogos (gênero, estúdio e ano), que você também pode **preencher à mão**;
 6. grava os **vídeos de prévia** dos jogos (do ScreenScraper, sem conta, ou um vídeo seu);
 7. **importa capas e vídeos de uma pasta** do PC (por exemplo, do EmuMovies), casando pelo nome do jogo;
-8. cria a pasta **`saves`**.
+8. cria a pasta **`saves`**;
+9. **salva a firmware original da ODE (backup)** antes de você gravar a nossa e **volta a ela** se a ManiacoODE não funcionar na sua placa (tela **Firmware**).
 
 Visual novo: **barra lateral**, **grade de capas** com busca e filtros, painel do jogo e opções recolhidas. O programa **se atualiza pelo GitHub** (Ajuda → Verificar atualizações…).
 
@@ -61,7 +62,7 @@ O programa funciona em **português ou inglês** (menu Idioma / Language) e tamb
 ## Como usar
 
 1. Baixe o **`SataTo3DO.uf2`**, o **`boot.iso`** e o **`3DO-ManiacoODE-Gerenciador.exe`** na página de **[Releases](../../releases)**.
-2. **Primeira vez:** grave o `SataTo3DO.uf2` no RP2040 da ODE pelo PC (modo BOOTSEL). Das próximas vezes, a atualização é pelo menu.
+2. **Primeira vez — salve a firmware original antes de gravar a nossa:** abra o programa, vá à tela **Firmware**, ponha a ODE em modo BOOTSEL e clique em **Salvar o backup**. Só então clique em **Gravar na ODE** com o `SataTo3DO.uf2`. Se a nossa não funcionar na sua placa, **Voltar à original**. Das próximas vezes, a atualização é pelo menu do 3DO.
 3. Abra o programa, escolha o pendrive e clique em **Preparar pendrive**. (Prefere fazer à mão? Veja o [Manual](MANUAL.md#3-preparar-o-pendrive).)
 4. Coloque o pendrive na ODE, ligue o console e escolha o jogo.
 
@@ -75,6 +76,8 @@ Passo a passo completo, com todas as opções: **[Manual](MANUAL.md)**.
 - Programa do PC: **Windows 10 ou 11**, com internet na primeira vez (capas e dados dos jogos são baixados e ficam guardados no PC).
 
 ## Aviso
+
+**Antes de gravar a nossa firmware, salve a original da sua ODE** (tela **Firmware** do programa, [Manual](MANUAL.md#2-primeira-instalação-da-firmware)): é o backup que deixa você voltar a ela se a ManiacoODE não funcionar na sua placa. Guarde uma cópia do arquivo também fora do PC.
 
 **Nunca conecte nem desconecte a Memory Unit com o console ligado** — o barramento do 3DO não aceita isso e o console trava. Conecte com ele desligado. Jogos e BIOS não são fornecidos.
 
