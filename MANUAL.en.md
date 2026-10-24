@@ -59,7 +59,7 @@ Policenauts/
 ```
 
 - **`boot.iso`** goes in the root. If you had another menu, rename the old one (e.g. `boot_old.iso`) so you can go back.
-- **Each game in its own folder.** A folder with a single game is shown with the **folder name**; with several files, each file name is shown.
+- **Each game in its own folder.** A folder with a single game is shown with the **folder name**; with several files, each file name is shown. So a letter (or region) folder with a single loose game inside, like `E\Escape from Monster Manor (USA).iso`, shows up as "E" in the menu: keep each game in its own folder (the PC program's **Organize games** does that).
 - Supported formats: **`.iso`** (2048 or 2352 bytes per sector) and **`.cue` + `.bin`** (a single `.bin` per `.cue`). **`.chd`** games are converted by the PC program while copying: they become **`.iso`** (or `.cue` + `.bin`, if the CD has audio tracks) ([section 4.2](#42-prepare-usb-drive)).
 - **Multi-disc** games: keep "Disc 1", "Disc 2"… in the file name and the menu shows "(Disc 1)", "(Disc 2)".
 - The **`saves`** and **`covers`** folders are not shown in the game list.

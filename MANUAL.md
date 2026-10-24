@@ -57,7 +57,7 @@ Policenauts/
 ```
 
 - **`boot.iso`** fica na raiz. Se já tinha outro menu, renomeie o antigo (ex.: `boot_antigo.iso`) para poder voltar.
-- **Cada jogo na sua pasta.** Se a pasta tem um único jogo, o menu mostra o **nome da pasta**; se tem vários arquivos, mostra o nome de cada arquivo.
+- **Cada jogo na sua pasta.** Se a pasta tem um único jogo, o menu mostra o **nome da pasta**; se tem vários arquivos, mostra o nome de cada arquivo. Por isso, numa pasta de letra (ou de região) com um jogo só solto dentro, como `E\Escape from Monster Manor (USA).iso`, o menu mostra "E": deixe cada jogo na sua própria pasta (o **Organizar jogos** do programa do PC faz isso).
 - Formatos aceitos: **`.iso`** (2048 ou 2352 bytes por setor) e **`.cue` + `.bin`** (um `.bin` só por `.cue`). Jogos em **`.chd`** são convertidos pelo programa do PC ao copiar: viram **`.iso`** (ou `.cue` + `.bin`, se o CD tiver trilhas de áudio) ([seção 4.2](#42-preparar-pendrive)).
 - Jogos com **vários discos**: deixe "Disc 1", "Disc 2"… no nome do arquivo e o menu mostra "(Disco 1)", "(Disco 2)".
 - **Pastas por região** (`USA`, `JP`, `EU`…) funcionam: a ODE lista os jogos de todas as pastas (até 3 níveis), mas o menu **não navega por pastas** — mostra tudo numa lista só. Use o nome com a região (`Gex (USA)`, `Gex (Japan)`) para duas versões do mesmo jogo não aparecerem com o mesmo nome. O programa do PC faz isso em **Organizar jogos → Pastas → Por região** ([seção 4.3](#43-organizar-jogos)).
