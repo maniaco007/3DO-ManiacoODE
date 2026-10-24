@@ -94,7 +94,7 @@ Policenauts/
 - **Idioma / Language menu:** shows the window in Portuguese or English. The first time, the program follows the Windows language.
 - **Help menu:** **Check for updates…**, **Check when the program starts**, Maniaco Game Room blog and About.
 
-**Program updates:** under **Help → Check for updates…** the program looks up the latest release on GitHub and shows what is new. If there is a newer version, **Download and update** downloads the program, checks its **SHA-256** and, with your OK, closes and swaps the file; the old one stays next to it as `3DO-ManiacoODE-Gerenciador.exe.anterior`, so you can go back. **Check when the program starts** (off by default) shows a note in the status bar when a new version is out. It needs internet. Only the PC program updates itself: you copy `boot.iso` and the firmware (the firmware can also be updated from the menu Options).
+**Program updates:** under **Help → Check for updates…** the program looks up the latest release on GitHub and shows what is new. If there is a newer version, **Download and update** downloads the program, checks its **SHA-256** and, with your OK, closes and swaps the file; the old one stays next to it as `3DO-ManiacoODE-Gerenciador.exe.anterior`, so you can go back. **Check when the program starts** is on: when a new version is out, a yellow notice shows up at the bottom of the sidebar (**⚠ New version … available**); click it to see what is new and update. To stop the GitHub check at startup, untick the option in the Help menu. It needs internet. Only the PC program updates itself: you copy `boot.iso` and the firmware (the firmware can also be updated from the menu Options).
 
 ### 4.2 Prepare USB drive
 

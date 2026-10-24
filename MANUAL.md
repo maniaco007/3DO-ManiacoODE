@@ -92,7 +92,7 @@ O **3DO ManiacoODE — Gerenciador do pendrive** deixa o pendrive pronto para o 
 - **Menu Idioma / Language:** mostra a janela em português ou em inglês. Na primeira vez, o programa usa o idioma do Windows.
 - **Menu Ajuda:** **Verificar atualizações…**, **Verificar ao abrir o programa**, blog Maniaco Game Room e Sobre.
 
-**Atualizações do programa:** em **Ajuda → Verificar atualizações…** o programa consulta a última release no GitHub e mostra as novidades. Havendo versão nova, **Baixar e atualizar** baixa o programa, confere o **SHA-256** e, com o seu aval, fecha e troca o arquivo; o antigo fica ao lado como `3DO-ManiacoODE-Gerenciador.exe.anterior`, para você voltar se precisar. **Verificar ao abrir o programa** (desligado por padrão) avisa na barra de status quando sai versão nova. Precisa de internet. Só o programa do PC se atualiza sozinho: o `boot.iso` e a firmware você copia (a firmware também pelas Opções do menu).
+**Atualizações do programa:** em **Ajuda → Verificar atualizações…** o programa consulta a última release no GitHub e mostra as novidades. Havendo versão nova, **Baixar e atualizar** baixa o programa, confere o **SHA-256** e, com o seu aval, fecha e troca o arquivo; o antigo fica ao lado como `3DO-ManiacoODE-Gerenciador.exe.anterior`, para você voltar se precisar. **Verificar ao abrir o programa** vem ligado: quando sai versão nova, aparece um aviso amarelo na barra lateral, embaixo (**⚠ Nova versão … disponível**); clique nele para ver as novidades e atualizar. Para não consultar o GitHub ao abrir, desmarque a opção no menu Ajuda. Precisa de internet. Só o programa do PC se atualiza sozinho: o `boot.iso` e a firmware você copia (a firmware também pelas Opções do menu).
 
 ### 4.2 Preparar pendrive
 
