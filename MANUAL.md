@@ -58,12 +58,13 @@ Policenauts/
 
 - **`boot.iso`** fica na raiz. Se já tinha outro menu, renomeie o antigo (ex.: `boot_antigo.iso`) para poder voltar.
 - **Cada jogo na sua pasta.** Se a pasta tem um único jogo, o menu mostra o **nome da pasta**; se tem vários arquivos, mostra o nome de cada arquivo.
-- Formatos aceitos: **`.iso`** (2048 ou 2352 bytes por setor) e **`.cue` + `.bin`** (um `.bin` só por `.cue`). Jogos em **`.chd`** são convertidos para `.cue` + `.bin` pelo programa do PC ao copiar ([seção 4.2](#42-preparar-pendrive)).
+- Formatos aceitos: **`.iso`** (2048 ou 2352 bytes por setor) e **`.cue` + `.bin`** (um `.bin` só por `.cue`). Jogos em **`.chd`** são convertidos pelo programa do PC ao copiar: viram **`.iso`** (ou `.cue` + `.bin`, se o CD tiver trilhas de áudio) ([seção 4.2](#42-preparar-pendrive)).
 - Jogos com **vários discos**: deixe "Disc 1", "Disc 2"… no nome do arquivo e o menu mostra "(Disco 1)", "(Disco 2)".
+- **Pastas por região** (`USA`, `JP`, `EU`…) funcionam: a ODE lista os jogos de todas as pastas (até 3 níveis), mas o menu **não navega por pastas** — mostra tudo numa lista só. Use o nome com a região (`Gex (USA)`, `Gex (Japan)`) para duas versões do mesmo jogo não aparecerem com o mesmo nome. O programa do PC faz isso em **Organizar jogos → Pastas → Por região** ([seção 4.3](#43-organizar-jogos)).
 - As pastas **`saves`** e **`covers`** não aparecem na lista de jogos.
 - As **capas** e os dados dos jogos (gênero, estúdio e ano) são gerados pelo programa do PC.
-- **Para mudar o nome de um jogo**, use **Renomear jogo…** no programa do PC ([seção 4.4](#44-capas)). Renomeando a pasta pelo Windows, o jogo continua funcionando (e os saves não se perdem), mas a capa, as informações e a imagem escolhida ficam com o nome antigo até você gerar as capas de novo.
-- **Evite renomear ou mover muitas pastas de uma vez na raiz do pendrive.** Na FAT32, cada nome trocado deixa uma entrada apagada no diretório, e a ODE monta a lista de jogos percorrendo esse diretório antes de avisar o 3DO que há disco. Com o diretório cheio de entradas apagadas, o 3DO pode desistir e mostrar a tela dele em vez do menu ([seção 10](#10-problemas-comuns)).
+- **Para mudar o nome de um jogo**, use **Renomear jogo…** na aba Capas ou **Editar nome…** na aba Organizar do programa do PC ([seção 4.3](#43-organizar-jogos) e [seção 4.4](#44-capas)). Renomeando a pasta pelo Windows, o jogo continua funcionando (e os saves não se perdem), mas a capa, as informações e a imagem escolhida ficam com o nome antigo até você gerar as capas de novo.
+- **Evite renomear ou mover muitas pastas de uma vez na raiz do pendrive.** Na FAT32, cada nome trocado deixa uma entrada apagada no diretório, e a ODE monta a lista de jogos percorrendo esse diretório. Com a firmware 1.1.2 isso só deixa a lista mais lenta (o menu mostra **Lendo a lista de jogos...**); com as firmwares anteriores, que montavam a lista antes de avisar o 3DO que havia disco, o 3DO podia desistir e mostrar a tela dele em vez do menu ([seção 10](#10-problemas-comuns)).
 
 ## 4. Programa do PC — Gerenciador do pendrive
 
@@ -75,7 +76,7 @@ O **3DO ManiacoODE — Gerenciador do pendrive** deixa o pendrive pronto para o 
 
 **Internet:** as capas, os dados e os vídeos dos jogos são baixados na hora de usar e ficam guardados no PC (`%LOCALAPPDATA%\3DO-ManiacoODE`). Da segunda vez em diante, o que já foi baixado funciona sem internet.
 
-**Seu pendrive está seguro:** o programa **não apaga nada**. O `boot.iso` antigo é guardado, jogos repetidos vão para a pasta `_duplicados`, imagens trocadas vão para `covers/originais/_antigas`, e a organização dos jogos pode ser desfeita.
+**Seu pendrive está seguro:** o programa **não apaga nada**. O `boot.iso` antigo é guardado, jogos repetidos vão para a pasta `_duplicados` (que **você** esvazia, se quiser: veja [4.3](#43-organizar-jogos)), imagens trocadas vão para `covers/originais/_antigas`, e a organização dos jogos pode ser desfeita.
 
 ### 4.1 A janela
 
@@ -83,7 +84,8 @@ O **3DO ManiacoODE — Gerenciador do pendrive** deixa o pendrive pronto para o 
 
 - **Barra lateral** (esquerda): as cinco telas — **Preparar pendrive**, **Organizar jogos**, **Capas**, **Vídeos** e **Firmware** (backup da firmware original, [seção 4.8](#48-firmware-da-ode-backup-e-volta-à-original)); a que está aberta fica em destaque. Embaixo aparece a situação do pendrive: sistema de arquivos, espaço livre e se o menu está instalado.
 - **Pendrive** (topo): escolha a letra do pendrive. O programa sugere primeiro os que já têm o `boot.iso`. Use **Procurar…** se o pendrive não aparecer.
-- **Cada tela** tem o título e a **ação principal** (em verde) no canto superior direito. As opções avançadas ficam **recolhidas** atrás de um botão com **▸**: clique para abrir.
+  - **Uma leitura só:** ao abrir, ao trocar de pendrive ou ao clicar em **Atualizar**, o programa lê os jogos do pendrive **uma vez**, em segundo plano (o rótulo ao lado mostra "Lendo o pendrive…" e depois "N jogos lidos às HH:MM"). Organizar jogos, Capas e Vídeos já aparecem preenchidos com essa leitura, sem você clicar de novo. Ela é refeita sozinha depois de organizar, desfazer, renomear ou preparar o pendrive; clique em **Atualizar** se você mexeu nos arquivos fora do programa.
+- **Cada tela** tem o título e a **ação principal** (em verde) no canto superior direito. As opções avançadas ficam **recolhidas** atrás de um botão com **▸**: clique para abrir. Nada que grave ou processe arquivos vem **marcado** ao abrir o programa.
 - **Rodapé:** mostra a etapa atual, a porcentagem, o tempo que falta e o botão **Cancelar**.
 - **Menu Arquivo:** abre o pendrive no Explorer.
 - **Menu Tema:** muda as cores da janela (Noite, Menu ManiacoODE (azul e ouro) e Claro). A escolha fica salva.
@@ -94,7 +96,7 @@ O **3DO ManiacoODE — Gerenciador do pendrive** deixa o pendrive pronto para o 
 
 ### 4.2 Preparar pendrive
 
-Marque o que quer fazer e clique em **Preparar pendrive** (botão verde, no canto superior direito). Cada passo pode ser feito sozinho. As opções de organização dos jogos ficam em **Como organizar os jogos ▸**.
+Marque o que quer fazer e clique em **Preparar pendrive** (botão verde, no canto superior direito). **Nenhum passo vem marcado** ao abrir o programa: escolher o arquivo ou a pasta de um passo já o marca. Cada passo pode ser feito sozinho. As opções de organização dos jogos ficam em **Como organizar os jogos ▸**.
 
 1. **Instalar o menu (`boot.iso`):** aponte o `boot.iso` baixado. O que já estava no pendrive vira `boot_anterior.iso`.
 2. **Atualizar a firmware (`SataTo3DO.uf2`):** o programa confere se o arquivo é mesmo uma firmware do RP2040 e copia para a raiz do pendrive. Depois, no 3DO, abra **Opções → Atualizar firmware** ([seção 9](#9-atualizar-a-firmware)).
@@ -110,7 +112,12 @@ Marque o que quer fazer e clique em **Preparar pendrive** (botão verde, no cant
 
 Na coluna **Enviar**, clique para marcar (☑) ou desmarcar (☐). Já vêm marcados só os que faltam; os botões **Só os que faltam**, **Todos** e **Nenhum** ajudam, e o resumo mostra quantos jogos e quantos GB vão. **Preparar pendrive** envia só os marcados.
 
-**Jogos em `.chd`:** são convertidos para `.cue` + **um `.bin` só** (o formato que a ODE lê) direto no pendrive, com o **chdman** do MAME, que vem junto com o programa. O rodapé mostra "Jogo N de M · nome · %". O jogo convertido é conferido antes de ir para a pasta; um `.chd` estragado ou que não é de 3DO aparece no relatório e não deixa arquivo no pendrive. No fim, o programa pergunta se os `.chd` originais do PC vão para a **Lixeira** (dá para recuperar).
+**Jogos em `.chd`:** são convertidos direto no pendrive, com o **chdman** do MAME, que vem junto com o programa. A coluna **Arquivo na pasta** mostra o que sai de cada um:
+
+- **`→ .iso`** — o CD tem **uma trilha de dados só** (é o caso de quase todos os jogos de 3DO). O programa tira o cabeçalho e a correção de erros de cada setor e confere **todos os setores** antes de aceitar o `.iso`; o arquivo no pendrive fica menor (2048 de 2352 bytes por setor). A conversão passa por uma pasta temporária do PC, então precisa de alguns GB livres no disco do Windows;
+- **`→ .cue + .bin (com áudio)`** — o CD tem trilhas de áudio (que um `.iso` não guarda): sai um `.cue` + **um `.bin` só**, o formato que a ODE lê. O mesmo vale se algum setor não estiver no padrão ou se faltar espaço no PC para o `.iso`: o jogo nunca perde conteúdo, e o relatório avisa "ficou .cue + .bin".
+
+O rodapé mostra "Jogo N de M · nome · %". O jogo convertido é conferido antes de ir para a pasta; um `.chd` estragado ou que não é de 3DO aparece no relatório e não deixa arquivo no pendrive. No fim, o programa pergunta se os `.chd` originais do PC vão para a **Lixeira** (dá para recuperar).
 
 O programa só continua se o pendrive estiver em **FAT32** ou **exFAT**. Ao final, a caixa de texto mostra o **relatório** de tudo o que foi feito, inclusive os jogos que ficaram de fora e o motivo.
 
@@ -120,11 +127,12 @@ O programa só continua se o pendrive estiver em **FAT32** ou **exFAT**. Ao fina
 
 Arruma os jogos que **já estão no pendrive**, com as mesmas regras que a firmware usa para montar a lista.
 
-1. Clique em **Opções ▸** e escolha:
+1. Clique em **Opções ▸** e escolha (a lista se refaz sozinha a cada mudança):
    - **Nomes limpos:** tira região e marcas do nome (`Need For Speed, The (USA) [!]` → `The Need For Speed`);
-   - **Pastas:** uma pasta para cada jogo, por letra (A, B, C…) ou manter as pastas atuais;
-   - **Mover versões repetidas para `_duplicados`:** deixa só uma cópia de cada jogo. Entre um `.iso` e um `.cue` + `.bin`, fica o `.cue` + `.bin`, que tem o áudio do CD.
-2. Clique em **1) Analisar o pendrive**. A lista mostra o que vai acontecer com cada jogo:
+   - **Pastas:** uma pasta para cada jogo (o padrão), por letra (A, B, C…), **por região** ou manter as pastas atuais. **Por região** cria as pastas `USA`, `JP`, `EU` e `Outras` (Coreia, Brasil, Ásia, mundo e jogos sem região no nome) e mantém a região no nome do jogo (`Gex (USA)`, `Gex (Japan)`), porque o menu mostra todos os jogos numa lista só. Nesse modo, versões de regiões diferentes **não** contam como repetidas; só é repetido o que tem a mesma região e o mesmo disco. Funciona melhor com os nomes originais (com a região entre parênteses): em jogos já com o nome limpo, sem região, tudo iria para `Outras`;
+   - **Separar as versões repetidas do mesmo jogo:** deixa só uma cópia de cada jogo na lista e põe as outras na pasta `_duplicados`. Entre um `.iso` e um `.cue` + `.bin`, fica o `.cue` + `.bin`, que guarda as trilhas de áudio. Vem **desmarcada** ao abrir.
+   > **Atenção:** o programa **nunca apaga nada**. Abra a pasta `_duplicados` de vez em quando e exclua você mesmo o que não quer guardar, para não ocupar espaço no pendrive. Só você decide o que apagar. A ODE lista os jogos de todas as pastas, e a pasta `_duplicados` não é escondida dela: se uma versão repetida aparecer no menu, tire-a de lá (ainda a confirmar no 3DO).
+2. A **análise aparece sozinha** (a leitura do pendrive é a mesma das outras telas); **1) Atualizar a análise** lê o pendrive de novo. A lista mostra o que vai acontecer com cada jogo, com o **nome atual no menu** e o **nome final no menu**:
    - **Já está certo** — nada muda;
    - **Mover / renomear** — vai para outra pasta e/ou ganha o nome limpo;
    - **Mover p/ `_duplicados`** — cópia repetida (entre cópias iguais, fica a que já está com o nome e a pasta certos);
@@ -132,11 +140,12 @@ Arruma os jogos que **já estão no pendrive**, com as mesmas regras que a firmw
    - **Corrigir o `.cue`** — o `.cue` aponta para um arquivo que não existe ou tem nome de trilha longo demais para a firmware;
    - **Criar o `.cue`** — `.bin` sem `.cue`;
    - **Não entra na lista** — não é um disco de 3DO, ou o `.cue` não tem como ser corrigido.
-3. **Algum jogo já está com o nome certo** (um homebrew, por exemplo)? Escolha-o e clique em **Não alterar / voltar a organizar** (ou dê dois cliques nele): ele fica onde está, com o nome atual, também nas próximas análises. Clique de novo para voltar a organizar.
-4. Confira e clique em **2) Aplicar**.
-5. Mudou de ideia? **Desfazer a última organização** devolve tudo como estava.
+3. **Quer outro nome para um jogo?** Escolha-o e clique em **Editar nome…** (ou dê dois cliques nele). A janela mostra o **arquivo atual**, o **nome atual no menu** e o campo **Nome final no menu**; o nome vale **exatamente como você digitar** (sem limpeza e sem a região). Os nomes escolhidos aparecem com ✎ na lista, e o programa avisa se o nome é inválido ou se já existe outro jogo com ele. Ao aplicar, a pasta e o arquivo ganham o nome, e a **capa, a imagem escolhida, o modo, as informações e o vídeo** que o jogo já tinha vão junto (o que for novo precisa de **Gerar capas**, que o programa oferece no fim). O jogo fica marcado como **Não alterar**, para o nome escolhido não ser "limpo" de novo. **Voltar ao nome automático** desfaz.
+4. **Algum jogo já está com o nome certo** (um homebrew, por exemplo)? Escolha-o e clique em **Não alterar / voltar a organizar**: ele fica onde está, com o nome atual, também nas próximas análises. Clique de novo para voltar a organizar.
+5. Confira e clique em **2) Aplicar**.
+6. Mudou de ideia? **Desfazer a última organização** devolve tudo como estava.
 
-Arquivos que a ODE não lê (`.zip`, `.7z`…) aparecem num aviso embaixo da lista: extraia ou converta para `.iso` ou `.cue` + `.bin`. Jogos em `.chd` no pendrive também aparecem nesse aviso: copie-os pela aba **Preparar pendrive**, que converte. As imagens e os modos de capa que você escolheu acompanham o jogo quando ele é renomeado. Depois de aplicar, o programa oferece gerar as capas de novo, porque os nomes mudaram.
+Arquivos que a ODE não lê (`.zip`, `.7z`…) aparecem num aviso embaixo da lista: extraia ou converta para `.iso` ou `.cue` + `.bin`. Jogos em `.chd` no pendrive também aparecem nesse aviso: copie-os pela aba **Preparar pendrive**, que converte. As imagens, os modos de capa, as informações e os vídeos que você escolheu acompanham o jogo quando ele é renomeado. Depois de aplicar, o programa oferece gerar as capas de novo, porque os nomes mudaram.
 
 ### 4.4 Capas
 
@@ -144,12 +153,12 @@ Arquivos que a ODE não lê (`.zip`, `.7z`…) aparecem num aviso embaixo da lis
 
 A capa aparece ao lado da lista no menu, numa moldura de 106×116 pixels, com o gênero, o estúdio e o ano do jogo.
 
-1. Clique em **1) Ver capas do pendrive**. Cada jogo vira um **cartão** com a miniatura da capa, o nome e a situação: **capa ok**, **a conferir** (amarelo: capa da Wikipedia, tela de título ou captura de tela, para você conferir) ou **sem capa** (vermelho; esses aparecem primeiro). O cartão também diz se a capa já está no pendrive e de onde vêm as informações (**internet**, **você** ou **falta**). As miniaturas aparecem aos poucos.
-2. **Buscar:** digite parte do nome. Os botões **Todos os jogos**, **Sem capa**, **Capa a conferir** e **Falta gerar no pendrive** filtram a grade, e o contador mostra "N de M jogos". As **setas do teclado** andam pela grade.
+1. A grade **aparece sozinha** ao abrir a tela (usa a leitura do pendrive); **1) Atualizar a lista** lê o pendrive de novo. Cada jogo vira um **cartão** com a miniatura da capa, o nome e a situação: **capa ok**, **a conferir** (amarelo: capa da Wikipedia, tela de título ou captura de tela, para você conferir) ou **sem capa** (vermelho; esses aparecem primeiro). O cartão também diz se a capa já está no pendrive e de onde vêm as informações (**internet**, **você** ou **falta**). As miniaturas aparecem aos poucos.
+2. **Buscar:** digite parte do nome. Os botões **Todos**, **Sem capa**, **A conferir**, **Falta gerar** e **Sem informações** filtram a grade, e o contador mostra "N de M jogos". **Sem informações** mostra os jogos que não têm gênero, estúdio e ano nem seus nem da internet (não é o mesmo que **Sem capa**). As **setas do teclado** andam pela grade.
 3. Clique num cartão para ver, à direita, a **prévia na TV** (já dentro da moldura do menu), o **gênero, o estúdio e o lançamento** do jogo e as ações.
 4. Clique em **2) Gerar capas no pendrive** para gravar tudo na pasta `covers`.
 
-As opções desta tela ficam recolhidas em **Opções das capas ▸**: como encaixar a capa, a sua pasta de imagens e onde procurar.
+As opções desta tela ficam recolhidas em **Opções ▸**: como encaixar a capa, a sua pasta de imagens e onde procurar.
 
 **Como encaixar a capa (padrão para todos os jogos):**
 
@@ -167,7 +176,7 @@ As opções desta tela ficam recolhidas em **Opções das capas ▸**: como enca
 5. **Tela de título** do jogo — sempre com a proporção mantida;
 6. **Captura de tela do jogo** (libretro) — último recurso, também com a proporção mantida.
 
-As caixas **Usar a Wikipedia…** e **Usar a tela de título ou uma captura do jogo…** ligam ou desligam essas fontes na escolha automática. **Baixar da internet o que faltar** desligada usa só o que já foi baixado antes.
+As caixas **Usar a Wikipedia…** e **Usar a tela de título ou uma captura do jogo…** ligam ou desligam essas fontes na escolha automática. **Baixar da internet o que faltar** vem **desligada** ao abrir o programa e então usa só o que já foi baixado antes; marque-a para procurar na internet.
 
 **Trocar a capa de um jogo** (botões do painel da prévia):
 
@@ -196,10 +205,10 @@ A capa escolhida fica guardada no pendrive e é usada nas próximas vezes. Depoi
 
 ![Vídeos](imagens/app-videos.png)
 
-Parado num jogo, o menu toca um clipe curto e sem som no lugar da capa. **Precisa do menu v1.2 ou mais novo** (o menu v1.1 ignora os vídeos); no 3DO, dá para desligar em **Opções → Prévia em vídeo**.
+Parado num jogo, o menu toca um clipe curto no lugar da capa, **com som** (menu v1.3 ou mais novo; o menu v1.2 toca o clipe sem som, e o v1.1 ignora os vídeos). No 3DO, dá para desligar a imagem em **Opções → Prévia em vídeo** e o som em **Opções → Som da prévia**.
 
-1. Clique em **1) Ver vídeos do pendrive**. Cada jogo vira um **cartão** com um quadro do vídeo que já está no menu e a situação: **vídeo ok**, **para baixar** (o mesmo nome existe no **ScreenScraper**), **sem resultado** ou **sem vídeo** (ainda não consultado). Os botões **Todos os jogos**, **Com vídeo**, **Para baixar** e **Sem vídeo** e o campo **Buscar** filtram a grade. **Sobre os vídeos ▸** mostra os limites e a licença.
-2. Clique em **2) Baixar do ScreenScraper os que faltam**: o programa consulta a lista de jogos do site (não precisa de conta), mostra quantos vídeos vai baixar e grava no pendrive os dos jogos sem vídeo que têm o mesmo nome no site. Os **parecidos** ficam para você escolher.
+1. A grade **aparece sozinha** ao abrir a tela; **1) Atualizar a lista** lê o pendrive de novo. Cada jogo vira um **cartão** com um quadro do vídeo que já está no menu e a situação: **vídeo ok**, **para baixar** (o mesmo nome existe no **ScreenScraper**), **sem resultado** ou **sem vídeo** (ainda não consultado). Os botões **Todos os jogos**, **Com vídeo**, **Para baixar** e **Sem vídeo** e o campo **Buscar** filtram a grade. **Sobre os vídeos ▸** mostra a licença.
+2. Clique em **2) Baixar do ScreenScraper os que faltam**: o programa consulta a lista de jogos do site (não precisa de conta), mostra quantos vídeos vai baixar e grava no pendrive os dos jogos sem vídeo que têm o mesmo nome no site. Os **parecidos** ficam para você escolher. Se o site não responder, o programa tenta de novo sozinho (3 vezes); se continuar fora do ar, ele avisa quais jogos ficaram para depois: clique de novo no botão mais tarde, e só esses serão baixados.
 3. Clique num cartão para ver, à direita, a **prévia animada**, do jeito que o menu mostra, dentro da moldura, e o que o ScreenScraper achou para o jogo.
 
 **Um jogo de cada vez** (botões do painel da prévia):
@@ -209,11 +218,11 @@ Parado num jogo, o menu toca um clipe curto e sem som no lugar da capa. **Precis
 - **Começar o clipe em (s)** e **Ver prévia** — escolha em que segundo do vídeo o clipe começa e veja como fica antes de gravar; **Aplicar com este início** grava. Os vídeos do ScreenScraper começam em 3 s, para pular a entrada.
 - **Tirar o vídeo do menu** — o vídeo sai do menu; o original vai para `covers/originais/_antigas` (não é apagado).
 
-Todo vídeo é convertido para o limite seguro do menu: 104 pixels de largura, 15 quadros por segundo, até 8 segundos e cerca de 200 KB. O vídeo original fica guardado em `covers/originais` (de 1 a 10 MB cada), para dar para mudar o início depois.
+Todo vídeo é ajustado sozinho pelo programa para o que o menu aguenta (clipe curto e leve). O vídeo original fica guardado em `covers/originais` (de 1 a 10 MB cada), para dar para mudar o início depois.
 
 **Importar vídeos de uma pasta:** **Importar vídeos…** faz o mesmo que as capas: pega os vídeos de uma pasta do PC (por exemplo, clipes do EmuMovies), casa pelo nome com os jogos do pendrive, mostra o resumo e, com o seu aval, converte cada um para o menu (alguns segundos por jogo). Quem já tem vídeo fica como está.
 
-**Som (em teste):** o menu v1.2 toca a prévia **sem som**. O programa já sabe gravar o som do clipe junto do vídeo (mono, 11025 Hz, cerca de 88 KB a mais), para um menu futuro que toque som, mas isso vem **desligado**: a caixa **Gravar o som do vídeo** do painel liga. **Adicionar som…** refaz com som os vídeos que já estão no pendrive (do original guardado ou baixando de novo do ScreenScraper). Com o menu v1.2 não há vantagem em ligar: os bytes a mais só deixam o vídeo um pouco mais lento para carregar.
+**Som:** o programa grava o som do clipe junto do vídeo (mono, 11025 Hz, cerca de 88 KB a mais). A caixa **Gravar o som nos vídeos novos** do painel vem **ligada**; desligue se usa o menu v1.2, que não toca som (os bytes a mais só deixam o vídeo um pouco mais lento para carregar). Os vídeos gravados antes do som existir ficam **mudos**: **Adicionar som aos vídeos que já estão no pendrive…** refaz só esses, do original guardado ou baixando de novo do ScreenScraper (muda os `.vid`, não os jogos; vale a pena fazer um backup da pasta `covers` antes).
 
 > Os vídeos do ScreenScraper têm licença Creative Commons BY-NC-SA: só para uso pessoal, sem fins comerciais.
 
@@ -223,7 +232,7 @@ Opcional. Com estas contas, o programa também procura capas no **ScreenScraper*
 
 - **ScreenScraper:** precisa de uma **credencial de desenvolvedor** (pedida à equipe do site) e, de preferência, da **sua conta** no site (usuário e senha), que dá mais acessos por dia.
 - **TheGamesDB:** precisa de uma **chave de API**, pedida no fórum do site.
-- **Testar** confere as contas sem fechar a janela; **Salvar** guarda.
+- **Testar** confere as contas sem fechar a janela e mostra **uma linha por serviço**: **funcionando**, **sem conexão** (internet ou serviço fora do ar), **credenciais recusadas**, **cota diária esgotada** ou **não testado** (falta preencher: no ScreenScraper, só o seu usuário e senha **não bastam** para procurar capas, é preciso a credencial de desenvolvedor); **Salvar** guarda.
 - As senhas e a chave ficam **só neste computador**, protegidas pelo Windows.
 
 Se a conta for recusada ou a cota do dia acabar, o programa para de usar aquela fonte até ser aberto de novo e segue com as outras.
@@ -236,10 +245,10 @@ Se a conta for recusada ou a cota do dia acabar, o programa para de usar aquela 
 | `boot_anterior.iso` | o menu que estava antes |
 | `SataTo3DO.uf2` | a firmware nova, até ser aplicada (vira `.ok` ou `.erro`) |
 | `saves/` | backup de saves feito pelo menu |
-| `covers/` | capas (`.cap`), vídeos de prévia (`.vid`, com o som se você gravou), dados dos jogos (`dados.cap`) e a lista das capas e dos vídeos (`indice.cap`) |
+| `covers/` | capas (`.cap`), vídeos de prévia (`.vid`, com o som), dados dos jogos (`dados.cap`) e a lista das capas e dos vídeos (`indice.cap`) |
 | `covers/originais/` | as imagens que você escolheu, o modo de cada capa (`<jogo>.modo`), as informações preenchidas à mão (`<jogo>.info`), os vídeos originais e o início de cada clipe (`<jogo>.inicio`) |
 | `covers/originais/_antigas/` | imagens e vídeos que você trocou ou tirou |
-| `_duplicados/` | versões repetidas tiradas da lista |
+| `_duplicados/` | versões repetidas separadas da lista (você decide quando apagar; a ODE pode listá-las, veja [4.3](#43-organizar-jogos)) |
 | `.maniacoode/` | o registro para **Desfazer a última organização** e os jogos marcados **Não alterar** (`nao_alterar.json`) |
 
 ### 4.8 Firmware da ODE: backup e volta à original
@@ -254,15 +263,22 @@ A tela **Firmware** (última da barra lateral) trabalha com a ODE ligada ao PC e
 2. **Gravar a firmware ManiacoODE.** Escolha o `SataTo3DO.uf2` e clique em **Gravar na ODE**. Se ainda não houver backup, o programa pergunta antes (resposta padrão: não). A ODE reinicia sozinha ao terminar; depois, desconecte o USB do PC. Nas próximas vezes, atualize pelo menu do 3DO ([seção 9](#9-atualizar-a-firmware)).
 3. **Voltar à firmware original.** Se a nossa não funcionar, coloque a ODE em BOOTSEL de novo, escolha o backup (o programa já sugere o último) e clique em **Voltar à original**. O programa só aceita um backup de flash inteira que não seja a firmware ManiacoODE.
 
-Os botões **Como colocar a ODE em modo BOOTSEL…** e **Preciso do driver?** mostram o passo a passo.
+O botão **Como colocar a ODE em modo BOOTSEL…** mostra o passo a passo, e **Instalar o driver USB…** cuida do driver (abaixo). Uma linha da tela diz se o driver já está instalado: **✔ Driver USB instalado** ou **✖ Falta o driver USB**.
 
-**Driver (só para o backup):** para salvar o backup, o programa fala direto com a placa pelo USB (usa o `picotool` da Raspberry Pi, que vai junto no `.exe`), e o Windows pode precisar do driver **WinUSB** para essa porta. Se a unidade RPI-RP2 aparece mas o backup diz que falta o driver: baixe o **Zadig**, com a ODE em BOOTSEL abra **Options → List All Devices**, escolha **RP2 Boot (Interface 1)**, o driver **WinUSB**, e clique em **Install Driver**. É uma vez só. **Gravar** e **Voltar à original** não precisam do driver: só copiam o arquivo para a unidade RPI-RP2.
+**Driver (só para o backup):** para salvar o backup, o programa fala direto com a placa pelo USB (usa o `picotool` da Raspberry Pi, que vai junto no `.exe`), e o Windows precisa do driver **WinUSB** para essa porta. Com a ODE em BOOTSEL, clique em **Instalar o driver USB…**:
+
+1. O programa confere se o driver já está instalado; se estiver, só avisa. Se a ODE não estiver em BOOTSEL, pede para você colocá-la.
+2. Se faltar, ele explica o que vai acontecer e, com o seu **"sim"**, abre o **Zadig** (que vai junto no `.exe`, sem você precisar baixar nada). O Windows pede a **permissão de administrador** só nesse momento; o resto do programa continua sem ela.
+3. No Zadig: **Options → List All Devices**, escolha **RP2 Boot (Interface 1)**, confira que o driver é **WinUSB** e clique em **Install Driver** (ou **Replace Driver**); espere terminar e feche.
+4. O programa percebe sozinho quando o driver aparece e **confirma que enxerga a ODE** (só lê, não grava nada). Se algo falhar, a mensagem diz o que tentar: recusou a permissão de administrador (clique em **Sim** quando o Windows perguntar), o Zadig não terminou (feche, desconecte o USB e conecte de novo com o botão BOOTSEL apertado) ou a ODE ainda não foi reconhecida.
+
+É uma vez só. O programa **não instala o driver em silêncio**: o Windows só aceita drivers assinados, e o Zadig cria a assinatura na hora, com a sua confirmação. **Gravar** e **Voltar à original** não precisam do driver: só copiam o arquivo para a unidade RPI-RP2.
 
 > **Não desligue a ODE nem tire o USB durante a gravação** (poucos segundos). Se algo der errado, a placa continua podendo entrar em BOOTSEL: basta repetir. Nunca conecte o USB do PC com o console ligado.
 
 ## 5. Usando o menu
 
-Ao ligar o console, toca a **abertura em vídeo** escolhida em **Opções → Abertura** (A, B, C, X ou Start pula) e o menu abre com **todos os jogos em ordem alfabética**, com a capa e os dados do jogo escolhido.
+Ao ligar o console, toca a **abertura em vídeo** escolhida em **Opções → Abertura** (A, B, C, X ou Start pula) e o menu abre com **todos os jogos em ordem alfabética**, com a capa e os dados do jogo escolhido. Com muitos jogos no pendrive, a lista pode demorar alguns segundos depois da abertura: o menu mostra **Lendo a lista de jogos...** e ela aparece sozinha (firmware 1.1.2).
 
 | Botão | Na lista de jogos |
 |---|---|
@@ -271,7 +287,7 @@ Ao ligar o console, toca a **abertura em vídeo** escolhida em **Opções → Ab
 | **A** (ou **Start**) | inicia o jogo |
 | **X** | abre as **Opções** |
 
-Parado num jogo que tem **vídeo de prévia** no pendrive ([seção 4.5](#45-vídeos)), depois de alguns segundos o vídeo toca no lugar da capa; mexer na lista volta para a capa.
+Parado num jogo que tem **vídeo de prévia** no pendrive ([seção 4.5](#45-vídeos)), depois de alguns segundos o vídeo toca no lugar da capa, com som; mexer na lista volta para a capa e para o som.
 
 Quando você escolhe um jogo, o 3DO reinicia e carrega o disco. Para voltar ao menu, desligue e ligue o console.
 
@@ -286,12 +302,13 @@ Quando você escolhe um jogo, o 3DO reinicia e carrega o disco. Para voltar ao m
 | **Tamanho da tela** | Diminui o menu de 100 % até 80 %, em passos de 5 %, para TVs que cortam as bordas. Ajuste com **◄ ►**. |
 | **Idioma / Language** | Textos do menu em português ou em inglês. Troque com **◄ ►**. |
 | **Prévia em vídeo** | Liga ou desliga o vídeo de prévia no lugar da capa ([seção 4.5](#45-vídeos)). Troque com **◄ ►**. |
+| **Som da prévia** | Liga ou desliga o som do vídeo de prévia (só para os vídeos gravados com som). Troque com **◄ ►**. |
 | **Abertura** | Vídeo que toca ao ligar o console: um dos quatro (ManiacoOS1, ManiacoOS2, ManiacoOS3, 3DO), **Aleatória** ou **Desligada**. Troque com **◄ ►**; vale a partir da próxima vez que ligar. |
 | **Gerenciar saves** | Abre o gerenciador de saves (**A**). |
 | **Atualizar firmware** | Grava a `SataTo3DO.uf2` do pendrive ([seção 9](#9-atualizar-a-firmware)). |
 | **Informações** | Abre (**A**) a tela com a versão do menu, a versão da firmware da ODE e quantos jogos, capas, vídeos de prévia e jogos com gênero/estúdio/ano há no pendrive. |
 
-Embaixo das Opções aparecem a versão do menu e a da firmware da ODE. **▲ ▼** escolhem o item; **B** volta para a lista. O tamanho da tela, o idioma, a prévia em vídeo e a abertura ficam salvos na memória do 3DO (NVRAM) ao voltar.
+Embaixo das Opções aparecem a versão do menu e a da firmware da ODE. **▲ ▼** escolhem o item; **B** volta para a lista. O tamanho da tela, o idioma, a prévia em vídeo, o som da prévia e a abertura ficam salvos na memória do 3DO (NVRAM) ao voltar.
 
 ## 7. Gerenciador de saves
 
@@ -369,9 +386,12 @@ Copie a firmware para a raiz do pendrive com o nome **`SataTo3DO_forcar.uf2`** e
 | **A aba Pendrive avisa para criar a pasta** | Crie a pasta **`saves`** na raiz do pendrive (ou use o passo 5 do programa do PC). |
 | **"Memory Unit não encontrado"** | Desligue o console, conecte a Memory Unit e ligue de novo. |
 | **O arquivo virou `SataTo3DO.uf2.erro`** | O arquivo está corrompido ou não é a firmware da ODE. Baixe de novo na página de Releases. |
-| **Depois de organizar ou renomear muitas pastas, o 3DO mostra a tela dele em vez do menu** | O diretório do pendrive ficou cheio de entradas apagadas e a lista demora demais para ficar pronta. Refaça o pendrive: copie tudo para uma pasta do PC, formate o pendrive em **FAT32** e copie de volta. |
+| **Com muitos jogos (ou depois de organizar ou renomear muitas pastas), o 3DO fica em tela preta ou mostra a tela dele em vez do menu** | A firmware antiga só avisa o 3DO depois de montar a lista inteira, e o 3DO desiste antes. Atualize para a **firmware 1.1.2** ([seção 9](#9-atualizar-a-firmware); se o menu não abre, tire jogos do pendrive para atualizar, ou use o `SataTo3DO_forcar.uf2`). Se o diretório ficou cheio de entradas apagadas, refaça também o pendrive: copie tudo para uma pasta do PC, formate o pendrive em **FAT32** e copie de volta. |
 | **Renomeei a pasta de um jogo e a capa sumiu** | A capa e as informações ficaram com o nome antigo. Use **Renomear jogo…** no programa do PC; se já renomeou pelo Windows, renomeie também os arquivos de `covers/originais` e clique em **Gerar capas no pendrive**. |
 | **A firmware ManiacoODE não funcionou na minha placa** | Volte à original: ODE em modo BOOTSEL e **Voltar à original** na tela Firmware do programa (ou copie o seu `firmware-original-….uf2` para a unidade RPI-RP2). [Seção 4.8](#48-firmware-da-ode-backup-e-volta-à-original). |
 | **Não salvei o backup antes de gravar** | Sem o backup não há como voltar ao arquivo exato da sua placa. Peça a firmware original ao vendedor ou fabricante da sua ODE (ou ao projeto SataTo3DO) e grave-a em modo BOOTSEL. Daqui em diante, salve o backup antes de qualquer gravação pelo PC. |
-| **O backup diz que falta o driver, ou "não achei a ODE"** | Confira se a unidade **RPI-RP2** aparece (modo BOOTSEL, console desligado). Se aparece e o backup ainda falha, instale o driver WinUSB com o Zadig (**Preciso do driver?** na tela Firmware). |
+| **O backup diz que falta o driver, ou "não achei a ODE"** | Confira se a unidade **RPI-RP2** aparece (modo BOOTSEL, console desligado). Se aparece e o backup ainda falha, clique em **Instalar o driver USB…** na tela Firmware ([seção 4.8](#48-firmware-da-ode-backup-e-volta-à-original)). |
+| **Uma versão repetida aparece no menu** | A ODE lista os jogos de todas as pastas, inclusive de `_duplicados`. Abra essa pasta no pendrive e tire (ou apague) o que não quer na lista. |
+| **O programa não abre o Zadig / diz que a permissão foi recusada** | Clique em **Sim** quando o Windows perguntar se o instalador pode fazer alterações. Sem a permissão de administrador o driver não instala. |
+| **Aparece "Sem informações" em jogos que têm capa** | Sem informações é gênero, estúdio e ano (não a capa). Escolha o jogo e use **Informações do jogo…** para preencher. |
 | **Quero voltar ao menu anterior** | Apague o `boot.iso` e renomeie o `boot_anterior.iso` (ou o antigo) de volta para `boot.iso`. |

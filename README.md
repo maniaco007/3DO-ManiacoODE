@@ -18,7 +18,7 @@ Um projeto do blog **[Maniaco Game Room](https://www.maniacogameroom.com.br/)**.
 
 - **Menu inteiro em português**, com acentos (á, ã, ç, é…), ou **em inglês** (Opções → Idioma / Language).
 - **Abertura em vídeo** ao ligar o console, escolhida nas Opções: quatro aberturas, aleatória ou desligada. A, B, C, X ou Start pula.
-- **Prévia em vídeo:** parado num jogo, um clipe do jogo toca no lugar da capa (vídeos gravados pelo programa do PC).
+- **Prévia em vídeo com som:** parado num jogo, um clipe do jogo toca no lugar da capa, com som (vídeos gravados pelo programa do PC); imagem e som se desligam separados nas Opções.
 - **Todos os jogos do pendrive numa lista só, em ordem alfabética**, sem precisar entrar em pastas. **L/R** pula uma tela inteira de jogos.
 - **Capa de cada jogo** ao lado da lista, com **gênero, estúdio e ano**.
 - Jogos com **vários discos** aparecem identificados: "Título (Disco 1)", "Título (Disco 2)".
@@ -30,6 +30,7 @@ Um projeto do blog **[Maniaco Game Room](https://www.maniacogameroom.com.br/)**.
 
 - **Lista em ordem alfabética** de todos os jogos, em qualquer pasta do pendrive.
 - **Atualização pelo pendrive:** depois da primeira gravação, nunca mais precisa abrir o console nem ligar a ODE no PC. Copie o `SataTo3DO.uf2` para o pendrive e use **Opções → Atualizar firmware**.
+- **Coleções grandes (v1.1.2):** o 3DO é liberado na hora e a lista é montada enquanto o menu carrega; testado com 164 jogos (antes, coleções grandes davam tela preta depois do logo do 3DO).
 - **Memory Unit FZ-EM256:** o console liga com a unidade conectada e o menu e os jogos funcionam normalmente.
 - **Saves no pendrive:** leitura e gravação de arquivos pelo menu.
 
@@ -40,20 +41,20 @@ Um projeto do blog **[Maniaco Game Room](https://www.maniacogameroom.com.br/)**.
 Com o pendrive no PC, poucos cliques:
 
 1. instala o **menu** (`boot.iso`) e copia a **firmware** (`SataTo3DO.uf2`);
-2. mostra os **jogos da sua pasta** e quais **já estão no pendrive**, e copia só os que você marcar, já organizados do jeito que a ODE lê, com **nomes limpos** e uma pasta para cada jogo;
-3. **converte jogos `.chd`** para `.cue` + `.bin` na hora de copiar;
+2. mostra os **jogos da sua pasta** e quais **já estão no pendrive**, e copia só os que você marcar, já organizados do jeito que a ODE lê, com **nomes limpos** e uma pasta para cada jogo — ou **por região** (`USA`, `JP`, `EU`), para quem guarda um fullset;
+3. **converte jogos `.chd`** na hora de copiar: viram **`.iso`** (menor, conferido setor a setor) ou `.cue` + `.bin` quando o CD tem trilhas de áudio;
 4. **corrige `.cue`** quebrado, cria o `.cue` que falta e tira `.cue` antigo que sobrou;
 5. gera as **capas** e os dados dos jogos (gênero, estúdio e ano), que você também pode **preencher à mão**;
 6. grava os **vídeos de prévia** dos jogos (do ScreenScraper, sem conta, ou um vídeo seu);
 7. **importa capas e vídeos de uma pasta** do PC (por exemplo, do EmuMovies), casando pelo nome do jogo;
 8. cria a pasta **`saves`**;
-9. **salva a firmware original da ODE (backup)** antes de você gravar a nossa e **volta a ela** se a ManiacoODE não funcionar na sua placa (tela **Firmware**).
+9. **salva a firmware original da ODE (backup)** antes de você gravar a nossa e **volta a ela** se a ManiacoODE não funcionar na sua placa (tela **Firmware**), e **instala o driver USB** que o backup precisa, sem você caçar nada na internet.
 
-Visual novo: **barra lateral**, **grade de capas** com busca e filtros, painel do jogo e opções recolhidas. O programa **se atualiza pelo GitHub** (Ajuda → Verificar atualizações…).
+Visual novo: **barra lateral**, **grade de capas** com busca e filtros, painel do jogo e opções recolhidas. O pendrive é **lido uma vez só** e as telas Organizar, Capas e Vídeos já aparecem preenchidas, sem clicar de novo (botão **Atualizar** quando precisar); nada que grave ou processe vem marcado ao abrir. O programa **se atualiza pelo GitHub** (Ajuda → Verificar atualizações…).
 
 As capas vêm do **libretro-thumbnails**, da **Wikipedia** e, com conta, do **ScreenScraper** e do **TheGamesDB**. Você vê a **prévia de como fica na TV**, escolhe entre todas as capas encontradas ou usa uma imagem sua, e decide **capa por capa** se ela preenche a moldura ou mantém a proporção.
 
-O programa funciona em **português ou inglês** (menu Idioma / Language) e também organiza um pendrive que já está pronto — com a opção de **não alterar** um jogo que já tem o nome certo — e **renomeia jogos** levando junto a capa e as informações. **Nada é apagado:** o que é substituído é guardado, e a organização pode ser desfeita.
+O programa funciona em **português ou inglês** (menu Idioma / Language) e também organiza um pendrive que já está pronto — com a opção de **não alterar** um jogo que já tem o nome certo, ou de **escolher à mão o nome** que ele terá no menu — e **renomeia jogos** levando junto a capa, as informações e o vídeo. **Nada é apagado:** o que é substituído é guardado, e a organização pode ser desfeita.
 
 | | |
 |---|---|

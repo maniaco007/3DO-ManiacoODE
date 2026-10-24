@@ -60,12 +60,13 @@ Policenauts/
 
 - **`boot.iso`** goes in the root. If you had another menu, rename the old one (e.g. `boot_old.iso`) so you can go back.
 - **Each game in its own folder.** A folder with a single game is shown with the **folder name**; with several files, each file name is shown.
-- Supported formats: **`.iso`** (2048 or 2352 bytes per sector) and **`.cue` + `.bin`** (a single `.bin` per `.cue`). **`.chd`** games are converted to `.cue` + `.bin` by the PC program while copying ([section 4.2](#42-prepare-usb-drive)).
+- Supported formats: **`.iso`** (2048 or 2352 bytes per sector) and **`.cue` + `.bin`** (a single `.bin` per `.cue`). **`.chd`** games are converted by the PC program while copying: they become **`.iso`** (or `.cue` + `.bin`, if the CD has audio tracks) ([section 4.2](#42-prepare-usb-drive)).
 - **Multi-disc** games: keep "Disc 1", "Disc 2"… in the file name and the menu shows "(Disc 1)", "(Disc 2)".
 - The **`saves`** and **`covers`** folders are not shown in the game list.
 - The **box art** and the game info (genre, studio and year) are made by the PC program.
-- **To change a game's name**, use **Rename game…** in the PC program ([section 4.4](#44-box-art)). If you rename the folder in Windows, the game still works (and saves are not lost), but the box art, the info and your chosen image keep the old name until you write the box art again.
-- **Avoid renaming or moving many folders at once in the root of the USB drive.** On FAT32 every changed name leaves a deleted entry in the directory, and the ODE builds the game list by walking that directory before telling the 3DO there is a disc. With a directory full of deleted entries, the 3DO may give up and show its own screen instead of the menu ([section 10](#10-troubleshooting)).
+- **Region folders** (`USA`, `JP`, `EU`…) work: the ODE lists the games of every folder (up to 3 levels), but the menu **does not browse folders** — it shows everything in a single list. Use the name with the region (`Gex (USA)`, `Gex (Japan)`) so two versions of the same game do not show up with the same name. The PC program does this under **Organize games → Folders → By region** ([section 4.3](#43-organize-games)).
+- **To change a game's name**, use **Rename game…** in the Box art tab or **Edit name…** in the Organize tab of the PC program ([section 4.3](#43-organize-games) and [section 4.4](#44-box-art)). If you rename the folder in Windows, the game still works (and saves are not lost), but the box art, the info and your chosen image keep the old name until you write the box art again.
+- **Avoid renaming or moving many folders at once in the root of the USB drive.** On FAT32 every changed name leaves a deleted entry in the directory, and the ODE builds the game list by walking that directory. With firmware 1.1.2 this only makes the list slower (the menu shows **Reading the game list...**); with older firmware, which built the list before telling the 3DO there was a disc, the 3DO could give up and show its own screen instead of the menu ([section 10](#10-troubleshooting)).
 
 ## 4. PC program — USB drive manager
 
@@ -77,7 +78,7 @@ Policenauts/
 
 **Internet:** box art, game info and videos are downloaded when needed and kept on the PC (`%LOCALAPPDATA%\3DO-ManiacoODE`). From then on, what was already downloaded works offline.
 
-**Your USB drive is safe:** the program **deletes nothing**. The old `boot.iso` is kept, repeated games go to the `_duplicados` folder, replaced images go to `covers/originais/_antigas`, and the game organization can be undone.
+**Your USB drive is safe:** the program **deletes nothing**. The old `boot.iso` is kept, repeated games go to the `_duplicados` folder (which **you** empty, if you want: see [4.3](#43-organize-games)), replaced images go to `covers/originais/_antigas`, and the game organization can be undone.
 
 ### 4.1 The window
 
@@ -85,7 +86,8 @@ Policenauts/
 
 - **Sidebar** (left): the five screens — **Prepare USB drive**, **Organize games**, **Box art**, **Videos** and **Firmware** (backup of the original firmware, [section 4.8](#48-ode-firmware-backup-and-way-back-to-the-original)); the open one is highlighted. At the bottom you see the state of the drive: file system, free space and whether the menu is installed.
 - **USB drive** (top): pick the drive letter. The program suggests the drives that already have `boot.iso` first. Use **Browse…** if the drive is not listed.
-- **Each screen** has its title and the **main action** (in green) at the top right. The advanced options are **collapsed** behind a button with **▸**: click it to open them.
+  - **One reading only:** when it opens, when you change the drive or when you click **Refresh**, the program reads the games on the drive **once**, in the background (the label beside it shows "Reading the USB drive…" and then "N games read at HH:MM"). Organize games, Box art and Videos are already filled in with that reading, without another click. It is redone by itself after organizing, undoing, renaming or preparing the drive; click **Refresh** if you changed files outside the program.
+- **Each screen** has its title and the **main action** (in green) at the top right. The advanced options are **collapsed** behind a button with **▸**: click it to open them. Nothing that writes or processes files comes **ticked** when the program opens.
 - **Footer:** shows the current step, the percentage, the time left and the **Cancel** button.
 - **File menu:** opens the USB drive in Explorer.
 - **Theme menu:** changes the window colors (Night, ManiacoODE menu (blue and gold) and Light). The choice is saved.
@@ -96,7 +98,7 @@ Policenauts/
 
 ### 4.2 Prepare USB drive
 
-Tick what you want to do and click **Prepare USB drive** (green button, top right). Each step can be done on its own. The game organization options are under **How to organize the games ▸**.
+Tick what you want to do and click **Prepare USB drive** (green button, top right). **No step comes ticked** when the program opens: choosing the file or folder of a step already ticks it. Each step can be done on its own. The game organization options are under **How to organize the games ▸**.
 
 1. **Install the menu (`boot.iso`):** point to the downloaded `boot.iso`. The one already on the drive becomes `boot_anterior.iso`.
 2. **Update the firmware (`SataTo3DO.uf2`):** the program checks that the file really is RP2040 firmware and copies it to the root of the drive. Then, on the 3DO, open **Options → Update firmware** ([section 9](#9-updating-the-firmware)).
@@ -112,7 +114,12 @@ Tick what you want to do and click **Prepare USB drive** (green button, top righ
 
 In the **Send** column, click to tick (☑) or untick (☐). Only the missing ones come ticked; the **Only the missing ones**, **All** and **None** buttons help, and the summary shows how many games and GB will go. **Prepare USB drive** sends only the ticked games.
 
-**`.chd` games:** they are converted to `.cue` + **a single `.bin`** (the format the ODE reads) straight onto the drive, with MAME's **chdman**, which comes with the program. The footer shows "Game N of M · name · %". The converted game is checked before it goes into its folder; a broken `.chd`, or one that is not a 3DO disc, shows up in the report and leaves no files on the drive. At the end, the program asks whether the original `.chd` files on the PC go to the **Recycle Bin** (they can be restored).
+**`.chd` games:** they are converted straight onto the drive, with MAME's **chdman**, which comes with the program. The **File in the folder** column shows what comes out of each one:
+
+- **`→ .iso`** — the CD has **a single data track** (almost every 3DO game). The program removes each sector's header and error correction and checks **every sector** before accepting the `.iso`; the file on the drive gets smaller (2048 of 2352 bytes per sector). The conversion goes through a temporary folder on the PC, so it needs a few GB free on the Windows disk;
+- **`→ .cue + .bin (with audio)`** — the CD has audio tracks (which an `.iso` cannot hold): the result is a `.cue` + **a single `.bin`**, the format the ODE reads. The same happens if some sector is not in the standard format or if the PC has no room for the `.iso`: the game never loses content, and the report says "kept as .cue + .bin".
+
+The footer shows "Game N of M · name · %". The converted game is checked before it goes into its folder; a broken `.chd`, or one that is not a 3DO disc, shows up in the report and leaves no files on the drive. At the end, the program asks whether the original `.chd` files on the PC go to the **Recycle Bin** (they can be restored).
 
 The program only goes on if the drive is **FAT32** or **exFAT**. At the end, the text box shows a **report** of everything that was done, including the games left out and why.
 
@@ -122,11 +129,12 @@ The program only goes on if the drive is **FAT32** or **exFAT**. At the end, the
 
 Tidies up the games that are **already on the USB drive**, with the same rules the firmware uses to build the list.
 
-1. Click **Options ▸** and pick:
+1. Click **Options ▸** and pick (the list redoes itself with every change):
    - **Clean names:** removes the region and tags from the name (`Need For Speed, The (USA) [!]` → `The Need For Speed`);
-   - **Folders:** one folder per game, by letter (A, B, C…) or keep the current folders;
-   - **Move repeated versions to `_duplicados`:** keeps a single copy of each game. Between an `.iso` and a `.cue` + `.bin`, the `.cue` + `.bin` stays, because it has the CD audio.
-2. Click **1) Scan the USB drive**. The list shows what will happen to each game:
+   - **Folders:** one folder per game (the default), by letter (A, B, C…), **by region** or keep the current folders. **By region** creates the `USA`, `JP`, `EU` and `Outras` folders (Korea, Brazil, Asia, world and games with no region in the name) and keeps the region in the game name (`Gex (USA)`, `Gex (Japan)`), because the menu shows all games in a single list. In this mode, versions from different regions do **not** count as repeated; only the same region and the same disc is repeated. It works best with the original names (with the region in parentheses): on games already with the clean name, with no region, everything would go to `Outras`;
+   - **Set aside repeated versions of the same game:** keeps a single copy of each game in the list and puts the others in the `_duplicados` folder. Between an `.iso` and a `.cue` + `.bin`, the `.cue` + `.bin` stays, because it holds the audio tracks. It comes **unticked** when the program opens.
+   > **Note:** the program **never deletes anything**. Open the `_duplicados` folder now and then and delete what you do not want to keep, so it does not take up space on the drive. Only you decide what to delete. The ODE lists the games of every folder, and the `_duplicados` folder is not hidden from it: if a repeated version shows up in the menu, take it out of there (still to be confirmed on the 3DO).
+2. The **analysis shows up by itself** (the reading of the drive is the same as in the other screens); **1) Refresh the analysis** reads the drive again. The list shows what will happen to each game, with the **current name in the menu** and the **final name in the menu**:
    - **Already fine** — nothing changes;
    - **Move / rename** — goes to another folder and/or gets the clean name;
    - **Move to `_duplicados`** — repeated copy (among equal copies, the one already with the right name and folder stays);
@@ -134,11 +142,12 @@ Tidies up the games that are **already on the USB drive**, with the same rules t
    - **Fix the `.cue`** — the `.cue` points to a file that does not exist, or has a track name too long for the firmware;
    - **Create the `.cue`** — `.bin` without a `.cue`;
    - **Not listed** — not a 3DO disc, or the `.cue` cannot be fixed.
-3. **A game already has the right name** (a homebrew, for example)? Pick it and click **Don't change / organize again** (or double-click it): it stays where it is, with its current name, in the next analyses too. Click again to organize it again.
-4. Check it and click **2) Apply**.
-5. Changed your mind? **Undo the last organization** puts everything back.
+3. **Want another name for a game?** Pick it and click **Edit name…** (or double-click it). The window shows the **current file**, the **current name in the menu** and the **Final name in the menu** field; the name counts **exactly as you type it** (no cleaning and no region). The names you chose show a ✎ in the list, and the program warns if the name is invalid or if another game already has it. When you apply, the folder and the file get the name, and the **box art, the chosen image, the mode, the info and the video** the game already had go along (anything new needs **Write box art**, which the program offers at the end). The game is marked **Don't change**, so the name you chose is not "cleaned" again. **Back to the automatic name** undoes it.
+4. **A game already has the right name** (a homebrew, for example)? Pick it and click **Don't change / organize again**: it stays where it is, with its current name, in the next analyses too. Click again to organize it again.
+5. Check it and click **2) Apply**.
+6. Changed your mind? **Undo the last organization** puts everything back.
 
-Files the ODE cannot read (`.zip`, `.7z`…) are listed in a warning below the list: extract them or convert them to `.iso` or `.cue` + `.bin`. `.chd` games already on the drive are listed there too: copy them with the **Prepare USB drive** tab, which converts them. The images and box art modes you chose follow the game when it is renamed. After applying, the program offers to make the box art again, because the names changed.
+Files the ODE cannot read (`.zip`, `.7z`…) are listed in a warning below the list: extract them or convert them to `.iso` or `.cue` + `.bin`. `.chd` games already on the drive are listed there too: copy them with the **Prepare USB drive** tab, which converts them. The images, box art modes, info and videos you chose follow the game when it is renamed. After applying, the program offers to make the box art again, because the names changed.
 
 ### 4.4 Box art
 
@@ -146,12 +155,12 @@ Files the ODE cannot read (`.zip`, `.7z`…) are listed in a warning below the l
 
 The box art is shown next to the list in the menu, in a 106×116 pixel frame, with the game's genre, studio and year.
 
-1. Click **1) Check the box art**. Each game becomes a **card** with the box art thumbnail, its name and its state: **box art ok**, **check it** (yellow: box art from Wikipedia, a title screen or a screenshot, for you to check) or **no box art** (red; those come first). The card also says whether the box art is already on the drive and where the info comes from (**internet**, **you** or **missing**). The thumbnails show up little by little.
-2. **Search:** type part of the name. The **All games**, **No box art**, **Box art to check** and **Not written to the drive yet** buttons filter the grid, and the counter shows "N of M games". The **arrow keys** move through the grid.
+1. The grid **shows up by itself** when you open the screen (it uses the reading of the drive); **1) Refresh the list** reads the drive again. Each game becomes a **card** with the box art thumbnail, its name and its state: **box art ok**, **check it** (yellow: box art from Wikipedia, a title screen or a screenshot, for you to check) or **no box art** (red; those come first). The card also says whether the box art is already on the drive and where the info comes from (**internet**, **you** or **missing**). The thumbnails show up little by little.
+2. **Search:** type part of the name. The **All**, **No box art**, **To check**, **To generate** and **No info** buttons filter the grid, and the counter shows "N of M games". **No info** shows the games that have no genre, studio and year, neither yours nor from the internet (it is not the same as **No box art**). The **arrow keys** move through the grid.
 3. Click a card to see, on the right, the **TV preview** (already inside the menu frame), the game's **genre, studio and release** and the actions.
 4. Click **2) Write box art to the USB drive** to write everything to the `covers` folder.
 
-The options of this screen are collapsed under **Box art options ▸**: how the box art fits, your image folder and where to look.
+The options of this screen are collapsed under **Options ▸**: how the box art fits, your image folder and where to look.
 
 **How the box art fits (default for every game):**
 
@@ -169,7 +178,7 @@ The options of this screen are collapsed under **Box art options ▸**: how the 
 5. The game's **title screen** — always keeping its aspect ratio;
 6. A **game screenshot** (libretro) — last resort, also keeping its aspect ratio.
 
-The **Use Wikipedia…** and **Use the title screen or a game screenshot…** boxes turn those sources on or off for the automatic choice. With **Download what is missing** off, only what was downloaded before is used.
+The **Use Wikipedia…** and **Use the title screen or a game screenshot…** boxes turn those sources on or off for the automatic choice. **Download what is missing** comes **off** when the program opens, and then only what was downloaded before is used; tick it to search the internet.
 
 **Changing a game's box art** (preview panel buttons):
 
@@ -198,10 +207,10 @@ The chosen box art is kept on the USB drive and used from then on. After changin
 
 ![Videos](imagens/app-videos-en.png)
 
-When you rest on a game, the menu plays a short silent clip in place of the box art. **It needs menu v1.2 or newer** (menu v1.1 ignores the videos); on the 3DO you can turn it off in **Options → Video preview**.
+When you rest on a game, the menu plays a short clip in place of the box art, **with sound** (menu v1.3 or newer; menu v1.2 plays the clip without sound, and v1.1 ignores the videos). On the 3DO you can turn the picture off in **Options → Video preview** and the sound in **Options → Preview sound**.
 
-1. Click **1) See the videos on the drive**. Each game becomes a **card** with a frame of the video already in the menu and its state: **video ok**, **to download** (the same name exists on **ScreenScraper**), **no result** or **no video** (not checked yet). The **All games**, **With video**, **To download** and **No video** buttons and the **Search** box filter the grid. **About the videos ▸** shows the limits and the license.
-2. Click **2) Download the missing ones from ScreenScraper**: the program checks the site's game list (no account needed), tells you how many videos it will download and writes to the drive the videos of the games with no video that have the same name on the site. The **similar** ones are left for you to choose.
+1. The grid **shows up by itself** when you open the screen; **1) Refresh the list** reads the drive again. Each game becomes a **card** with a frame of the video already in the menu and its state: **video ok**, **to download** (the same name exists on **ScreenScraper**), **no result** or **no video** (not checked yet). The **All games**, **With video**, **To download** and **No video** buttons and the **Search** box filter the grid. **About the videos ▸** shows the license.
+2. Click **2) Download the missing ones from ScreenScraper**: the program checks the site's game list (no account needed), tells you how many videos it will download and writes to the drive the videos of the games with no video that have the same name on the site. The **similar** ones are left for you to choose. If the site does not answer, the program tries again by itself (3 times); if it is still down, it tells you which games were left for later: click the button again later, and only those will be downloaded.
 3. Click a card to see, on the right, the **animated preview**, the way the menu shows it, inside the frame, and what ScreenScraper found for the game.
 
 **One game at a time** (buttons of the preview panel):
@@ -211,11 +220,11 @@ When you rest on a game, the menu plays a short silent clip in place of the box 
 - **Start the clip at (s)** and **Preview** — choose at which second of the video the clip starts and see how it looks before writing it; **Apply with this start** writes it. ScreenScraper videos start at 3 s, to skip the intro.
 - **Remove the video from the menu** — the video leaves the menu; the original goes to `covers/originais/_antigas` (it is not deleted).
 
-Every video is converted to the menu's safe limit: 104 pixels wide, 15 frames per second, up to 8 seconds and about 200 KB. The original video is kept in `covers/originais` (1 to 10 MB each), so the start can be changed later.
+Every video is adjusted by the program itself to what the menu can handle (a short, light clip). The original video is kept in `covers/originais` (1 to 10 MB each), so the start can be changed later.
 
 **Import videos from a folder:** **Import videos…** does the same as for box art: it takes the videos of a PC folder (for example EmuMovies clips), matches them by name with the games on the drive, shows the summary and, with your OK, converts each one for the menu (a few seconds per game). Games that already have a video stay as they are.
 
-**Sound (testing):** menu v1.2 plays the preview **without sound**. The program can already write the clip's sound next to the video (mono, 11025 Hz, about 88 KB more) for a future menu that plays sound, but this comes **off**: the **Write the video sound** box in the panel turns it on. **Add sound…** redoes the videos already on the drive with sound (from the kept original, or downloading again from ScreenScraper). With menu v1.2 there is no point in turning it on: the extra bytes only make the video a little slower to load.
+**Sound:** the program writes the clip's sound next to the video (mono, 11025 Hz, about 88 KB more). The **Save the sound in new videos** box in the panel comes **on**; turn it off if you use menu v1.2, which does not play sound (the extra bytes only make the video a little slower to load). Videos written before sound existed stay **silent**: **Add sound to the videos already on the USB drive…** redoes only those, from the kept original or downloading again from ScreenScraper (it changes the `.vid` files, not the games; it is worth backing up the `covers` folder first).
 
 > ScreenScraper videos are licensed Creative Commons BY-NC-SA: personal use only, non-commercial.
 
@@ -225,7 +234,7 @@ Optional. With these accounts, the program also looks for box art on **ScreenScr
 
 - **ScreenScraper:** needs a **developer credential** (requested from the site team) and, preferably, **your account** on the site (user name and password), which gives more requests per day.
 - **TheGamesDB:** needs an **API key**, requested on the site's forum.
-- **Test** checks the accounts without closing the window; **Save** keeps them.
+- **Test** checks the accounts without closing the window and shows **one line per service**: **working**, **no connection** (internet or the service is down), **credentials refused**, **daily quota used up** or **not tested** (something is missing: on ScreenScraper, your user name and password alone are **not enough** to search box art, the developer credential is needed); **Save** keeps them.
 - The passwords and the key stay **on this computer only**, protected by Windows.
 
 If an account is refused or the daily quota runs out, the program stops using that source until it is opened again and goes on with the others.
@@ -238,10 +247,10 @@ If an account is refused or the daily quota runs out, the program stops using th
 | `boot_anterior.iso` | the previous menu |
 | `SataTo3DO.uf2` | the new firmware, until it is applied (becomes `.ok` or `.erro`) |
 | `saves/` | save backups made by the menu |
-| `covers/` | box art (`.cap`), video previews (`.vid`, with sound if you wrote it), game info (`dados.cap`) and the box art and video list (`indice.cap`) |
+| `covers/` | box art (`.cap`), video previews (`.vid`, with sound), game info (`dados.cap`) and the box art and video list (`indice.cap`) |
 | `covers/originais/` | the images you chose, the mode of each box art (`<game>.modo`), the info you filled in (`<game>.info`), the original videos and the start of each clip (`<game>.inicio`) |
 | `covers/originais/_antigas/` | images and videos you replaced or removed |
-| `_duplicados/` | repeated versions taken out of the list |
+| `_duplicados/` | repeated versions set aside from the list (you decide when to delete; the ODE may list them, see [4.3](#43-organize-games)) |
 | `.maniacoode/` | the log for **Undo the last organization** and the games marked **Don't change** (`nao_alterar.json`) |
 
 ### 4.8 ODE firmware: backup and way back to the original
@@ -256,15 +265,22 @@ The **Firmware** screen (last in the sidebar) works with the ODE plugged into th
 2. **Flash the ManiacoODE firmware.** Choose `SataTo3DO.uf2` and click **Flash to the ODE**. If there is no backup yet, the program asks first (default answer: no). The ODE restarts on its own when done; then unplug the USB from the PC. Next time, update from the 3DO menu ([section 9](#9-updating-the-firmware)).
 3. **Go back to the original firmware.** If ours does not work, put the ODE in BOOTSEL again, choose the backup (the program already suggests the latest) and click **Go back to the original**. The program only accepts a whole-flash backup that is not the ManiacoODE firmware.
 
-The **How to put the ODE in BOOTSEL mode…** and **Do I need the driver?** buttons show the step by step.
+The **How to put the ODE in BOOTSEL mode…** button shows the step by step, and **Install the USB driver…** takes care of the driver (below). A line on the screen says whether the driver is already installed: **✔ USB driver installed** or **✖ The USB driver is missing**.
 
-**Driver (backup only):** to save the backup the program talks to the board directly over USB (it uses Raspberry Pi's `picotool`, shipped inside the `.exe`), and Windows may need the **WinUSB** driver for that port. If the RPI-RP2 drive shows up but the backup says the driver is missing: download **Zadig**, with the ODE in BOOTSEL open **Options → List All Devices**, choose **RP2 Boot (Interface 1)**, the **WinUSB** driver, and click **Install Driver**. It is a one-time step. **Flash** and **Go back to the original** do not need the driver: they only copy the file to the RPI-RP2 drive.
+**Driver (backup only):** to save the backup the program talks to the board directly over USB (it uses Raspberry Pi's `picotool`, shipped inside the `.exe`), and Windows needs the **WinUSB** driver for that port. With the ODE in BOOTSEL, click **Install the USB driver…**:
+
+1. The program checks whether the driver is already installed; if it is, it just says so. If the ODE is not in BOOTSEL, it asks you to put it there.
+2. If it is missing, it explains what will happen and, with your **"yes"**, opens **Zadig** (shipped inside the `.exe`, so you do not need to download anything). Windows asks for **administrator permission** only at that moment; the rest of the program keeps running without it.
+3. In Zadig: **Options → List All Devices**, choose **RP2 Boot (Interface 1)**, check that the driver is **WinUSB** and click **Install Driver** (or **Replace Driver**); wait for it to finish and close it.
+4. The program notices by itself when the driver shows up and **confirms it can see the ODE** (it only reads, nothing is written). If something fails, the message says what to try: you refused the administrator permission (click **Yes** when Windows asks), Zadig did not finish (close it, unplug the USB and plug it in again with the BOOTSEL button held down) or the ODE was not recognized yet.
+
+It is a one-time step. The program **does not install the driver silently**: Windows only accepts signed drivers, and Zadig creates the signature on the spot, with your confirmation. **Flash** and **Go back to the original** do not need the driver: they only copy the file to the RPI-RP2 drive.
 
 > **Do not turn the ODE off or unplug the USB while flashing** (a few seconds). If something goes wrong, the board can still enter BOOTSEL: just repeat. Never plug the PC USB cable in with the console on.
 
 ## 5. Using the menu
 
-When the console is turned on, the **video intro** chosen in **Options → Intro video** plays (A, B, C, X or Start skips it) and the menu opens with **every game in alphabetical order**, with the box art and info of the selected game.
+When the console is turned on, the **video intro** chosen in **Options → Intro video** plays (A, B, C, X or Start skips it) and the menu opens with **every game in alphabetical order**, with the box art and info of the selected game. With many games on the USB drive the list may take a few seconds after the intro: the menu shows **Reading the game list...** and it shows up by itself (firmware 1.1.2).
 
 | Button | In the game list |
 |---|---|
@@ -273,7 +289,7 @@ When the console is turned on, the **video intro** chosen in **Options → Intro
 | **A** (or **Start**) | start the game |
 | **X** | open the **Options** |
 
-When you rest on a game that has a **video preview** on the USB drive ([section 4.5](#45-videos)), after a few seconds the video plays in place of the box art; moving in the list brings the box art back.
+When you rest on a game that has a **video preview** on the USB drive ([section 4.5](#45-videos)), after a few seconds the video plays in place of the box art, with sound; moving in the list brings the box art back and stops the sound.
 
 When you pick a game, the 3DO restarts and loads the disc. To go back to the menu, turn the console off and on.
 
@@ -288,12 +304,13 @@ When you pick a game, the 3DO restarts and loads the disc. To go back to the men
 | **Screen size** | Shrinks the menu from 100 % down to 80 %, in 5 % steps, for TVs that crop the edges. Adjust with **◄ ►**. |
 | **Idioma / Language** | Menu texts in Portuguese or English. Switch with **◄ ►**. |
 | **Video preview** | Turns the video preview in place of the box art on or off ([section 4.5](#45-videos)). Switch with **◄ ►**. |
+| **Preview sound** | Turns the sound of the video preview on or off (only for videos written with sound). Switch with **◄ ►**. |
 | **Intro video** | Video played when the console is turned on: one of the four (ManiacoOS1, ManiacoOS2, ManiacoOS3, 3DO), **Random** or **Off**. Switch with **◄ ►**; takes effect the next time it is turned on. |
 | **Manage saves** | Opens the save manager (**A**). |
 | **Update firmware** | Writes the `SataTo3DO.uf2` from the USB drive ([section 9](#9-updating-the-firmware)). |
 | **Information** | Opens (**A**) the screen with the menu version, the ODE firmware version and how many games, box arts, video previews and games with genre/studio/year are on the USB drive. |
 
-Below the Options you see the menu version and the ODE firmware version. **▲ ▼** pick the item; **B** goes back to the list. Screen size, language, video preview and intro video are saved in the 3DO memory (NVRAM) when you go back.
+Below the Options you see the menu version and the ODE firmware version. **▲ ▼** pick the item; **B** goes back to the list. Screen size, language, video preview, preview sound and intro video are saved in the 3DO memory (NVRAM) when you go back.
 
 ## 7. Save manager
 
@@ -371,9 +388,12 @@ Copy the firmware to the root of the USB drive named **`SataTo3DO_forcar.uf2`** 
 | **The USB drive tab asks you to create the folder** | Create a **`saves`** folder in the root of the USB drive (or use step 5 of the PC program). |
 | **"Memory Unit (FZ-EM256) not found"** | Turn off the console, plug in the Memory Unit and turn it on again. |
 | **The file became `SataTo3DO.uf2.erro`** | The file is corrupted or is not the ODE firmware. Download it again from the Releases page. |
-| **After organizing or renaming many folders, the 3DO shows its own screen instead of the menu** | The drive's directory is full of deleted entries and the list takes too long to be ready. Rebuild the drive: copy everything to a folder on the PC, format the drive as **FAT32** and copy it back. |
+| **With many games (or after organizing or renaming many folders), the 3DO stays on a black screen or shows its own screen instead of the menu** | Older firmware only tells the 3DO after building the whole list, and the 3DO gives up first. Update to **firmware 1.1.2** ([section 9](#9-updating-the-firmware); if the menu does not open, take games off the drive to update, or use `SataTo3DO_forcar.uf2`). If the directory is full of deleted entries, also rebuild the drive: copy everything to a folder on the PC, format the drive as **FAT32** and copy it back. |
 | **I renamed a game folder and the box art is gone** | The box art and the info kept the old name. Use **Rename game…** in the PC program; if you already renamed it in Windows, also rename the files in `covers/originais` and click **Write box art to the USB drive**. |
 | **The ManiacoODE firmware did not work on my board** | Go back to the original: ODE in BOOTSEL mode and **Go back to the original** in the program's Firmware screen (or copy your `firmware-original-….uf2` to the RPI-RP2 drive). [Section 4.8](#48-ode-firmware-backup-and-way-back-to-the-original). |
 | **I did not save the backup before flashing** | Without the backup there is no way back to your board's exact file. Ask your ODE's seller or maker (or the SataTo3DO project) for the original firmware and flash it in BOOTSEL mode. From now on, save the backup before any flashing from the PC. |
-| **The backup says the driver is missing, or "I could not find the ODE"** | Check that the **RPI-RP2** drive shows up (BOOTSEL mode, console off). If it does and the backup still fails, install the WinUSB driver with Zadig (**Do I need the driver?** in the Firmware screen). |
+| **The backup says the driver is missing, or "I could not find the ODE"** | Check that the **RPI-RP2** drive shows up (BOOTSEL mode, console off). If it does and the backup still fails, click **Install the USB driver…** in the Firmware screen ([section 4.8](#48-ode-firmware-backup-and-way-back-to-the-original)). |
+| **A repeated version shows up in the menu** | The ODE lists the games of every folder, including `_duplicados`. Open that folder on the drive and take out (or delete) what you do not want in the list. |
+| **The program does not open Zadig / says the permission was refused** | Click **Yes** when Windows asks whether the installer may make changes. Without administrator permission the driver does not install. |
+| **"No info" shows up on games that have box art** | No info means genre, studio and year (not the box art). Pick the game and use **Game info…** to fill it in. |
 | **I want the previous menu back** | Delete `boot.iso` and rename `boot_anterior.iso` (or the old one) back to `boot.iso`. |

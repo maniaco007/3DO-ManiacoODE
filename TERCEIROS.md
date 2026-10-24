@@ -33,6 +33,7 @@ The firmware, the menu and the PC program include the components below. The orig
 | FFmpeg 7.1 (build gyan.dev, via imageio-ffmpeg) — converte os vídeos de prévia / converts the video previews | GPL-3.0 |
 | imageio-ffmpeg 0.6.0 | BSD-2-Clause |
 | picotool 2.3.1 (Raspberry Pi) — lê a firmware da ODE para o backup / reads the ODE firmware for the backup | BSD-3-Clause (traz / includes libusb 1.0 — LGPL-2.1 ou posterior / or later; mbed TLS — Apache 2.0) |
+| Zadig 2.9.788 (Akeo Consulting) — instala o driver USB (WinUSB) que o picotool usa / installs the USB driver (WinUSB) the picotool uses | GPL-3.0 |
 
 O programa não traz capas, dados nem vídeos de jogos: ele os baixa na hora de usar (libretro-thumbnails, Wikipedia, Wikidata, vídeos do ScreenScraper e, com conta do usuário, capas do ScreenScraper e do TheGamesDB), e esse conteúdo segue as licenças e os termos de cada fonte. Os vídeos do ScreenScraper têm licença Creative Commons BY-NC-SA (uso pessoal, sem fins comerciais).
 The program ships no box art, game data or videos: it downloads them when used (libretro-thumbnails, Wikipedia, Wikidata, ScreenScraper videos and, with the user's own account, ScreenScraper and TheGamesDB box art), and that content follows the licenses and terms of each source. ScreenScraper videos are licensed Creative Commons BY-NC-SA (personal, non-commercial use).
@@ -4369,3 +4370,11 @@ necessary.  Here is a sample; alter the names:
 
 That's all there is to it!
 ```
+
+## Zadig 2.9.788
+
+O programa do PC traz o `zadig.exe` 2.9.788 (Akeo Consulting, Pete Batard), sem modificação, como um programa separado. Ele só é aberto quando o usuário clica em **Instalar o driver USB…** na tela Firmware e confirma, e serve para instalar o driver WinUSB da interface "RP2 Boot (Interface 1)" da ODE em modo BOOTSEL (só o backup da firmware original precisa dele). O Windows pede a permissão de administrador ao abri-lo. O arquivo é o `zadig-2.9.exe` do site oficial, com assinatura digital válida de Akeo Consulting. Código-fonte: https://github.com/pbatard/zadig e https://github.com/pbatard/libwdi
+The PC program ships `zadig.exe` 2.9.788 (Akeo Consulting, Pete Batard), unmodified, as a separate program. It is only opened when the user clicks **Install the USB driver…** on the Firmware screen and confirms, and it installs the WinUSB driver for the ODE's "RP2 Boot (Interface 1)" in BOOTSEL mode (only the backup of the original firmware needs it). Windows asks for administrator permission when it opens. The file is `zadig-2.9.exe` from the official site, with a valid Akeo Consulting digital signature. Source code: https://github.com/pbatard/zadig and https://github.com/pbatard/libwdi
+
+- Arquivo / File: `zadig-2.9.exe`, SHA-256 `4ecaa95df3da3621486a043aef8b3050b8bafe7c901402871e816229ef82039b`
+- Licença / License: GNU GPL versão 3 (texto completo reproduzido acima, na seção do FFmpeg). / GNU GPL version 3 (full text reproduced above, in the FFmpeg section).

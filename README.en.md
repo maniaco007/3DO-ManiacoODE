@@ -18,7 +18,7 @@ A **[Maniaco Game Room](https://www.maniacogameroom.com.br/)** blog project.
 
 - **Menu in Portuguese**, with accents (á, ã, ç, é…), or **in English** (Options → Idioma / Language).
 - **Video intro** when the console is turned on, chosen in the Options: four intros, random or off. A, B, C, X or Start skips it.
-- **Video preview:** resting on a game, a clip of the game plays in place of the box art (videos written by the PC program).
+- **Video preview with sound:** resting on a game, a clip of the game plays in place of the box art, with sound (videos written by the PC program); picture and sound are turned off separately in the Options.
 - **Every game on the USB drive in one alphabetical list**, no folder browsing. **L/R** skips a full screen of games.
 - **Box art for every game** next to the list, with **genre, studio and year**.
 - **Multi-disc** games are labeled: "Title (Disc 1)", "Title (Disc 2)".
@@ -30,6 +30,7 @@ A **[Maniaco Game Room](https://www.maniacogameroom.com.br/)** blog project.
 
 - **Alphabetical list** of every game, in any folder of the USB drive.
 - **Updates from the USB drive:** after the first flash, you never need to open the console or connect the ODE to a PC again. Copy `SataTo3DO.uf2` to the USB drive and use **Options → Update firmware**.
+- **Big collections (v1.1.2):** the 3DO is released right away and the list is built while the menu loads; tested with 164 games (before, big collections gave a black screen after the 3DO logo).
 - **FZ-EM256 Memory Unit:** the console boots with the unit plugged in, and the menu and games work normally.
 - **Saves on the USB drive:** file read and write from the menu.
 
@@ -40,20 +41,20 @@ A **[Maniaco Game Room](https://www.maniacogameroom.com.br/)** blog project.
 With the USB drive in the PC, a few clicks:
 
 1. installs the **menu** (`boot.iso`) and copies the **firmware** (`SataTo3DO.uf2`);
-2. shows the **games in your folder** and which ones are **already on the drive**, and copies only the ones you tick, already organized the way the ODE reads them, with **clean names** and one folder per game;
-3. **converts `.chd` games** to `.cue` + `.bin` while copying;
+2. shows the **games in your folder** and which ones are **already on the drive**, and copies only the ones you tick, already organized the way the ODE reads them, with **clean names** and one folder per game — or **by region** (`USA`, `JP`, `EU`), for those who keep a full set;
+3. **converts `.chd` games** while copying: they become an **`.iso`** (smaller, checked sector by sector) or `.cue` + `.bin` when the CD has audio tracks;
 4. **fixes broken `.cue` files**, creates the missing ones and removes leftover old ones;
 5. makes the **box art** and game info (genre, studio and year), which you can also **fill in by hand**;
 6. writes the games' **video previews** (from ScreenScraper, no account needed, or your own video);
 7. **imports box art and videos from a folder** on the PC (for example from EmuMovies), matching them by game name;
 8. creates the **`saves`** folder;
-9. **saves your ODE's original firmware (backup)** before you flash ours and **goes back to it** if ManiacoODE does not work on your board (**Firmware** screen).
+9. **saves your ODE's original firmware (backup)** before you flash ours and **goes back to it** if ManiacoODE does not work on your board (**Firmware** screen), and **installs the USB driver** the backup needs, with no hunting around the internet.
 
-New look: a **sidebar**, a **box art grid** with search and filters, a game panel and collapsed options. The program **updates itself from GitHub** (Help → Check for updates…).
+New look: a **sidebar**, a **box art grid** with search and filters, a game panel and collapsed options. The drive is **read only once** and the Organize, Box art and Videos screens are already filled in, with no extra click (**Refresh** button when you need it); nothing that writes or processes files comes ticked when it opens. The program **updates itself from GitHub** (Help → Check for updates…).
 
 Box art comes from **libretro-thumbnails**, **Wikipedia** and, with an account, **ScreenScraper** and **TheGamesDB**. You see a **preview of how it looks on the TV**, choose among every box art found or use your own image, and decide **box art by box art** whether it fills the frame or keeps its aspect ratio.
 
-The program works in **Portuguese or English** (Idioma / Language menu) and also organizes a USB drive that is already set up — with the option to **not change** a game that already has the right name — and **renames games** taking along their box art and info. **Nothing is deleted:** whatever is replaced is kept, and the organization can be undone.
+The program works in **Portuguese or English** (Idioma / Language menu) and also organizes a USB drive that is already set up — with the option to **not change** a game that already has the right name, or to **pick by hand the name** it will have in the menu — and **renames games** taking along their box art, info and video. **Nothing is deleted:** whatever is replaced is kept, and the organization can be undone.
 
 | | |
 |---|---|
