@@ -280,6 +280,10 @@ O botão **Como colocar a ODE em modo BOOTSEL…** mostra o passo a passo, e **I
 
 Ao ligar o console, toca a **abertura em vídeo** escolhida em **Opções → Abertura** (A, B, C, X ou Start pula) e o menu abre com **todos os jogos em ordem alfabética**, com a capa e os dados do jogo escolhido. Com muitos jogos no pendrive, a lista pode demorar alguns segundos depois da abertura: o menu mostra **Lendo a lista de jogos...** e ela aparece sozinha (firmware 1.1.2).
 
+| | |
+|---|---|
+| ![Lista de jogos com capa, gênero, estúdio e ano](imagens/menu-jogos.png) | ![Prévia em vídeo no lugar da capa](imagens/menu-jogos-2.png) |
+
 | Botão | Na lista de jogos |
 |---|---|
 | **▲ ▼** | sobe e desce na lista |

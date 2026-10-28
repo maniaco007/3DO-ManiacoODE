@@ -282,6 +282,10 @@ It is a one-time step. The program **does not install the driver silently**: Win
 
 When the console is turned on, the **video intro** chosen in **Options → Intro video** plays (A, B, C, X or Start skips it) and the menu opens with **every game in alphabetical order**, with the box art and info of the selected game. With many games on the USB drive the list may take a few seconds after the intro: the menu shows **Reading the game list...** and it shows up by itself (firmware 1.1.2).
 
+| | |
+|---|---|
+| ![Game list with box art, genre, studio and year](imagens/menu-jogos-en.png) | ![Video preview in place of the box art](imagens/menu-jogos-2-en.png) |
+
 | Button | In the game list |
 |---|---|
 | **▲ ▼** | move up and down the list |
