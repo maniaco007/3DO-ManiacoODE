@@ -6,7 +6,8 @@
 
 Um projeto do blog **[Maniaco Game Room](https://www.maniacogameroom.com.br/)**.
 
-![Abertura do menu](imagens/abertura.png)
+<img width="1734" height="907" alt="Emblema Dourado e Lagarto Neon" src="https://github.com/user-attachments/assets/fd563cb1-e664-4406-a0e2-cfffaaa0214b" />
+
 
 ## O que o 3DO ManiacoODE traz
 
