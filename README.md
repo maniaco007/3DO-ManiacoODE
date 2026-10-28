@@ -9,10 +9,13 @@ Um projeto do blog **[Maniaco Game Room](https://www.maniacogameroom.com.br/)**.
 <img width="1734" height="907" alt="Emblema Dourado e Lagarto Neon" src="https://github.com/user-attachments/assets/fd563cb1-e664-4406-a0e2-cfffaaa0214b" />
 
 
+![Menu com a lista de jogos, capa, gênero, estúdio e ano](imagens/menu-jogos.png)
+
 ## O que o 3DO ManiacoODE traz
 
 | | |
 |---|---|
+| ![Prévia em vídeo do jogo no lugar da capa](imagens/menu-jogos-2.png) | ![Abertura do menu](imagens/abertura.png) |
 | ![Opções](imagens/opcoes.png) | ![Gerenciar saves](imagens/opcoes-saves.png) |
 
 ### Menu (`boot.iso`)

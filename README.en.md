@@ -6,12 +6,13 @@
 
 A **[Maniaco Game Room](https://www.maniacogameroom.com.br/)** blog project.
 
-![Menu intro](imagens/abertura.png)
+![Menu with the game list, box art, genre, studio and year](imagens/menu-jogos-en.png)
 
 ## What 3DO ManiacoODE brings
 
 | | |
 |---|---|
+| ![Video preview of the game in place of the box art](imagens/menu-jogos-2-en.png) | ![Menu intro](imagens/abertura.png) |
 | ![Options](imagens/opcoes-en.png) | ![Manage saves](imagens/opcoes-saves.png) |
 
 ### Menu (`boot.iso`)
