@@ -40,7 +40,7 @@ Depois disso, as atualizações são feitas pelo pendrive ([seção 9](#9-atuali
 
 > ⚠️ **O botão BOOTSEL não faz nada e a unidade RPI-RP2 não aparece?** Algumas ODEs são vendidas **sem o resistor R11** (1 kΩ), que liga o botão BOOTSEL ao sinal de seleção da memória flash. Se ele faltar ou a solda estiver rompida, apertar o botão não produz efeito (e o programa continua dizendo "Nenhuma ODE em modo BOOTSEL"). Antes de concluir isso, troque o cabo USB por um que transmita dados e confirme que o console está desligado. Para conferir, com a placa sem energia, meça a resistência entre os dois pontos do R11: cerca de 1 kΩ é o normal; circuito aberto indica resistor ausente ou solda rompida. A correção é soldar um resistor SMD de 1 kΩ no R11 (ou refazer a solda); se você não tem prática com solda SMD, peça a um técnico ou ao vendedor. **Não ligue o botão direto, sem o resistor.**
 
-![Circuito do botão BOOTSEL, com e sem o R11](imagens/bootsel-r11.png)
+![Onde fica o R11, como conferir e como resolver](imagens/bootsel-r11-foto.png)
 
 ## 3. Preparar o pendrive
 

@@ -42,7 +42,7 @@ After that, updates go through the USB drive ([section 9](#9-updating-the-firmwa
 
 > ⚠️ **The BOOTSEL button does nothing and the RPI-RP2 drive does not show up?** Some ODEs are sold **without resistor R11** (1 kΩ), which connects the BOOTSEL button to the flash memory's chip-select signal. If it is missing or its solder joint is broken, pressing the button has no effect (and the program keeps saying "No ODE in BOOTSEL mode"). Before concluding that, swap the USB cable for one that carries data and make sure the console is off. To check, with the board unpowered, measure the resistance across the two R11 pads: about 1 kΩ is normal; an open circuit means the resistor is missing or the joint is broken. The fix is to solder a 1 kΩ SMD resistor at R11 (or redo the joint); if you are not used to SMD soldering, ask a technician or the seller. **Do not wire the button straight through without the resistor.**
 
-![BOOTSEL button circuit, with and without R11](imagens/bootsel-r11-en.png)
+![Where R11 is, how to check it and how to fix it](imagens/bootsel-r11-foto-en.png)
 
 ## 3. Preparing the USB drive
 
