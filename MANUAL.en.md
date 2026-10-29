@@ -40,6 +40,8 @@ After that, updates go through the USB drive ([section 9](#9-updating-the-firmwa
 
 **If ours does not work on your board:** put the ODE in BOOTSEL mode again and copy your `firmware-original-….uf2` (the backup from step 2) to the **RPI-RP2** drive. The board writes it and restarts with the original firmware. In the program's Firmware screen: **Go back to the original**.
 
+> ⚠️ **The BOOTSEL button does nothing and the RPI-RP2 drive does not show up?** Some ODEs are sold **without resistor R11** (1 kΩ), which connects the BOOTSEL button to the flash memory's chip-select signal. If it is missing or its solder joint is broken, pressing the button has no effect (and the program keeps saying "No ODE in BOOTSEL mode"). Before concluding that, swap the USB cable for one that carries data and make sure the console is off. To check, with the board unpowered, measure the resistance across the two R11 pads: about 1 kΩ is normal; an open circuit means the resistor is missing or the joint is broken. The fix is to solder a 1 kΩ SMD resistor at R11 (or redo the joint); if you are not used to SMD soldering, ask a technician or the seller. **Do not wire the button straight through without the resistor.**
+
 ## 3. Preparing the USB drive
 
 The easiest way is the **PC program** ([section 4](#4-pc-program--usb-drive-manager)): it installs the menu, organizes the games, makes the box art and creates the saves folder in a few clicks.
@@ -397,6 +399,7 @@ Copy the firmware to the root of the USB drive named **`SataTo3DO_forcar.uf2`** 
 | **The ManiacoODE firmware did not work on my board** | Go back to the original: ODE in BOOTSEL mode and **Go back to the original** in the program's Firmware screen (or copy your `firmware-original-….uf2` to the RPI-RP2 drive). [Section 4.8](#48-ode-firmware-backup-and-way-back-to-the-original). |
 | **I did not save the backup before flashing** | Without the backup there is no way back to your board's exact file. Ask your ODE's seller or maker (or the SataTo3DO project) for the original firmware and flash it in BOOTSEL mode. From now on, save the backup before any flashing from the PC. |
 | **The backup says the driver is missing, or "I could not find the ODE"** | Check that the **RPI-RP2** drive shows up (BOOTSEL mode, console off). If it does and the backup still fails, click **Install the USB driver…** in the Firmware screen ([section 4.8](#48-ode-firmware-backup-and-way-back-to-the-original)). |
+| **The BOOTSEL button does nothing / the RPI-RP2 drive does not show up** | Check that the USB cable carries data and that the console is off. If it still happens, the ODE may be missing the BOOTSEL button's **R11** resistor (1 kΩ) or have a broken joint: see the warning in [section 2](#2-first-firmware-install). |
 | **A repeated version shows up in the menu** | The ODE lists the games of every folder, including `_duplicados`. Open that folder on the drive and take out (or delete) what you do not want in the list. |
 | **The program does not open Zadig / says the permission was refused** | Click **Yes** when Windows asks whether the installer may make changes. Without administrator permission the driver does not install. |
 | **"No info" shows up on games that have box art** | No info means genre, studio and year (not the box art). Pick the game and use **Game info…** to fill it in. |
