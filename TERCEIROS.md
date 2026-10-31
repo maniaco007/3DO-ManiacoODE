@@ -34,6 +34,7 @@ The firmware, the menu and the PC program include the components below. The orig
 | imageio-ffmpeg 0.6.0 | BSD-2-Clause |
 | picotool 2.3.1 (Raspberry Pi) — lê a firmware da ODE para o backup / reads the ODE firmware for the backup | BSD-3-Clause (traz / includes libusb 1.0 — LGPL-2.1 ou posterior / or later; mbed TLS — Apache 2.0) |
 | Zadig 2.9.788 (Akeo Consulting) — instala o driver USB (WinUSB) que o picotool usa / installs the USB driver (WinUSB) the picotool uses | GPL-3.0 |
+| 3dt 1.7.0 (trapexit) — reconhece o jogo pelo conteúdo do disco / recognizes the game from the disc contents | ISC |
 
 O programa não traz capas, dados nem vídeos de jogos: ele os baixa na hora de usar (libretro-thumbnails, Wikipedia, Wikidata, vídeos do ScreenScraper e, com conta do usuário, capas do ScreenScraper e do TheGamesDB), e esse conteúdo segue as licenças e os termos de cada fonte. Os vídeos do ScreenScraper têm licença Creative Commons BY-NC-SA (uso pessoal, sem fins comerciais).
 The program ships no box art, game data or videos: it downloads them when used (libretro-thumbnails, Wikipedia, Wikidata, ScreenScraper videos and, with the user's own account, ScreenScraper and TheGamesDB box art), and that content follows the licenses and terms of each source. ScreenScraper videos are licensed Creative Commons BY-NC-SA (personal, non-commercial use).
@@ -4378,3 +4379,28 @@ The PC program ships `zadig.exe` 2.9.788 (Akeo Consulting, Pete Batard), unmodif
 
 - Arquivo / File: `zadig-2.9.exe`, SHA-256 `4ecaa95df3da3621486a043aef8b3050b8bafe7c901402871e816229ef82039b`
 - Licença / License: GNU GPL versão 3 (texto completo reproduzido acima, na seção do FFmpeg). / GNU GPL version 3 (full text reproduced above, in the FFmpeg section).
+
+## 3dt 1.7.0
+
+O programa do PC traz o `3dt.exe` 1.7.0 (3DO Disc Tool, de Antonio SJ Musumeci / trapexit), sem modificação. Ele só é usado para ler o disco do jogo e reconhecer o nome oficial (`3dt identify`), na opção "Reconhecer o jogo pelo conteúdo do disco". Código-fonte: https://github.com/trapexit/3dt
+The PC program ships `3dt.exe` 1.7.0 (3DO Disc Tool, by Antonio SJ Musumeci / trapexit), unmodified. It is only used to read the game disc and recognize its official name (`3dt identify`), in the "Recognize the game from the disc contents" option. Source code: https://github.com/trapexit/3dt
+
+- Arquivo / File: `3dt_x86_64-windows-gnu.exe` da release 1.7.0 / from the 1.7.0 release, SHA-256 `d952399c1b7d2553df2657c9b76d04fb00cc49e7c23d1bee335cf6112f450616`
+
+```
+ISC License
+
+Copyright (c) 2026, Antonio SJ Musumeci <trapexit@spawn.link>
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+```
