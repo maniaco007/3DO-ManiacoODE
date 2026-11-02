@@ -20,6 +20,7 @@ The firmware, the menu and the PC program include the components below. The orig
 | Driver `ode` (System/Drivers/ode) | Menu oficial da ODE SataTo3DO / official SataTo3DO ODE menu |
 | `StorageDriver` (System/Drivers/StorageDriver) | CD "Storage Manager (Memory Kanri)" v2.1 |
 | Fontes DejaVu / DejaVu fonts (convertidas / converted) | Bitstream Vera / DejaVu license |
+| Fonte Open Sans / Open Sans font, Regular e/and Semibold (convertida / converted) | Apache 2.0 |
 
 ## Programa do PC / PC program — `3DO-ManiacoODE-Gerenciador.exe`
 
@@ -36,8 +37,8 @@ The firmware, the menu and the PC program include the components below. The orig
 | Zadig 2.9.788 (Akeo Consulting) — instala o driver USB (WinUSB) que o picotool usa / installs the USB driver (WinUSB) the picotool uses | GPL-3.0 |
 | 3dt 1.7.0 (trapexit) — reconhece o jogo pelo conteúdo do disco / recognizes the game from the disc contents | ISC |
 
-O programa não traz capas, dados nem vídeos de jogos: ele os baixa na hora de usar (libretro-thumbnails, Wikipedia, Wikidata, vídeos do ScreenScraper e, com conta do usuário, capas do ScreenScraper e do TheGamesDB), e esse conteúdo segue as licenças e os termos de cada fonte. Os vídeos do ScreenScraper têm licença Creative Commons BY-NC-SA (uso pessoal, sem fins comerciais).
-The program ships no box art, game data or videos: it downloads them when used (libretro-thumbnails, Wikipedia, Wikidata, ScreenScraper videos and, with the user's own account, ScreenScraper and TheGamesDB box art), and that content follows the licenses and terms of each source. ScreenScraper videos are licensed Creative Commons BY-NC-SA (personal, non-commercial use).
+O programa não traz capas, dados nem vídeos de jogos: ele os baixa na hora de usar (libretro-thumbnails, Wikipedia, Wikidata, vídeos do ScreenScraper e, com conta do usuário, capas do ScreenScraper e do TheGamesDB), e esse conteúdo segue as licenças e os termos de cada fonte. Os vídeos do ScreenScraper têm licença Creative Commons BY-NC-SA (uso pessoal, sem fins comerciais). As **sinopses** vêm da introdução dos artigos da Wikipedia, sob a licença Creative Commons BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/); o programa leva um arquivo de **traduções para o português** de textos em inglês da Wikipedia, que seguem a mesma licença (BY-SA 4.0), e o texto que o usuário digita é dele.
+The program ships no box art, game data or videos: it downloads them when used (libretro-thumbnails, Wikipedia, Wikidata, ScreenScraper videos and, with the user's own account, ScreenScraper and TheGamesDB box art), and that content follows the licenses and terms of each source. ScreenScraper videos are licensed Creative Commons BY-NC-SA (personal, non-commercial use). The **synopses** come from the introductions of Wikipedia articles, under the Creative Commons BY-SA 4.0 license (https://creativecommons.org/licenses/by-sa/4.0/); the program carries a file of **Portuguese translations** of English Wikipedia texts, which follow the same license (BY-SA 4.0), and the text a user types is the user's own.
 
 ---
 
@@ -142,6 +143,12 @@ by use of this software.
 
 -----------------------------------------------------------------------------
 ```
+
+## Open Sans
+
+Open Sans (Regular e Semibold, versão 1.10), de Steve Matteson / Google. / Open Sans (Regular and Semibold, version 1.10), by Steve Matteson / Google.
+Digitized data copyright (c) 2010-2011, Google Corporation. "Open Sans is a trademark of Google and may be registered in certain jurisdictions."
+Licença / License: Apache License, Version 2.0 (texto completo na seção do Apache, mais abaixo neste arquivo, e em `LICENSE-OpenSans.txt` dentro do menu / full text in the Apache section further down in this file, and in `LICENSE-OpenSans.txt` inside the menu). As fontes do menu são glifos desenhados a partir dessas fontes. / The menu fonts are glyphs rendered from these fonts.
 
 ## DejaVu fonts
 

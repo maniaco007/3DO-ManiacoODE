@@ -206,6 +206,15 @@ The chosen box art is kept on the USB drive and used from then on. After changin
 - **Save to the drive** writes it right away, without making the box art again. What you fill in wins over the internet; an empty field uses the internet one;
 - **Use the internet info** goes back to the automatic info (yours go to `covers/originais/_antigas`).
 
+**Synopsis (menu C button):** pressing **C** on a game, the menu shows a short text about it. The program uses, in this order, what **you typed**, the intro of the game's **Wikipedia** article (in Portuguese when there is one; text under the Creative Commons BY-SA 4.0 license) and, when Wikipedia only has English, a **Portuguese translation** that ships with the program. A game without an article (many Japanese-only titles, demo discs and utilities) has no synopsis.
+
+- **3) Generate synopses** writes the synopses of every game to the USB drive. If **Download what is missing from the internet** is unticked, the program first asks whether it may download from Wikipedia. At the end it shows a summary by language and by source; games without a synopsis show up in the **No synopsis** filter, and the game panel has a **Synopsis:** line.
+- **Synopsis…** (the button next to **Game info…** and **Rename…**) opens a window with two fields, **Portuguese** and **English**, and the source of each text (typed by you, Wikipedia, translation or already on the drive). Below, **In the menu: N of 10 lines** shows how the menu will wrap the text, with the same font as the 3DO: it warns when the end would be cut with "..." and when there are letters the menu does not have (the menu only has Latin-1 letters: quotes and dashes become ASCII and, for example, Japanese is dropped).
+- **Save to the drive** writes it right away. A field left blank uses the other language or the internet text. **Back to the internet one** undoes what you typed (yours goes to `covers/originais/_antigas`).
+- The typed text lives in `covers/originais/<game>.sinopse` and follows the game when it is renamed. The synopses written to the drive are in `covers/sinopses/`.
+
+> Several Wikipedia texts describe the original game on another platform (for example the arcade or PC version). Check them and fix with **Synopsis…** when that is the case.
+
 **Rename game…:** changes the name the menu shows. The program renames the game folder (or the file, if the name comes from the file) and takes along the box art, the chosen image, the box art mode and the info. The renamed game is marked **Don't change** in Organize, so the chosen name is not changed later.
 
 ### 4.5 Videos
@@ -252,8 +261,9 @@ If an account is refused or the daily quota runs out, the program stops using th
 | `boot_anterior.iso` | the previous menu |
 | `SataTo3DO.uf2` | the new firmware, until it is applied (becomes `.ok` or `.erro`) |
 | `saves/` | save backups made by the menu |
-| `covers/` | box art (`.cap`), video previews (`.vid`, with sound), game info (`dados.cap`) and the box art and video list (`indice.cap`) |
-| `covers/originais/` | the images you chose, the mode of each box art (`<game>.modo`), the info you filled in (`<game>.info`), the original videos and the start of each clip (`<game>.inicio`) |
+| `covers/` | box art (`.cap`), video previews (`.vid`, with sound), game info (`dados.cap`) and the list of box art, videos and synopses (`indice.cap`) |
+| `covers/sinopses/` | the game synopses (`<game>.cap`, Portuguese and English) |
+| `covers/originais/` | the images you chose, the mode of each box art (`<game>.modo`), the info you filled in (`<game>.info`), the synopses you typed (`<game>.sinopse`), the original videos and the start of each clip (`<game>.inicio`) |
 | `covers/originais/_antigas/` | images and videos you replaced or removed |
 | `_duplicados/` | repeated versions set aside from the list (you decide when to delete; the ODE may list them, see [4.3](#43-organize-games)) |
 | `.maniacoode/` | the log for **Undo the last organization** and the games marked **Don't change** (`nao_alterar.json`) |
@@ -297,6 +307,9 @@ When the console is turned on, the **video intro** chosen in **Options → Intro
 | **L / R** (or **◄ ►**) | skip a full screen of games |
 | **A** (or **Start**) | start the game |
 | **X** | open the **Options** |
+| **C** | show the game's **synopsis** (**B**, **C**, **X** or **A** go back) |
+
+**Carousel (menu v1.4 or newer):** in **Options → View** the list can become a **box art carousel**: the box art of the selected game in the middle, with a gold frame, and its neighbors on the sides. **◄ ►** (and **▲ ▼**) move one box at a time, and the boxes slide when there are 7 games or more; **L / R** skip a page. Under the box art you see the name, **Game X of Y**, how many times you started the game (**Never played**, **Played N times**), the genre, the year and the studio and, for multi-disc games, the disc. The counter lives in the 3DO memory (NVRAM), goes up when you press **A** and adds the discs of the same game together.
 
 When you rest on a game that has a **video preview** on the USB drive ([section 4.5](#45-videos)), after a few seconds the video plays in place of the box art, with sound; moving in the list brings the box art back and stops the sound.
 
@@ -310,16 +323,17 @@ When you pick a game, the 3DO restarts and loads the disc. To go back to the men
 
 | Item | What it does |
 |---|---|
-| **Screen size** | Shrinks the menu from 100 % down to 80 %, in 5 % steps, for TVs that crop the edges. Adjust with **◄ ►**. |
+| **Screen size** | Shrinks the menu from 100 % down to 80 %, in 5 % steps, for TVs that crop the edges (on a CRT, 90 % usually does it). The small text keeps its size so it stays readable. Adjust with **◄ ►**. |
 | **Idioma / Language** | Menu texts in Portuguese or English. Switch with **◄ ►**. |
+| **View** | **List** with the names or box art **Carousel** ([section 5](#5-using-the-menu)). Switch with **◄ ►**. |
 | **Video preview** | Turns the video preview in place of the box art on or off ([section 4.5](#45-videos)). Switch with **◄ ►**. |
 | **Preview sound** | Turns the sound of the video preview on or off (only for videos written with sound). Switch with **◄ ►**. |
 | **Intro video** | Video played when the console is turned on: one of the four (ManiacoOS1, ManiacoOS2, ManiacoOS3, 3DO), **Random** or **Off**. Switch with **◄ ►**; takes effect the next time it is turned on. |
 | **Manage saves** | Opens the save manager (**A**). |
 | **Update firmware** | Writes the `SataTo3DO.uf2` from the USB drive ([section 9](#9-updating-the-firmware)). |
-| **Information** | Opens (**A**) the screen with the menu version, the ODE firmware version and how many games, box arts, video previews and games with genre/studio/year are on the USB drive. |
+| **Information** | Opens (**A**) the screen with the menu version, the ODE firmware version and how many games, box arts, video previews, games with genre/studio/year and games with a synopsis are on the USB drive. |
 
-Below the Options you see the menu version and the ODE firmware version. **▲ ▼** pick the item; **B** goes back to the list. Screen size, language, video preview, preview sound and intro video are saved in the 3DO memory (NVRAM) when you go back.
+Below the Options you see the menu version and the ODE firmware version. **▲ ▼** pick the item; **B** goes back to the list. Screen size, language, view, video preview, preview sound and intro video are saved in the 3DO memory (NVRAM) when you go back.
 
 ## 7. Save manager
 

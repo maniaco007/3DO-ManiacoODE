@@ -25,8 +25,10 @@ Um projeto do blog **[Maniaco Game Room](https://www.maniacogameroom.com.br/)**.
 - **Prévia em vídeo com som:** parado num jogo, um clipe do jogo toca no lugar da capa, com som (vídeos gravados pelo programa do PC); imagem e som se desligam separados nas Opções.
 - **Todos os jogos do pendrive numa lista só, em ordem alfabética**, sem precisar entrar em pastas. **L/R** pula uma tela inteira de jogos.
 - **Capa de cada jogo** ao lado da lista, com **gênero, estúdio e ano**.
+- **Carrossel de capas** (Opções → Visualização): a capa do jogo no meio, com moldura dourada, as vizinhas ao lado e as capas deslizando ao andar; embaixo, **Jogo X de Y**, quantas vezes o jogo foi iniciado, gênero, ano e estúdio.
+- **Sinopse do jogo** no botão **C**, em português ou inglês (a introdução do artigo da Wikipedia, ou o texto que você digitou).
 - Jogos com **vários discos** aparecem identificados: "Título (Disco 1)", "Título (Disco 2)".
-- **Tamanho da tela** de 80 % a 100 %, para TVs que cortam as bordas. Fica salvo na memória do 3DO.
+- **Tamanho da tela** de 80 % a 100 %, para TVs que cortam as bordas (o texto pequeno mantém o tamanho para continuar legível em TV de tubo). Fica salvo na memória do 3DO.
 - **Gerenciador de saves** com três abas — **Console**, **Memory Unit** e **Pendrive**: copiar, restaurar, apagar e copiar todos de uma vez. Faça backup dos saves do console no pendrive.
 - **Atualizar firmware** pelas Opções, com a versão da firmware da ODE nas Informações.
 
@@ -48,7 +50,7 @@ Com o pendrive no PC, poucos cliques:
 2. mostra os **jogos da sua pasta** e quais **já estão no pendrive**, e copia só os que você marcar, já organizados do jeito que a ODE lê, com **nomes limpos** e uma pasta para cada jogo — ou **por região** (`USA`, `JP`, `EU`), para quem guarda um fullset;
 3. **converte jogos `.chd`** na hora de copiar: viram **`.iso`** (menor, conferido setor a setor) ou `.cue` + `.bin` quando o CD tem trilhas de áudio;
 4. **corrige `.cue`** quebrado, cria o `.cue` que falta e tira `.cue` antigo que sobrou;
-5. gera as **capas** e os dados dos jogos (gênero, estúdio e ano), que você também pode **preencher à mão**;
+5. gera as **capas**, os dados dos jogos (gênero, estúdio e ano) e as **sinopses** (botão C do menu), que você também pode **preencher ou digitar à mão**;
 6. grava os **vídeos de prévia** dos jogos (do ScreenScraper, sem conta, ou um vídeo seu);
 7. **importa capas e vídeos de uma pasta** do PC (por exemplo, do EmuMovies), casando pelo nome do jogo;
 8. cria a pasta **`saves`**;

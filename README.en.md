@@ -22,8 +22,10 @@ A **[Maniaco Game Room](https://www.maniacogameroom.com.br/)** blog project.
 - **Video preview with sound:** resting on a game, a clip of the game plays in place of the box art, with sound (videos written by the PC program); picture and sound are turned off separately in the Options.
 - **Every game on the USB drive in one alphabetical list**, no folder browsing. **L/R** skips a full screen of games.
 - **Box art for every game** next to the list, with **genre, studio and year**.
+- **Box art carousel** (Options → View): the game's box art in the middle with a gold frame, its neighbors on the sides and the boxes sliding as you move; below, **Game X of Y**, how many times the game was started, genre, year and studio.
+- **Game synopsis** on the **C** button, in Portuguese or English (the intro of the Wikipedia article, or the text you typed).
 - **Multi-disc** games are labeled: "Title (Disc 1)", "Title (Disc 2)".
-- **Screen size** from 80 % to 100 %, for TVs that crop the edges. Saved in the 3DO memory.
+- **Screen size** from 80 % to 100 %, for TVs that crop the edges (the small text keeps its size so it stays readable on a CRT). Saved in the 3DO memory.
 - **Save manager** with three tabs — **Console**, **Memory Unit** and **USB drive**: copy, restore, delete and copy all at once. Back up your console saves to the USB drive.
 - **Update firmware** from the Options, with the ODE firmware version shown in Information.
 
@@ -45,7 +47,7 @@ With the USB drive in the PC, a few clicks:
 2. shows the **games in your folder** and which ones are **already on the drive**, and copies only the ones you tick, already organized the way the ODE reads them, with **clean names** and one folder per game — or **by region** (`USA`, `JP`, `EU`), for those who keep a full set;
 3. **converts `.chd` games** while copying: they become an **`.iso`** (smaller, checked sector by sector) or `.cue` + `.bin` when the CD has audio tracks;
 4. **fixes broken `.cue` files**, creates the missing ones and removes leftover old ones;
-5. makes the **box art** and game info (genre, studio and year), which you can also **fill in by hand**;
+5. makes the **box art**, the game info (genre, studio and year) and the **synopses** (menu C button), which you can also **fill in or type by hand**;
 6. writes the games' **video previews** (from ScreenScraper, no account needed, or your own video);
 7. **imports box art and videos from a folder** on the PC (for example from EmuMovies), matching them by game name;
 8. creates the **`saves`** folder;

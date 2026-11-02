@@ -204,6 +204,15 @@ A capa escolhida fica guardada no pendrive e é usada nas próximas vezes. Depoi
 - **Salvar no pendrive** grava na hora, sem precisar gerar as capas de novo. O que você preenche vale mais que a internet; campo deixado vazio usa o da internet;
 - **Usar o da internet** volta às informações automáticas (as suas vão para `covers/originais/_antigas`).
 
+**Sinopse (botão C do menu):** ao apertar **C** num jogo, o menu mostra um texto curto sobre ele. O programa usa, nesta ordem, o que **você digitou**, a introdução do artigo do jogo na **Wikipedia** (em português quando existe; texto sob a licença Creative Commons BY-SA 4.0) e, quando a Wikipedia só tem inglês, uma **tradução para o português** que vai junto no programa. Um jogo sem artigo (muitos títulos só japoneses, CDs de demonstração e utilitários) fica sem sinopse.
+
+- **3) Gerar sinopses** grava as sinopses de todos os jogos no pendrive. Se **Baixar da internet o que faltar** estiver desmarcada, o programa pergunta antes se pode baixar da Wikipedia. No fim mostra o resumo por idioma e por origem; os jogos sem sinopse aparecem no filtro **Sem sinopse**, e o painel do jogo tem a linha **Sinopse:**.
+- **Sinopse…** (botão ao lado de **Informações do jogo…** e **Renomear…**) abre uma janela com dois campos, **Português** e **English**, e a origem de cada texto (digitada por você, Wikipedia, tradução ou já no pendrive). Embaixo, **No menu: N de 10 linhas** mostra como o menu vai quebrar o texto, com a mesma fonte do 3DO: avisa quando o fim seria cortado com "..." e quando há letras que o menu não tem (o menu só tem letras Latin-1: aspas e travessões viram ASCII e, por exemplo, o japonês sai).
+- **Salvar no pendrive** grava na hora. Campo deixado em branco usa o outro idioma ou o texto da internet. **Voltar ao da internet** desfaz o que você digitou (o seu vai para `covers/originais/_antigas`).
+- O texto digitado fica em `covers/originais/<jogo>.sinopse` e acompanha o jogo quando ele é renomeado. As sinopses gravadas ficam em `covers/sinopses/`.
+
+> Vários textos da Wikipedia descrevem o jogo original de outra plataforma (por exemplo, a versão de fliperama ou de PC). Confira e corrija com **Sinopse…** quando for o caso.
+
 **Renomear jogo…:** muda o nome que o menu mostra. O programa renomeia a pasta do jogo (ou o arquivo, se o nome vem do arquivo) e leva junto a capa, a imagem escolhida, o modo da capa e as informações. O jogo renomeado fica marcado como **Não alterar** no Organizar, para o nome escolhido não ser trocado depois.
 
 ### 4.5 Vídeos
@@ -250,8 +259,9 @@ Se a conta for recusada ou a cota do dia acabar, o programa para de usar aquela 
 | `boot_anterior.iso` | o menu que estava antes |
 | `SataTo3DO.uf2` | a firmware nova, até ser aplicada (vira `.ok` ou `.erro`) |
 | `saves/` | backup de saves feito pelo menu |
-| `covers/` | capas (`.cap`), vídeos de prévia (`.vid`, com o som), dados dos jogos (`dados.cap`) e a lista das capas e dos vídeos (`indice.cap`) |
-| `covers/originais/` | as imagens que você escolheu, o modo de cada capa (`<jogo>.modo`), as informações preenchidas à mão (`<jogo>.info`), os vídeos originais e o início de cada clipe (`<jogo>.inicio`) |
+| `covers/` | capas (`.cap`), vídeos de prévia (`.vid`, com o som), dados dos jogos (`dados.cap`) e a lista das capas, dos vídeos e das sinopses (`indice.cap`) |
+| `covers/sinopses/` | as sinopses dos jogos (`<jogo>.cap`, português e inglês) |
+| `covers/originais/` | as imagens que você escolheu, o modo de cada capa (`<jogo>.modo`), as informações preenchidas à mão (`<jogo>.info`), as sinopses digitadas (`<jogo>.sinopse`), os vídeos originais e o início de cada clipe (`<jogo>.inicio`) |
 | `covers/originais/_antigas/` | imagens e vídeos que você trocou ou tirou |
 | `_duplicados/` | versões repetidas separadas da lista (você decide quando apagar; a ODE pode listá-las, veja [4.3](#43-organizar-jogos)) |
 | `.maniacoode/` | o registro para **Desfazer a última organização** e os jogos marcados **Não alterar** (`nao_alterar.json`) |
@@ -295,6 +305,9 @@ Ao ligar o console, toca a **abertura em vídeo** escolhida em **Opções → Ab
 | **L / R** (ou **◄ ►**) | pula uma tela inteira de jogos |
 | **A** (ou **Start**) | inicia o jogo |
 | **X** | abre as **Opções** |
+| **C** | mostra a **sinopse** do jogo (**B**, **C**, **X** ou **A** voltam) |
+
+**Carrossel (menu v1.4 ou mais novo):** em **Opções → Visualização** a lista pode virar um **carrossel de capas**: a capa do jogo escolhido no meio, com moldura dourada, e as vizinhas dos lados. **◄ ►** (e **▲ ▼**) andam uma capa, e as capas deslizam quando há 7 jogos ou mais; **L / R** pulam uma página. Embaixo da capa ficam o nome, **Jogo X de Y**, quantas vezes você iniciou o jogo (**Nunca jogado**, **Jogado N vezes**), o gênero, o ano e o estúdio e, nos jogos de vários discos, o disco. O contador fica na memória do 3DO (NVRAM), soma ao apertar **A** e junta os discos do mesmo jogo.
 
 Parado num jogo que tem **vídeo de prévia** no pendrive ([seção 4.5](#45-vídeos)), depois de alguns segundos o vídeo toca no lugar da capa, com som; mexer na lista volta para a capa e para o som.
 
@@ -308,16 +321,17 @@ Quando você escolhe um jogo, o 3DO reinicia e carrega o disco. Para voltar ao m
 
 | Item | O que faz |
 |---|---|
-| **Tamanho da tela** | Diminui o menu de 100 % até 80 %, em passos de 5 %, para TVs que cortam as bordas. Ajuste com **◄ ►**. |
+| **Tamanho da tela** | Diminui o menu de 100 % até 80 %, em passos de 5 %, para TVs que cortam as bordas (em TV de tubo, 90 % costuma servir). O texto pequeno mantém o tamanho para continuar legível. Ajuste com **◄ ►**. |
 | **Idioma / Language** | Textos do menu em português ou em inglês. Troque com **◄ ►**. |
+| **Visualização** | **Lista** com os nomes ou **Carrossel** de capas ([seção 5](#5-usando-o-menu)). Troque com **◄ ►**. |
 | **Prévia em vídeo** | Liga ou desliga o vídeo de prévia no lugar da capa ([seção 4.5](#45-vídeos)). Troque com **◄ ►**. |
 | **Som da prévia** | Liga ou desliga o som do vídeo de prévia (só para os vídeos gravados com som). Troque com **◄ ►**. |
 | **Abertura** | Vídeo que toca ao ligar o console: um dos quatro (ManiacoOS1, ManiacoOS2, ManiacoOS3, 3DO), **Aleatória** ou **Desligada**. Troque com **◄ ►**; vale a partir da próxima vez que ligar. |
 | **Gerenciar saves** | Abre o gerenciador de saves (**A**). |
 | **Atualizar firmware** | Grava a `SataTo3DO.uf2` do pendrive ([seção 9](#9-atualizar-a-firmware)). |
-| **Informações** | Abre (**A**) a tela com a versão do menu, a versão da firmware da ODE e quantos jogos, capas, vídeos de prévia e jogos com gênero/estúdio/ano há no pendrive. |
+| **Informações** | Abre (**A**) a tela com a versão do menu, a versão da firmware da ODE e quantos jogos, capas, vídeos de prévia, jogos com gênero/estúdio/ano e jogos com sinopse há no pendrive. |
 
-Embaixo das Opções aparecem a versão do menu e a da firmware da ODE. **▲ ▼** escolhem o item; **B** volta para a lista. O tamanho da tela, o idioma, a prévia em vídeo, o som da prévia e a abertura ficam salvos na memória do 3DO (NVRAM) ao voltar.
+Embaixo das Opções aparecem a versão do menu e a da firmware da ODE. **▲ ▼** escolhem o item; **B** volta para a lista. O tamanho da tela, o idioma, a visualização, a prévia em vídeo, o som da prévia e a abertura ficam salvos na memória do 3DO (NVRAM) ao voltar.
 
 ## 7. Gerenciador de saves
 
