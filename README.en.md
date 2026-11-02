@@ -13,7 +13,8 @@ A **[Maniaco Game Room](https://www.maniacogameroom.com.br/)** blog project.
 | | |
 |---|---|
 | ![Video preview of the game in place of the box art](imagens/menu-jogos-2-en.png) | ![Menu intro](imagens/abertura.png) |
-| ![Options](imagens/opcoes-en.png) | ![Manage saves](imagens/opcoes-saves.png) |
+| ![Box art carousel](imagens/menu-carrossel-en.png) | ![Game synopsis, C button](imagens/menu-sinopse-en.png) |
+| ![Options](imagens/opcoes-en.png) | ![Manage saves](imagens/opcoes-saves-en.png) |
 
 ### Menu (`boot.iso`)
 

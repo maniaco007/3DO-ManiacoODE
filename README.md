@@ -16,6 +16,7 @@ Um projeto do blog **[Maniaco Game Room](https://www.maniacogameroom.com.br/)**.
 | | |
 |---|---|
 | ![Prévia em vídeo do jogo no lugar da capa](imagens/menu-jogos-2.png) | ![Abertura do menu](imagens/abertura.png) |
+| ![Carrossel de capas](imagens/menu-carrossel.png) | ![Sinopse do jogo, botão C](imagens/menu-sinopse.png) |
 | ![Opções](imagens/opcoes.png) | ![Gerenciar saves](imagens/opcoes-saves.png) |
 
 ### Menu (`boot.iso`)

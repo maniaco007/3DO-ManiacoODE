@@ -213,6 +213,8 @@ The chosen box art is kept on the USB drive and used from then on. After changin
 - **Save to the drive** writes it right away. A field left blank uses the other language or the internet text. **Back to the internet one** undoes what you typed (yours goes to `covers/originais/_antigas`).
 - The typed text lives in `covers/originais/<game>.sinopse` and follows the game when it is renamed. The synopses written to the drive are in `covers/sinopses/`.
 
+![Synopsis… window](imagens/app-sinopse-en.png)
+
 > Several Wikipedia texts describe the original game on another platform (for example the arcade or PC version). Check them and fix with **Synopsis…** when that is the case.
 
 **Rename game…:** changes the name the menu shows. The program renames the game folder (or the file, if the name comes from the file) and takes along the box art, the chosen image, the box art mode and the info. The renamed game is marked **Don't change** in Organize, so the chosen name is not changed later.
@@ -300,6 +302,7 @@ When the console is turned on, the **video intro** chosen in **Options → Intro
 | | |
 |---|---|
 | ![Game list with box art, genre, studio and year](imagens/menu-jogos-en.png) | ![Video preview in place of the box art](imagens/menu-jogos-2-en.png) |
+| ![Box art carousel](imagens/menu-carrossel-en.png) | ![Game synopsis, C button](imagens/menu-sinopse-en.png) |
 
 | Button | In the game list |
 |---|---|
@@ -337,7 +340,7 @@ Below the Options you see the menu version and the ODE firmware version. **▲ �
 
 ## 7. Save manager
 
-![Manage saves](imagens/opcoes-saves.png)
+![Manage saves](imagens/opcoes-saves-en.png)
 
 The save manager has three tabs, switched with **L / R**:
 

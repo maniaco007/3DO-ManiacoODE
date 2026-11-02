@@ -211,6 +211,8 @@ A capa escolhida fica guardada no pendrive e é usada nas próximas vezes. Depoi
 - **Salvar no pendrive** grava na hora. Campo deixado em branco usa o outro idioma ou o texto da internet. **Voltar ao da internet** desfaz o que você digitou (o seu vai para `covers/originais/_antigas`).
 - O texto digitado fica em `covers/originais/<jogo>.sinopse` e acompanha o jogo quando ele é renomeado. As sinopses gravadas ficam em `covers/sinopses/`.
 
+![Janela Sinopse…](imagens/app-sinopse.png)
+
 > Vários textos da Wikipedia descrevem o jogo original de outra plataforma (por exemplo, a versão de fliperama ou de PC). Confira e corrija com **Sinopse…** quando for o caso.
 
 **Renomear jogo…:** muda o nome que o menu mostra. O programa renomeia a pasta do jogo (ou o arquivo, se o nome vem do arquivo) e leva junto a capa, a imagem escolhida, o modo da capa e as informações. O jogo renomeado fica marcado como **Não alterar** no Organizar, para o nome escolhido não ser trocado depois.
@@ -298,6 +300,7 @@ Ao ligar o console, toca a **abertura em vídeo** escolhida em **Opções → Ab
 | | |
 |---|---|
 | ![Lista de jogos com capa, gênero, estúdio e ano](imagens/menu-jogos.png) | ![Prévia em vídeo no lugar da capa](imagens/menu-jogos-2.png) |
+| ![Carrossel de capas](imagens/menu-carrossel.png) | ![Sinopse do jogo, botão C](imagens/menu-sinopse.png) |
 
 | Botão | Na lista de jogos |
 |---|---|
